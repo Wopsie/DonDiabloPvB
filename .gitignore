@@ -2,12 +2,12 @@
 # Created by https://www.gitignore.io/api/unity,visualstudio
 
 ### Unity ###
-/[Ll]ibrary/
-/[Tt]emp/
-/[Oo]bj/
-/[Bb]uild/
-/[Bb]uilds/
-/Assets/AssetStoreTools*
+DonDiabloPvB/[Ll]ibrary/
+DonDiabloPvB/[Tt]emp/
+DonDiabloPvB/[Oo]bj/
+DonDiabloPvB/[Bb]uild/
+DonDiabloPvB/[Bb]uilds/
+DonDiabloPvB/Assets/AssetStoreTools*
 
 # Visual Studio 2015 cache directory
 /.vs/
@@ -50,10 +50,10 @@ sysinfo.txt
 # User-specific files (MonoDevelop/Xamarin Studio)
 
 # Build results
-[Dd]ebug/
-[Dd]ebugPublic/
-[Rr]elease/
-[Rr]eleases/
+DonDiabloPvB/[Dd]ebug/
+DonDiabloPvB/[Dd]ebugPublic/
+DonDiabloPvB/[Rr]elease/
+DonDiabloPvB/[Rr]eleases/
 x64/
 x86/
 bld/
