@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(AudioSource))]
 public class AudioPeer : MonoBehaviour {
     public AudioSource _audioSource;
     public static float[] _samples = new float[512];
@@ -18,7 +17,6 @@ public class AudioPeer : MonoBehaviour {
     private float _AmplitudeHighest;
     // Use this for initialization
     void Start () {
-        _audioSource = GetComponent<AudioSource>();
 	}
 	
 	// Update is called once per frame
@@ -59,7 +57,7 @@ public class AudioPeer : MonoBehaviour {
 
 
     void GetSpectrumAudioSource() {
-        _audioSource.GetSpectrumData(_samples,0,FFTWindow.Blackman);
+        _audioSource.GetSpectrumData(_samples,0,FFTWindow.BlackmanHarris);
     }
 
     void BandBuffer()
@@ -82,13 +80,13 @@ public class AudioPeer : MonoBehaviour {
     { /*
         * 22050 / 512 = 43hertz per sample
         * 
-        * 20 - 60 hertz
-        * 60 - 250 hertz
-        * 250 - 500 hertz
-        * 500 - 2000 hertz
-        * 2000 - 4000 hertz
-        * 4000 - 6000 hertz
-        * 6000 - 20000 hertz
+        * 20 - 60 hertz - Sub Bass ------------ The sub bass provides the first usable low frequencies on most recordings. The deep bass produced in this range is usually felt more than it is heard, providing a sense of power.
+        * 60 - 250 hertz - Bass --------------- The bass range determines how fat or thin the sound is. The fundamental notes of rhythm are centered on this area. Most bass signals in modern music tracks lie around the 90-200 Hz area.
+        * 250 - 500 hertz - Low Midrange------- The low midrange contains the low order harmonics of most instruments and is generally viewed as the bass presence range.
+        * 500 - 2000 hertz - Midrange --------- The midrange determines how prominent an instrument is in the mix. Boosting around 1000 Hz can give instruments a horn like quality.
+        * 2000 - 4000 hertz - Upper Midrange -- Human hearing is extremely sensitive at the high midrange frequencies, with the slightest boost around here resulting in a huge change in the sound timbre.
+        * 4000 - 6000 hertz - Presence -------- The presence range is responsible for clarity and definition of a sound. It is the range at which most home stereos center their treble control on.
+        * 6000 - 20000 hertz - Brillance ------ The brilliance range is composed entirely of harmonics and is responsible for sparkle and air of a sound. Boost around 12 kHz make a recording sound more Hi Fi.
         * 
         * 0 - 2 = 86 hertz
         * 1 - 4 = 172 hertz - 87-258

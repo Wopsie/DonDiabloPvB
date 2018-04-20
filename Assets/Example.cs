@@ -5,12 +5,13 @@ using UnityEngine;
 public class Example : MonoBehaviour
 {
     public AudioProcessor processor;
+    public GameObject obj;
     void Start()
     {
         //Select the instance of AudioProcessor and pass a reference
         //to this object
         processor.onBeat.AddListener(onOnbeatDetected);
-        processor.onSpectrum.AddListener(onSpectrum);
+        //processor.onSpectrum.AddListener(onSpectrum);
     }
 
     //this event will be called every time a beat is detected.
@@ -19,6 +20,7 @@ public class Example : MonoBehaviour
     void onOnbeatDetected()
     {
         Debug.Log("Beat!!!");
+        Instantiate(obj);
     }
 
     //This event will be called every frame while music is playing

@@ -9,6 +9,8 @@ public class ParamCube : MonoBehaviour {
     public bool _testBeat;
     public float _beatsensivity;
     private float _old = 0, _new;
+    private int count = 0;
+    public GameObject obj;
     Material _material;
 	// Use this for initialization
 	void Start () {
@@ -19,13 +21,31 @@ public class ParamCube : MonoBehaviour {
     {
         if (_testBeat)
         {
-            _new = AudioPeer._bandBuffer[_band];
+            _new = (AudioPeer._bandBuffer[0] + AudioPeer._bandBuffer[1]);
+            if (count >= 2)
+            {
+                Debug.Log("beat");
+                Instantiate(obj);
+                count = 0;
+            }
             if (_new - _old > _beatsensivity)
             {
-                Debug.Log("Beat");
+                count++;
+                Debug.Log("+1");
+            }
+            else
+            {
+                count = 0;
+                Debug.Log("0");
             }
             _old = _new;
         }
+    }
+
+    IEnumerator Wait(float wait = 0)
+    {
+        yield return new WaitForSeconds(wait);
+        _testBeat = true;
     }
 
 	// Update is called once per frame

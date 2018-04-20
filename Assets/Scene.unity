@@ -254,8 +254,9 @@ MonoBehaviour:
   _startScale: 10
   _scaleMultiplier: 150
   _useBuffer: 1
-  _testBeat: 0
-  _beatsensivity: 1
+  _testBeat: 1
+  _beatsensivity: 0.1
+  obj: {fileID: 1771246131290858, guid: c8954f190d95c4a4bb0fe258ea98872c, type: 2}
 --- !u!23 &312805145
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -443,6 +444,7 @@ MonoBehaviour:
   _useBuffer: 1
   _testBeat: 0
   _beatsensivity: 0
+  obj: {fileID: 0}
 --- !u!23 &528368618
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -523,7 +525,6 @@ GameObject:
   m_Component:
   - component: {fileID: 571641390}
   - component: {fileID: 571641389}
-  - component: {fileID: 571641391}
   m_Layer: 0
   m_Name: AudioManager
   m_TagString: Untagged
@@ -542,7 +543,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4eadf88fab7bef4290e1f93579123c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _audioSource: {fileID: 0}
+  _audioSource: {fileID: 1979035605}
 --- !u!4 &571641390
 Transform:
   m_ObjectHideFlags: 0
@@ -556,87 +557,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!82 &571641391
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 571641388}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 24300002, guid: de684f95a697e4a46ab4e8278429bca0,
-    type: 2}
-  m_audioClip: {fileID: 8300000, guid: 3467605648095eb4ca653f6b0e1f113b, type: 3}
-  m_PlayOnAwake: 1
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 2
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    - serializedVersion: 2
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 2
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 0
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 2
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 0
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 2
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 0
 --- !u!1 &713328122
 GameObject:
   m_ObjectHideFlags: 0
@@ -815,6 +735,7 @@ MonoBehaviour:
   _useBuffer: 1
   _testBeat: 0
   _beatsensivity: 0
+  obj: {fileID: 0}
 --- !u!23 &916225208
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -922,6 +843,7 @@ MonoBehaviour:
   _useBuffer: 1
   _testBeat: 0
   _beatsensivity: 0
+  obj: {fileID: 0}
 --- !u!23 &1040118057
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -993,6 +915,60 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!1001 &1098461035
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4578927467369874, guid: c8954f190d95c4a4bb0fe258ea98872c, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -440
+      objectReference: {fileID: 0}
+    - target: {fileID: 4578927467369874, guid: c8954f190d95c4a4bb0fe258ea98872c, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 35.509247
+      objectReference: {fileID: 0}
+    - target: {fileID: 4578927467369874, guid: c8954f190d95c4a4bb0fe258ea98872c, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -3.3802643
+      objectReference: {fileID: 0}
+    - target: {fileID: 4578927467369874, guid: c8954f190d95c4a4bb0fe258ea98872c, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4578927467369874, guid: c8954f190d95c4a4bb0fe258ea98872c, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4578927467369874, guid: c8954f190d95c4a4bb0fe258ea98872c, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4578927467369874, guid: c8954f190d95c4a4bb0fe258ea98872c, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4578927467369874, guid: c8954f190d95c4a4bb0fe258ea98872c, type: 2}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4578927467369874, guid: c8954f190d95c4a4bb0fe258ea98872c, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4578927467369874, guid: c8954f190d95c4a4bb0fe258ea98872c, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4578927467369874, guid: c8954f190d95c4a4bb0fe258ea98872c, type: 2}
+      propertyPath: m_LocalScale.z
+      value: 5
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: c8954f190d95c4a4bb0fe258ea98872c, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &1268641810
 GameObject:
   m_ObjectHideFlags: 0
@@ -1029,6 +1005,7 @@ MonoBehaviour:
   _useBuffer: 1
   _testBeat: 0
   _beatsensivity: 0
+  obj: {fileID: 0}
 --- !u!23 &1268641812
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1269,8 +1246,9 @@ MonoBehaviour:
   _startScale: 10
   _scaleMultiplier: 150
   _useBuffer: 1
-  _testBeat: 0
-  _beatsensivity: 0.5
+  _testBeat: 1
+  _beatsensivity: 0.1
+  obj: {fileID: 1771246131290858, guid: c8954f190d95c4a4bb0fe258ea98872c, type: 2}
 --- !u!23 &1478015919
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1380,6 +1358,7 @@ MonoBehaviour:
   _useBuffer: 1
   _testBeat: 0
   _beatsensivity: 0
+  obj: {fileID: 0}
 --- !u!23 &1536169265
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1710,18 +1689,29 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1979035600}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 12a66c637e6be9944840722036552cbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioSource: {fileID: 571641391}
+  audioSource: {fileID: 0}
   bufferSize: 512
   nBand: 8
-  gThresh: 0.2
+  gThresh: 0.1
   onBeat:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: AudioProcessor+OnBeatEventHandler, Assembly-CSharp, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   onSpectrum:
@@ -1735,12 +1725,13 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1979035600}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8c532b768c73e2d4198c6b2554dedcca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   processor: {fileID: 1979035606}
+  obj: {fileID: 1771246131290858, guid: c8954f190d95c4a4bb0fe258ea98872c, type: 2}
 --- !u!1 &1985088348
 GameObject:
   m_ObjectHideFlags: 0
@@ -1777,6 +1768,7 @@ MonoBehaviour:
   _useBuffer: 1
   _testBeat: 0
   _beatsensivity: 0
+  obj: {fileID: 0}
 --- !u!23 &1985088350
 MeshRenderer:
   m_ObjectHideFlags: 0
