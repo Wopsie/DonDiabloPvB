@@ -11,7 +11,7 @@ public class MoveTrack : MonoBehaviour {
     [SerializeField]
     private Rigidbody rb;
     [Range(0.1f, 5)][SerializeField]
-    private float speed = 0.1f;
+    private float speed = 1f;
     [SerializeField]
     private float maxSpeed = 5;
 

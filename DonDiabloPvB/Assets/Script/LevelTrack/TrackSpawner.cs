@@ -5,21 +5,22 @@ using UnityEngine;
 public class TrackSpawner : MonoBehaviour {
 
     [SerializeField] //track prefab & parent objects
-    private GameObject trackModel, primeTrackParent, secondTrackParent;
+    private GameObject trackModel, primeTrackParent;
     [SerializeField] //amount of track parts to be instantiated at start of game (x2)
     private int trackLength = 20;
+    [SerializeField]
+    private float xPos;
+    [SerializeField]
+    private bool laneExists = true;
     private Vector3 trackStart;
-    private List<GameObject> primeTrackPartsList = new List<GameObject>(); //holds track parts for the seperate lanes
-    private List<GameObject> secondTrackPartsList = new List<GameObject>();
-    private bool secondLane = false;
+    private List<GameObject> trackPartsList = new List<GameObject>(); //holds track parts for the seperate lanes
+
 
     private void Start(){
         for (int i = 0; i < trackLength; i++){
-            var track = Instantiate(trackModel, new Vector3(0,0,i * 1.3f), Quaternion.identity, primeTrackParent.transform);
-            primeTrackPartsList.Add(track);
-
-            //track = Instantiate(secondTrackParent, new Vector3(1.3f, 0, i * 1.3f), Quaternion.identity, secondTrackParent.transform);
-            //secondTrackPartsList.Add(track);
+            var track = Instantiate(trackModel, new Vector3(xPos,0,i * 1.3f), Quaternion.identity, primeTrackParent.transform);
+            trackPartsList.Add(track);
+            track.SetActive(laneExists);
         }
         trackStart = new Vector3(0, 0, trackLength * 1.3f);
     }
@@ -27,13 +28,10 @@ public class TrackSpawner : MonoBehaviour {
     private void Update(){
         for (int i = 0; i < trackLength; i++){
             //for primary lane
-            if (primeTrackPartsList[i].transform.position.z <= -0.2f){
-                ResetTrackPartAt(primeTrackPartsList, i);
+            if (trackPartsList[i].transform.position.z <= -0.5f){
+                ResetTrackPartAt(trackPartsList, i);
+                trackPartsList[i].SetActive(laneExists);
             }
-            //for secondary lane
-            //if(secondTrackPartsList[i].transform.position.z <= -0.2f){
-            //    ResetTrackPartAt(secondTrackPartsList, i);
-            //}
         }
     }
 
@@ -42,7 +40,7 @@ public class TrackSpawner : MonoBehaviour {
     }
 
     void RemoveTrackPartAt(int index){
-        Destroy(primeTrackPartsList[index]);
-        primeTrackPartsList.RemoveAt(index);
+        Destroy(trackPartsList[index]);
+        trackPartsList.RemoveAt(index);
     }
 }
