@@ -11,7 +11,7 @@ public class ShaderController: MonoBehaviour
 
     private float _Dissolve;
     private float _EdgeRange = 0.01f;
-    private float speed = 0.02f;
+    private float speed = 0.1f;
 
     const string DissolveIntensity = "_DissolveIntensity";
     const string DissolveEdgeRange = "_DissolveEdgeRange";
@@ -19,7 +19,7 @@ public class ShaderController: MonoBehaviour
 
     void Start()
     {
-        StartCoroutine(ShieldEffect(0.025f));
+        StartCoroutine(ShieldEffect(0.02f));
     }
 
     IEnumerator ShieldEffect(float amount)
@@ -39,6 +39,7 @@ public class ShaderController: MonoBehaviour
                     _EdgeRange = 0f;
                     mat.SetTextureOffset(DissolveTex, new Vector2(Random.Range(-1f, 1f),
                         Random.Range(-1f, 1f)));
+                    isIncreasing = true;
                 }
 
             }
@@ -49,7 +50,11 @@ public class ShaderController: MonoBehaviour
                 _EdgeRange = 0.1f;
 
                 if (_Dissolve > 1 && !isDecreasing)
+                {
                     isIncreasing = false;
+                    isDecreasing = true;
+                }
+                
             }
             yield return new WaitForFixedUpdate();
         }

@@ -9,6 +9,9 @@
 		_BumpMap ("Normal Map", 2D) = "Bump"{}
 		_BumpPower ("Normal Power", float) = 1
 
+		[Header(Normal Color)]
+		_ColorNormal ("Normal Color", color) = (1,1,1,0)
+
 		[Header(Dissolve Text)]
 		_DissolveTex ("Dissolve Map", 2D) = "White"{}
 
@@ -56,6 +59,7 @@
       	IN.color = _ColorTint;
 		o.Albedo = tex2D (_MainTex, IN.uv_MainTex).rgb * IN.color;
 		o.Normal = UnpackNormal(tex2D (_BumpMap, IN.uv_BumpMap));
+		o.Alpha = _ColorTint.a;
 
 		half rim = 1.0 - saturate(dot(normalize(IN.viewDir), o.Normal));
 		o.Emission = _RimColor.rgb * pow(rim, _RimPower);
@@ -100,7 +104,6 @@
         normal.z = normal.z / _BumpPower;
 
         o.Normal = normalize(normal);
-
         return;
       }
       ENDCG
