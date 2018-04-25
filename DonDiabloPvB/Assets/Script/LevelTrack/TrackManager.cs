@@ -14,5 +14,4 @@ public class TrackManager : MonoBehaviour {
             spawners[i] = spawnerObjs[i].GetComponent<TrackSpawner>();
         }
     }
-
 }
