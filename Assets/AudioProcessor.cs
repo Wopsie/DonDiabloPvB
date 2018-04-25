@@ -166,6 +166,7 @@ public class AudioProcessor : MonoBehaviour
             float aMax = 0.0f;
             int tempopd = 0;
             //float[] acVals = new float[maxlag];
+
             for (int i = 0; i < maxlag; ++i)
             {
                 float acVal = (float)System.Math.Sqrt(auco.autoco(i));
