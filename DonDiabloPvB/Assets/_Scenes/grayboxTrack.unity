@@ -464,7 +464,7 @@ MonoBehaviour:
   primeTrackParent: {fileID: 1289549311}
   trackLength: 20
   xPos: 1.4
-  laneExists: 1
+  laneExists: 0
 --- !u!4 &1954951713
 Transform:
   m_ObjectHideFlags: 0

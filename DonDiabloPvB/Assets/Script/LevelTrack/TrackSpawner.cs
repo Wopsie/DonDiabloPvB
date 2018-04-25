@@ -10,7 +10,7 @@ public class TrackSpawner : MonoBehaviour {
     private int trackLength = 20;
     [SerializeField]
     private float xPos;
-    [HideInInspector]
+    //[HideInInspector]
     public bool laneExists = true;
     private Vector3 trackStart;
     private List<GameObject> trackPartsList = new List<GameObject>(); //holds track parts for the seperate lanes
