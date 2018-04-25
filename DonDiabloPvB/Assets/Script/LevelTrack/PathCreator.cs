@@ -2,12 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PathCreator : MonoBehaviour {
+namespace SplineEditor { 
 
-    [HideInInspector]
-	public Path path;
+    public class PathCreator : MonoBehaviour {
 
-    public void CreatePath(){
-        path = new Path(transform.position);
+        [HideInInspector]
+	    public Path path;
+
+        public void CreatePath(){
+            path = new Path(transform.position);
+        }
     }
 }

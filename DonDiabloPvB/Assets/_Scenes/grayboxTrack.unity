@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748172, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657868, g: 0.49641263, b: 0.57481706, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -137,10 +137,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 168334539}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c4e47a6558494f47ac8e1d726b1f75e, type: 3}
+  m_Script: {fileID: 11500000, guid: 83558bb341cd1164689d5709dab8321d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trackModel: {fileID: 1722962091202538, guid: fb02db10adb01224b84856220ccf2a2c, type: 2}
+  trackModel: {fileID: 1722962091202538, guid: 41ebdb5efa8097341a3de0bd2e2144ef, type: 2}
   primeTrackParent: {fileID: 1987286689}
   trackLength: 20
   xPos: 0
@@ -182,7 +182,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 186419891}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 03a3519f8726ed145a4717731eeec85e, type: 3}
+  m_Script: {fileID: 11500000, guid: fb3b155908816324a9cb9cd91b6c0aed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!4 &186419893
@@ -303,12 +303,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1169492162}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ab1354bd99359b74a94ff237ba21bf27, type: 3}
+  m_Script: {fileID: 11500000, guid: 222c8518fee11bc46b1f3e3caeb7117a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 1169492163}
-  speed: 0.1
-  maxSpeed: 7
+  speed: 1
+  maxSpeed: 5
 --- !u!4 &1169492165
 Transform:
   m_ObjectHideFlags: 0
@@ -457,14 +457,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1954951711}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6c4e47a6558494f47ac8e1d726b1f75e, type: 3}
+  m_Script: {fileID: 11500000, guid: 83558bb341cd1164689d5709dab8321d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trackModel: {fileID: 1722962091202538, guid: fb02db10adb01224b84856220ccf2a2c, type: 2}
+  trackModel: {fileID: 1722962091202538, guid: 41ebdb5efa8097341a3de0bd2e2144ef, type: 2}
   primeTrackParent: {fileID: 1289549311}
   trackLength: 20
-  xPos: 1.6
-  laneExists: 0
+  xPos: 1.4
+  laneExists: 1
 --- !u!4 &1954951713
 Transform:
   m_ObjectHideFlags: 0
