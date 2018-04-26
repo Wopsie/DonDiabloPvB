@@ -47,12 +47,12 @@ public class AudioProcessor : MonoBehaviour
 
     /* storage space */
     private int colmax = 120;
-    float[] spectrum;
-    float[] averages;
-    float[] acVals;
-    float[] onsets;
-    float[] scorefun;
-    float[] dobeat;
+    public float[] spectrum;
+    public float[] averages;
+    public float[] acVals;
+    public float[] onsets;
+    public float[] scorefun;
+    public float[] dobeat;
     int now = 0;
     // time index for circular buffer within above
 

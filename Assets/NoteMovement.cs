@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class NoteMovement : MonoBehaviour {
     private Rigidbody rigid;
-    private int Speed = 5;
+    private int Speed = -50;
 	// Use this for initialization
 	void Start () {
         rigid = GetComponent<Rigidbody>();
-        rigid.velocity = transform.TransformDirection(new Vector3(Speed, 0,0));
+        rigid.velocity = transform.TransformDirection(new Vector3(0,0,Speed));
         StartCoroutine(Destroy());
     }
 	
@@ -19,7 +19,7 @@ public class NoteMovement : MonoBehaviour {
 
     IEnumerator Destroy()
     {
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(1f);
         Destroy(this.gameObject);
     }
 }
