@@ -28,7 +28,7 @@ public class TrackSpawner : MonoBehaviour {
     private void Update(){
         for (int i = 0; i < trackLength; i++){
             //for primary lane
-            if (trackPartsList[i].transform.position.z <= -2f){
+            if (trackPartsList[i].transform.position.z <= -5f){
                 ResetTrackPartAt(trackPartsList, i);
                 trackPartsList[i].SetActive(laneExists);
             }

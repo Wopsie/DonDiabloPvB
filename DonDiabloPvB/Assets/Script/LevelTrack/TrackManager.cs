@@ -57,7 +57,7 @@ public class TrackManager : MonoBehaviour {
 
     IEnumerator LaneTimerRoutine(bool addNew){
         timerStarted = true;
-        yield return new WaitForSeconds(Random.Range(5, 30));
+        yield return new WaitForSeconds(Random.Range(5, 15));
         if(addNew){
             //turn on the other lane
             for (int i = 0; i < spawners.Count; i++){
