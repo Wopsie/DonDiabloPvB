@@ -79,7 +79,7 @@ Material:
     - _Cutoff: 0.5
     - _CutoutThresh: 1
     - _DetailNormalMapScale: 1
-    - _DisolveCount: -0.66
+    - _DisolveCount: -0.64953876
     - _DisolveTime: 2
     - _DisolveY: 0
     - _DissolveEdgeMultiplier: 1
@@ -90,7 +90,7 @@ Material:
     - _GlossMapScale: 1
     - _Glossiness: 0
     - _GlossyReflections: 1
-    - _LerpValue: 0
+    - _LerpValue: 1
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
