@@ -12,7 +12,6 @@ public class PlayerMovement : MonoBehaviour {
     private Vector3 leftPos = new Vector3(0, 0.75f, 0);
     private Vector3 rightPos = new Vector3(2.6f, 0.75f, 0);
 
-
     private void Start(){
         GameObject[]  spawners = GameObject.FindGameObjectsWithTag(Tags.SpawnerTag);
         for (int i = 0; i < spawners.Length; i++){
