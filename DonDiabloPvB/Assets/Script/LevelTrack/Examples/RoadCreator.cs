@@ -6,6 +6,7 @@ using SplineEditor;
 [RequireComponent(typeof(MeshRenderer))]
 [RequireComponent(typeof(MeshFilter))]
 [RequireComponent(typeof(PathCreator))]
+[RequireComponent(typeof(PathPlacer))]
 public class RoadCreator : MonoBehaviour {
 
     [Range(0.05f, 1.5f)]
@@ -14,14 +15,14 @@ public class RoadCreator : MonoBehaviour {
     public bool autoUpdate;
     public float tiling = 1;
 
-    public void UpdateRoad()
-    {
+    public void UpdateRoad(){
         Path path = GetComponent<PathCreator>().path;
         Vector2[] points = path.CalculateEvenSpacePoints(spacing);
         GetComponent<MeshFilter>().mesh = CreateRoadMesh(points, path.IsClosed);
 
         int textureRepeat = Mathf.RoundToInt(tiling * points.Length * spacing * 0.05f);
         GetComponent<MeshRenderer>().sharedMaterial.mainTextureScale = new Vector2(1, textureRepeat);
+        GetComponent<PathPlacer>().PlacePath();
     }
 
 	Mesh CreateRoadMesh(Vector2[] points, bool isClosed){
