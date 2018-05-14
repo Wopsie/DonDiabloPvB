@@ -11,9 +11,9 @@ public class MoveTrack : MonoBehaviour {
     [SerializeField]
     private Rigidbody rb;
     [Range(0.1f, 5)][SerializeField]
-    private float speed = 1f;
+    private float speed = 4f;
     [SerializeField]
-    private float maxSpeed = 5;
+    private float maxSpeed = 8;
 
     private void Awake(){
         rb.maxAngularVelocity = 100;
