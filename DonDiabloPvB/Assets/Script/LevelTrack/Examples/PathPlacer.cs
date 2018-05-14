@@ -45,6 +45,7 @@ public class PathPlacer : MonoBehaviour {
 
         for (int i = 0; i < points.Length; i++){
             var g = (GameObject)Instantiate(playerTrackPoint, transform);
+            g.tag = Tags.WaypointTag;
             g.transform.position = points[i];
             g.transform.localScale = Vector3.one * spacing * 0.5f;
             g.GetComponent<PlayerTrackingPoint>().PointIndex = i;
