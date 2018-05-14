@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 23006954911829866}
   m_Layer: 0
   m_Name: PlayerPoint
-  m_TagString: Untagged
+  m_TagString: WayPoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
