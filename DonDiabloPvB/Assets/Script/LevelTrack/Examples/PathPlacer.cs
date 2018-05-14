@@ -20,17 +20,18 @@ public class PathPlacer : MonoBehaviour {
             g.transform.localScale = Vector3.one * spacing * 0.5f;
         }
         */
-
+        /*
         for (int i = 0; i < points.Length; i++){
             var g = (GameObject)Instantiate(playerTrackPoint, transform);
             g.transform.position = points[i];
             g.transform.localScale = Vector3.one * spacing * 0.5f;
             g.GetComponent<PlayerTrackingPoint>().PointIndex = i;
         }
+        */
     }
 
     public void PlacePath(){
-        if (!playerTrackPoint){
+        if (!playerTrackPoint || trackedObjs == null){
             Debug.LogWarning("The path placer has no player tracking point obj assigned");
             return;
         }
@@ -44,12 +45,12 @@ public class PathPlacer : MonoBehaviour {
         trackedObjs = new GameObject[points.Length];
 
         for (int i = 0; i < points.Length; i++){
-            var g = (GameObject)Instantiate(playerTrackPoint, transform);
-            g.tag = Tags.WaypointTag;
-            g.transform.position = points[i];
-            g.transform.localScale = Vector3.one * spacing * 0.5f;
-            g.GetComponent<PlayerTrackingPoint>().PointIndex = i;
-            trackedObjs[i] = g;
+            trackedObjs[i] = (GameObject)Instantiate(playerTrackPoint, transform);
+            trackedObjs[i].tag = Tags.WaypointTag;
+            trackedObjs[i].transform.position = points[i];
+            trackedObjs[i].transform.localScale = Vector3.one * spacing * 0.5f;
+            trackedObjs[i].GetComponent<PlayerTrackingPoint>().PointIndex = i;
+            //trackedObjs[i] = g;
         }
     }
 }
