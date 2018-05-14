@@ -21,7 +21,7 @@ public class ParamCube : MonoBehaviour {
     {
         if (_testBeat)
         {
-            _new = (AudioPeer._bandBuffer[0] + AudioPeer._bandBuffer[1]);
+            _new = (AudioPeer._bandBuffer[2] + AudioPeer._bandBuffer[3]);
             if (count >= 2)
             {
                 Debug.Log("beat");
@@ -54,13 +54,9 @@ public class ParamCube : MonoBehaviour {
         if (_useBuffer)
         {
             transform.localScale = new Vector3(transform.localScale.x, (AudioPeer._bandBuffer[_band] * _scaleMultiplier) + _startScale, transform.localScale.z);
-            Color _color = new Color(AudioPeer._audioBandBuffer[_band], AudioPeer._audioBandBuffer[_band], AudioPeer._audioBandBuffer[_band]);
-            _material.SetColor("EmissionColor", _color);
         }
         else if (!_useBuffer) {
             transform.localScale = new Vector3(transform.localScale.x, (AudioPeer._freqBand[_band] * _scaleMultiplier) + _startScale, transform.localScale.z);
-            Color _color = new Color(AudioPeer._audioBandBuffer[_band], AudioPeer._audioBandBuffer[_band], AudioPeer._audioBandBuffer[_band]);
-            _material.SetColor("EmissionColor", _color);
         }
         TestBeat();
 	}

@@ -56,7 +56,7 @@ public class AudioProcessor : MonoBehaviour
     int now = 0;
     // time index for circular buffer within above
 
-    float[] spec;
+    public float[] spec;
     // the spectrum of the previous step
 
     /* Autocorrelation structure */

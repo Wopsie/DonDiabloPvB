@@ -1250,8 +1250,8 @@ MonoBehaviour:
   _band: 0
   _startScale: 10
   _scaleMultiplier: 150
-  _useBuffer: 1
-  _testBeat: 1
+  _useBuffer: 0
+  _testBeat: 0
   _beatsensivity: 0.1
   obj: {fileID: 1771246131290858, guid: c8954f190d95c4a4bb0fe258ea98872c, type: 2}
 --- !u!23 &1478015919
@@ -1703,6 +1703,13 @@ MonoBehaviour:
   bufferSize: 512
   nBand: 8
   gThresh: 0.1
+  spectrum: []
+  averages: []
+  acVals: []
+  onsets: []
+  scorefun: []
+  dobeat: []
+  spec: []
   onBeat:
     m_PersistentCalls:
       m_Calls:
