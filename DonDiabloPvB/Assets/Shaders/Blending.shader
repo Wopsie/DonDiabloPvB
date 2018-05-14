@@ -5,6 +5,8 @@
 		_MainTex ("Texture", 2D) = "white" {}
 		_SecondTex ("Second Texture", 2D) = "white" {}
 
+		_ColorMain ("Color main", Color) = (1,1,1,1)
+
 		_LerpValue ("value of lerp", Range(0,1)) = 0.5
 
 		_DisolveCount ("Color controller", float) = 0
@@ -44,6 +46,8 @@
 			float4 _MainTex_ST;
 			float4 _SecondTex_ST;
 
+			float4 _ColorMain;
+
 			float _LerpValue;
 
 			float _DisolveCount;
@@ -58,7 +62,7 @@
 			
 			fixed4 frag (v2f i) : SV_Target
 			{
-				fixed4 col = tex2D(_MainTex, i.uv);
+				fixed4 col = tex2D(_MainTex, i.uv)*_ColorMain;
 
 				clip(_DisolveCount + tex2D(_SecondTex,i.uv));
 				return col;
