@@ -31,9 +31,11 @@ public class PathPlacer : MonoBehaviour {
     }
 
     public void PlacePath(){
-        if (!playerTrackPoint || trackedObjs == null){
+        if (!playerTrackPoint){
             Debug.LogWarning("The path placer has no player tracking point obj assigned");
             return;
+        }else if( trackedObjs == null){
+            trackedObjs = new GameObject[0];
         }
         
         for (int i = 0; i < trackedObjs.Length; i++){
@@ -50,7 +52,6 @@ public class PathPlacer : MonoBehaviour {
             trackedObjs[i].transform.position = points[i];
             trackedObjs[i].transform.localScale = Vector3.one * spacing * 0.5f;
             trackedObjs[i].GetComponent<PlayerTrackingPoint>().PointIndex = i;
-            //trackedObjs[i] = g;
         }
     }
 }

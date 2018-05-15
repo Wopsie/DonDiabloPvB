@@ -16,6 +16,7 @@ namespace SplineEditor {
         public float anchorDia = 0.1f;
         public float controlDia = 0.075f;
         public bool displayCntrlPoints = true;
+        public bool displayPoints = true;
 
         public void CreatePath(){
             path = new Path(transform.position);

@@ -106,27 +106,33 @@ namespace SplineEditor
         }
 
         void Draw(){
-            for (int i = 0; i < Path.NumSegments; i++)
+            if (creator.displayPoints)
             {
-                Vector2[] points = Path.GetPointsInSegment(i);
-                if (creator.displayCntrlPoints){
-                    Handles.color = Color.black;
-                    Handles.DrawLine(points[1], points[0]);
-                    Handles.DrawLine(points[2], points[3]);
-                }
-                Color segmentColor = (i == selectedSegmentIndex && Event.current.shift) ? creator.selectSegCol : creator.segmentCol;
-                Handles.DrawBezier(points[0], points[3], points[1], points[2], segmentColor, null, 2);
-            }
-
-            for (int i = 0; i < Path.NumPoints; i++){
-                if (i % 3 == 0 || creator.displayCntrlPoints){
-                    Handles.color = (i % 3 == 0) ? creator.anchorCol : creator.controlColor;
-                    float handleSize = (i % 3 == 0) ? creator.anchorDia : creator.controlDia;
-                    Vector2 newPos = Handles.FreeMoveHandle(Path[i], Quaternion.identity, handleSize, Vector2.zero, Handles.CylinderHandleCap);
-                    if (Path[i] != newPos)
+                for (int i = 0; i < Path.NumSegments; i++)
+                {
+                    Vector2[] points = Path.GetPointsInSegment(i);
+                    if (creator.displayCntrlPoints)
                     {
-                        Undo.RecordObject(creator, "Move Point");
-                        Path.MovePoint(i, newPos);
+                        Handles.color = Color.black;
+                        Handles.DrawLine(points[1], points[0]);
+                        Handles.DrawLine(points[2], points[3]);
+                    }
+                    Color segmentColor = (i == selectedSegmentIndex && Event.current.shift) ? creator.selectSegCol : creator.segmentCol;
+                    Handles.DrawBezier(points[0], points[3], points[1], points[2], segmentColor, null, 2);
+                }
+
+                for (int i = 0; i < Path.NumPoints; i++)
+                {
+                    if (i % 3 == 0 || creator.displayCntrlPoints)
+                    {
+                        Handles.color = (i % 3 == 0) ? creator.anchorCol : creator.controlColor;
+                        float handleSize = (i % 3 == 0) ? creator.anchorDia : creator.controlDia;
+                        Vector2 newPos = Handles.FreeMoveHandle(Path[i], Quaternion.identity, handleSize, Vector2.zero, Handles.CylinderHandleCap);
+                        if (Path[i] != newPos)
+                        {
+                            Undo.RecordObject(creator, "Move Point");
+                            Path.MovePoint(i, newPos);
+                        }
                     }
                 }
             }
