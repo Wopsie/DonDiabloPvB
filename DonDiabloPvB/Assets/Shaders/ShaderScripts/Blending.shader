@@ -5,7 +5,7 @@
 		_MainTex ("Texture", 2D) = "white" {}
 		_SecondTex ("Second Texture", 2D) = "white" {}
 
-		_ColorMain ("Color main", Color) = (1,1,1,1)
+		_ColorChange ("Color changer", Color) = (1,1,1,1)
 
 		_LerpValue ("value of lerp", Range(0,1)) = 0.5
 
@@ -23,8 +23,6 @@
 			CGPROGRAM
 			#pragma vertex vert
 			#pragma fragment frag
-			// make fog work
-			#pragma multi_compile_fog
 			
 			#include "UnityCG.cginc"
 
@@ -46,7 +44,7 @@
 			float4 _MainTex_ST;
 			float4 _SecondTex_ST;
 
-			float4 _ColorMain;
+			float4 _ColorChange;
 
 			float _LerpValue;
 
@@ -62,7 +60,7 @@
 			
 			fixed4 frag (v2f i) : SV_Target
 			{
-				fixed4 col = tex2D(_MainTex, i.uv)*_ColorMain;
+				fixed4 col = tex2D(_MainTex, i.uv)*_ColorChange;
 
 				clip(_DisolveCount + tex2D(_SecondTex,i.uv));
 				return col;

@@ -7,7 +7,7 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: New Material
-  m_Shader: {fileID: 4800000, guid: 8c12ce3c227379047a5b4319865f44f4, type: 3}
+  m_Shader: {fileID: 4800000, guid: 23886bfd103115c46a9a29f0af6ea90a, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -51,7 +51,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: cd3d8fe219372504dbc3c5edf2688113, type: 3}
+        m_Texture: {fileID: 2800000, guid: 40810c7815298e944bc0e81a2a1932f6, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -67,7 +67,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SecondTex:
-        m_Texture: {fileID: 2800000, guid: 723f7493a0bd6cb408038d93bc86e9a7, type: 3}
+        m_Texture: {fileID: 2800000, guid: 24063d1465c90224e9736f631b6c8eda, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
@@ -79,7 +79,7 @@ Material:
     - _Cutoff: 0.5
     - _CutoutThresh: 1
     - _DetailNormalMapScale: 1
-    - _DisolveCount: -0.63992125
+    - _DisolveCount: -0.63334537
     - _DisolveTime: 2
     - _DisolveY: 0
     - _DissolveEdgeMultiplier: 1
@@ -106,7 +106,7 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _ColorMain: {r: 0, g: 0.991, b: 0.8161177, a: 0.666}
+    - _ColorChange: {r: 0, g: 0, b: 0, a: 1}
     - _ColorMap: {r: 0, g: 0, b: 0, a: 1}
     - _ColorNormal: {r: 1, g: 1, b: 1, a: 1}
     - _ColorTint: {r: 0.09338232, g: 0.8967452, b: 0.9338235, a: 1}
