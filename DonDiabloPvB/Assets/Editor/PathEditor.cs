@@ -9,10 +9,43 @@ namespace SplineEditor
     public class PathEditor : Editor {
 
         PathCreator creator;
-        Path path;
+        Path Path {
+            get { return creator.path; }
+        }
+
+        const float segmentSelectDistanceThres = .1f;
+        int selectedSegmentIndex = -1;
 
         private void OnSceneGUI()
         {
+            base.OnInspectorGUI();
+
+            EditorGUI.BeginChangeCheck();
+
+            if (GUILayout.Button("Create New")){
+                Undo.RecordObject(creator, "Create new");
+                creator.CreatePath();
+            }
+
+            bool isClosed = GUILayout.Toggle(Path.IsClosed, "Closed");
+
+            if (isClosed != Path.IsClosed){
+                Undo.RecordObject(creator, "Toggle closed");
+                Path.IsClosed = isClosed;
+            }
+
+            bool autoSetControlPoints = GUILayout.Toggle(Path.AutoSetControlPoints, "Auto set control points");
+            if(autoSetControlPoints != Path.AutoSetControlPoints){
+                Undo.RecordObject(creator, "Toggle Auto set controls");
+                Path.AutoSetControlPoints = autoSetControlPoints;
+            }
+
+            if (EditorGUI.EndChangeCheck()){
+                SceneView.RepaintAll();
+            }
+        }
+
+        private void OnSceneGUI(){
             Draw();
             PathInput();
         }
@@ -24,47 +57,85 @@ namespace SplineEditor
             //Vector3 mouseDir = HandleUtility.GUIPointToWorldRay(guiEvent.mousePosition).direction;
             //Vector3 mousePos = Input.mousePosition;
 
-            if (guiEvent.type == EventType.MouseDown && guiEvent.button == 0 && guiEvent.shift)
-            {
-                /*
-                Ray ray = HandleUtility.GUIPointToWorldRay(guiEvent.mousePosition);
-                //Ray ray = HandleUtility.GUIPointToWorldRay(mousePos);
-                RaycastHit hit;
-
-                if(Physics.Raycast(ray, out hit, 10)){
-                    Debug.Log("JA " + mouseDir);
+            if (guiEvent.type == EventType.MouseDown && guiEvent.button == 0 && guiEvent.shift){
+                if(selectedSegmentIndex != -1){
+                    Undo.RecordObject(creator, "Split Segment");
+                    Path.SplitSegment(mousePos, selectedSegmentIndex);
+                }else if(!Path.IsClosed){
                     Undo.RecordObject(creator, "Add Segment");
-                    path.AddSegment(hit.point);
-                }else{
-                    Debug.Log("nothing hit");
-                    Undo.RecordObject(creator, "Add Segment");
-                    //mousePos.z += (Camera.current.transform.position.z * mouseDir.z);
-                    path.AddSegment(Camera.current.ScreenToWorldPoint(mousePos));
+                    Path.AddSegment(mousePos);
                 }
-                */
-            
-                Undo.RecordObject(creator, "Add Segment");
-                path.AddSegment(mousePos);
-            
             }
+
+            if(guiEvent.type == EventType.MouseDown && guiEvent.button == 1){
+                float minDistToAnchor = creator.anchorDia * 0.5f;
+                int closestAnchorIndex = -1;
+
+                for (int i = 0; i < Path.NumPoints; i+=3){
+                    float dst = Vector2.Distance(mousePos, Path[i]);
+                    if(dst < minDistToAnchor){
+                        minDistToAnchor = dst;
+                        closestAnchorIndex = i;
+                    }
+                }
+
+                if(closestAnchorIndex != -1){
+                    Undo.RecordObject(creator, "Delete segment");
+                    Path.DeleteSegment(closestAnchorIndex);
+                }
+            }
+
+            if(guiEvent.type == EventType.MouseMove){
+                float minDistToSeg = segmentSelectDistanceThres;
+                int newSelectedSegIndex = -1;
+
+                for (int i = 0; i < Path.NumSegments; i++){
+                    Vector2[] points = Path.GetPointsInSegment(i);
+                    float dst = HandleUtility.DistancePointBezier(mousePos, points[0], points[3], points[1], points[2]);
+                    if(dst < minDistToSeg){
+                        minDistToSeg = dst;
+                        newSelectedSegIndex = i;
+                    }
+                }
+
+                if(newSelectedSegIndex != selectedSegmentIndex){
+                    selectedSegmentIndex = newSelectedSegIndex;
+                    HandleUtility.Repaint();
+                }
+            }
+
+            HandleUtility.AddDefaultControl(0);
         }
 
         void Draw(){
+            if (creator.displayPoints)
+            {
+                for (int i = 0; i < Path.NumSegments; i++)
+                {
+                    Vector2[] points = Path.GetPointsInSegment(i);
+                    if (creator.displayCntrlPoints)
+                    {
+                        Handles.color = Color.black;
+                        Handles.DrawLine(points[1], points[0]);
+                        Handles.DrawLine(points[2], points[3]);
+                    }
+                    Color segmentColor = (i == selectedSegmentIndex && Event.current.shift) ? creator.selectSegCol : creator.segmentCol;
+                    Handles.DrawBezier(points[0], points[3], points[1], points[2], segmentColor, null, 2);
+                }
 
-            for (int i = 0; i < path.NumSegments; i++){
-                Vector2[] points = path.GetPointsInSegment(i);
-                Handles.color = Color.black;
-                Handles.DrawLine(points[1], points[0]);
-                Handles.DrawLine(points[2], points[3]);
-                Handles.DrawBezier(points[0], points[3], points[1], points[2], Color.green, null, 2);
-            }
-
-            Handles.color = Color.red;
-            for (int i = 0; i < path.NumPoints; i++){
-                Vector2 newPos = Handles.FreeMoveHandle(path[i], Quaternion.identity, .1f, Vector2.zero, Handles.CylinderHandleCap);
-                if(path[i] != newPos){
-                    Undo.RecordObject(creator, "Move Point");
-                    path.MovePoint(i, newPos);
+                for (int i = 0; i < Path.NumPoints; i++)
+                {
+                    if (i % 3 == 0 || creator.displayCntrlPoints)
+                    {
+                        Handles.color = (i % 3 == 0) ? creator.anchorCol : creator.controlColor;
+                        float handleSize = (i % 3 == 0) ? creator.anchorDia : creator.controlDia;
+                        Vector2 newPos = Handles.FreeMoveHandle(Path[i], Quaternion.identity, handleSize, Vector2.zero, Handles.CylinderHandleCap);
+                        if (Path[i] != newPos)
+                        {
+                            Undo.RecordObject(creator, "Move Point");
+                            Path.MovePoint(i, newPos);
+                        }
+                    }
                 }
             }
         }
@@ -74,7 +145,6 @@ namespace SplineEditor
             if(creator.path == null){
                 creator.CreatePath();
             }
-            path = creator.path;
         }
     }
 }
