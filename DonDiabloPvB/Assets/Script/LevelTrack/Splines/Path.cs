@@ -187,7 +187,6 @@ namespace SplineEditor
 
             return evenlySpacedPoints.ToArray();
         }
-        
 
         void AutoSetAllAffected(int updatedAnchorIndex){
             for (int i = updatedAnchorIndex-3; i <= updatedAnchorIndex + 3; i+= 3){

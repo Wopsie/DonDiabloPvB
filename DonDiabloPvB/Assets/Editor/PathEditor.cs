@@ -25,7 +25,6 @@ namespace SplineEditor
             if (GUILayout.Button("Create New")){
                 Undo.RecordObject(creator, "Create new");
                 creator.CreatePath();
-                //path = creator.path;
             }
 
             bool isClosed = GUILayout.Toggle(Path.IsClosed, "Closed");
@@ -143,7 +142,6 @@ namespace SplineEditor
             if(creator.path == null){
                 creator.CreatePath();
             }
-            //path = creator.path;
         }
     }
 }

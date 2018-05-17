@@ -50,14 +50,12 @@ public class NewPlayerMovement : MonoBehaviour {
         }
 
         //if the player is within a certain range of the waypoint go to the next one
-        //transform.position = Vector3.Lerp(transform.position, new Vector3(waypoints[currWaypointIndex].transform.position.x, transform.position.y, waypoints[currWaypointIndex].transform.position.z), 1);
         //Debug.Log(Vector3.Distance(transform.position, waypoints[currWaypointIndex].transform.position));
         if(Vector3.Distance(transform.position, waypoints[currWaypointIndex].transform.position) <= 1f){
             currWaypointIndex++;
             //Debug.Log(currWaypointIndex);
         }
         //look at next waypoint
-        //transform.LookAt(new Vector3(waypoints[currWaypointIndex].transform.position.x, transform.position.y, waypoints[currWaypointIndex].transform.position.z));
 
         /*
         var pos : Vector3 = destination - transform.position;
@@ -67,7 +65,7 @@ public class NewPlayerMovement : MonoBehaviour {
 
         var rot = Quaternion.LookRotation(waypoints[currWaypointIndex].transform.position - transform.position);
         //Debug.Log(waypoints[currWaypointIndex].transform.position);
-        transform.rotation = Quaternion.Lerp(transform.rotation, rot, 0.1f);
+        transform.rotation = Quaternion.Lerp(transform.rotation, rot, 0.05f);
 
         //transform.LookAt(Vector3.Lerp(transform.position, new Vector3(waypoints[currWaypointIndex].transform.position.x, transform.position.y, waypoints[currWaypointIndex].transform.position.z), 0.01f));
 
