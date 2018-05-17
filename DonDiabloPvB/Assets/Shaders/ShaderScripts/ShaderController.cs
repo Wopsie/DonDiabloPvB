@@ -10,6 +10,8 @@ public class ShaderController: MonoBehaviour
 
     [SerializeField] private float currentPower, startPower;
 
+    [SerializeField] private StartButton _startButton;
+
     private bool _StartFading = false;
 
     private bool _FadeTransition = false;
@@ -33,6 +35,7 @@ public class ShaderController: MonoBehaviour
         if (currentPower > 0)
         {
             currentPower = 0;
+            _startButton.ToChangeLevel();
             _FadeTransition = false;
         }
 

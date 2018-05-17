@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SelectButton : MonoBehaviour {
+public class SelectButton : MonoBehaviour
+{
 
     [SerializeField] private AudioSource _audioSource;
     [SerializeField] private AudioClip _audioClip;
@@ -13,8 +14,7 @@ public class SelectButton : MonoBehaviour {
 
     [SerializeField] private StartButton _startButton;
 
-    [SerializeField] private float _levelNumber;
-
+    [SerializeField] private int _levelNumber;
 
 
     void OnMouseDown()
