@@ -16,7 +16,7 @@ namespace SplineEditor
         const float segmentSelectDistanceThres = .1f;
         int selectedSegmentIndex = -1;
 
-        private void OnSceneGUI()
+        public override void OnInspectorGUI()
         {
             base.OnInspectorGUI();
 

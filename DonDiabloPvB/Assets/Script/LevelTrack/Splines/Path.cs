@@ -37,21 +37,16 @@ namespace SplineEditor
                 if (isClosed != value){
                     isClosed = value;
 
-                    if (isClosed)
-                    {
+                    if (isClosed){
                         points.Add(points[points.Count - 1] * 2 - points[points.Count - 2]);
                         points.Add(points[0] * 2 - points[1]);
-                        if (autoSetControlPoints)
-                        {
+                        if (autoSetControlPoints){
                             AutoSetAnchorControlPoints(0);
                             AutoSetAnchorControlPoints(points.Count - 3);
                         }
-                    }
-                    else
-                    {
+                    }else{
                         points.RemoveRange(points.Count - 2, 2);
-                        if (autoSetControlPoints)
-                        {
+                        if (autoSetControlPoints){
                             AutoSetStartEndControls();
                         }
                     }
@@ -74,7 +69,6 @@ namespace SplineEditor
         public int NumPoints { get { return points.Count; } }
 
         public int NumSegments {
-            //get { return (points.Count - 4) / 3 + 1; }
             get { return points.Count / 3; }
         }
 
@@ -85,7 +79,6 @@ namespace SplineEditor
 
             if (autoSetControlPoints) {
                 AutoSetAllAffected(points.Count - 1);
-
             }
         }
 
@@ -116,7 +109,7 @@ namespace SplineEditor
         }
 
         public Vector2[] GetPointsInSegment(int i){
-            return new Vector2[] { points[i * 3], points[i * 3 + 1], points[i * 3 + 2], points[i * 3 + 3] };
+            return new Vector2[] { points[i * 3], points[i * 3 + 1], points[i * 3 + 2], points[LoopIndex(i * 3 + 3)] };
         }
 
         public void MovePoint(int i, Vector2 pos){
