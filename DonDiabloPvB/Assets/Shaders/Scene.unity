@@ -508,9 +508,9 @@ MonoBehaviour:
   _startScale: 2
   _scaleMultiplier: 3
   _useBuffer: 1
-  _testBeat: 1
+  _testBeat: 0
   _beatsensivity: 0.1
-  obj: {fileID: 1771246131290858, guid: c8954f190d95c4a4bb0fe258ea98872c, type: 2}
+  obj: {fileID: 0}
 --- !u!23 &312805145
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1205,9 +1205,9 @@ MonoBehaviour:
   _startScale: 2
   _scaleMultiplier: 3
   _useBuffer: 1
-  _testBeat: 1
+  _testBeat: 0
   _beatsensivity: 0.1
-  obj: {fileID: 1771246131290858, guid: c8954f190d95c4a4bb0fe258ea98872c, type: 2}
+  obj: {fileID: 0}
 --- !u!23 &916225208
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1352,7 +1352,28 @@ Transform:
   m_Father: {fileID: 211998364}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+<<<<<<< HEAD:DonDiabloPvB/Assets/Shaders/Scene.unity
 --- !u!1 &1104252488
+=======
+--- !u!95 &1040118061
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1040118055}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: 8230837d057ccfe40960ba50d7cefc8f, type: 3}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+--- !u!1 &1268641810
+>>>>>>> 6aa6e86ec007b235d50537c4405b514134b5f759:Assets/_Scenes/AudioVisual.unity
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -2072,7 +2093,90 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+<<<<<<< HEAD:DonDiabloPvB/Assets/Shaders/Scene.unity
 --- !u!4 &1808571424
+=======
+--- !u!114 &1478015918
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 114204615678968512, guid: 7edf1e4ad23ea7d43aa065736836d3b5,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1478015917}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef3df11f85c7e704d9fd99a91e205aa5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _band: 0
+  _startScale: 10
+  _scaleMultiplier: 150
+  _useBuffer: 0
+  _testBeat: 0
+  _beatsensivity: 0.1
+  obj: {fileID: 0}
+--- !u!23 &1478015919
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 23093244095612102, guid: 7edf1e4ad23ea7d43aa065736836d3b5,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1478015917}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_Materials:
+  - {fileID: 2100000, guid: 8d49c7da4b05ada4f9ec93567d3b3a9a, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 1
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!95 &1478015920
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1478015917}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: 8230837d057ccfe40960ba50d7cefc8f, type: 3}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+--- !u!33 &1478015921
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 33785600154873834, guid: 7edf1e4ad23ea7d43aa065736836d3b5,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1478015917}
+  m_Mesh: {fileID: 4300000, guid: 8230837d057ccfe40960ba50d7cefc8f, type: 3}
+--- !u!4 &1478015922
+>>>>>>> 6aa6e86ec007b235d50537c4405b514134b5f759:Assets/_Scenes/AudioVisual.unity
 Transform:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -2466,7 +2570,119 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   processor: {fileID: 1979035606}
+<<<<<<< HEAD:DonDiabloPvB/Assets/Shaders/Scene.unity
   obj: {fileID: 1771246131290858, guid: c8954f190d95c4a4bb0fe258ea98872c, type: 2}
+=======
+  obj: {fileID: 0}
+--- !u!1 &1985088348
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1985088353}
+  - component: {fileID: 1985088352}
+  - component: {fileID: 1985088350}
+  - component: {fileID: 1985088349}
+  - component: {fileID: 1985088354}
+  m_Layer: 0
+  m_Name: Cube (7)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1985088349
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1985088348}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef3df11f85c7e704d9fd99a91e205aa5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _band: 7
+  _startScale: 10
+  _scaleMultiplier: 150
+  _useBuffer: 1
+  _testBeat: 0
+  _beatsensivity: 0
+  obj: {fileID: 0}
+--- !u!23 &1985088350
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1985088348}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_Materials:
+  - {fileID: 2100000, guid: 8d49c7da4b05ada4f9ec93567d3b3a9a, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 1
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!33 &1985088352
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1985088348}
+  m_Mesh: {fileID: 4300000, guid: 8230837d057ccfe40960ba50d7cefc8f, type: 3}
+--- !u!4 &1985088353
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1985088348}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 174.7, y: -31.599998, z: -98}
+  m_LocalScale: {x: 100, y: 100, z: 100}
+  m_Children: []
+  m_Father: {fileID: 211998364}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &1985088354
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1985088348}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: 8230837d057ccfe40960ba50d7cefc8f, type: 3}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+>>>>>>> 6aa6e86ec007b235d50537c4405b514134b5f759:Assets/_Scenes/AudioVisual.unity
 --- !u!1 &2091426843
 GameObject:
   m_ObjectHideFlags: 0
