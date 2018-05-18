@@ -10,26 +10,6 @@ public class PathPlacer : MonoBehaviour {
     public GameObject playerTrackPoint;
     private GameObject[] trackedObjs;
 
-    private void Start(){
-        Vector2[] points = FindObjectOfType<PathCreator>().path.CalculateEvenSpacePoints(spacing, resolution);
-        /*
-        foreach (Vector2 p in points){
-            //GameObject g = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-            var g = (GameObject)Instantiate(playerTrackPoint);
-            g.transform.position = p;
-            g.transform.localScale = Vector3.one * spacing * 0.5f;
-        }
-        */
-        /*
-        for (int i = 0; i < points.Length; i++){
-            var g = (GameObject)Instantiate(playerTrackPoint, transform);
-            g.transform.position = points[i];
-            g.transform.localScale = Vector3.one * spacing * 0.5f;
-            g.GetComponent<PlayerTrackingPoint>().PointIndex = i;
-        }
-        */
-    }
-
     public void PlacePath(){
         if (!playerTrackPoint){
             Debug.LogWarning("The path placer has no player tracking point obj assigned");
@@ -43,11 +23,13 @@ public class PathPlacer : MonoBehaviour {
                 DestroyImmediate(trackedObjs[i]);
         }
 
+        //Dictionary<Vector3, Vector3[]> pointsDict = new Dictionary<Vector3, Vector3[]>();
+
         Vector2[] points = FindObjectOfType<PathCreator>().path.CalculateEvenSpacePoints(spacing, resolution);
         trackedObjs = new GameObject[points.Length];
 
         for (int i = 0; i < points.Length; i++){
-            trackedObjs[i] = (GameObject)Instantiate(playerTrackPoint, transform);
+            trackedObjs[i] = Instantiate(playerTrackPoint, transform);
             trackedObjs[i].tag = Tags.WaypointTag;
             trackedObjs[i].transform.position = points[i];
             trackedObjs[i].transform.localScale = Vector3.one * spacing * 0.5f;

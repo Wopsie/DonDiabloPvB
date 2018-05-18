@@ -12,6 +12,10 @@ public class NewPlayerMovement : MonoBehaviour {
     private float maxSpeed = 0.8f;
     [SerializeField]
     private float speedMultiplier = 2f;
+    [SerializeField]
+    [Tooltip("the higher this is the move the player can move off track in corners")]
+    private float movementBias = 1.2f;
+    private float passingDistance;
 
     private void Awake(){
         rb = GetComponent<Rigidbody>();
@@ -22,6 +26,7 @@ public class NewPlayerMovement : MonoBehaviour {
             g.transform.position = new Vector3(g.transform.position.x, transform.position.y, g.transform.position.z);
             waypoints[p.pointIndex] = g;
         }
+        Debug.Log(points.Length);
     }
 
     private void FixedUpdate(){
@@ -29,49 +34,34 @@ public class NewPlayerMovement : MonoBehaviour {
         float lateralSpeed = new Vector2(rb.velocity.x, rb.velocity.z).magnitude;
         rb.velocity = new Vector3(transform.forward.x * lateralSpeed, 0, transform.forward.z * lateralSpeed);
         if(rb.velocity.magnitude >= 50){
-            rb.velocity = rb.velocity*maxSpeed;
+            rb.velocity = rb.velocity * (movementBias -= passingDistance);
             Debug.Log("Limiting speed");
         }
-        Debug.Log(lateralSpeed);
+        Debug.Log(lateralSpeed + " " + passingDistance);
 
         //add velocity to the rigidbody
 
         //point the current velocity in the direction of the next waypoint
-
-        //Debug.Log(rb.velocity);
     }
 
     private void Update()
     {
+        //if there are no waypoints left in the list stop all movement
         if(waypoints.Length == currWaypointIndex)
         {
             rb.velocity = Vector3.zero;
             return;
         }
 
+        float dist= Vector3.Distance(transform.position, waypoints[currWaypointIndex].transform.position);
         //if the player is within a certain range of the waypoint go to the next one
-        //transform.position = Vector3.Lerp(transform.position, new Vector3(waypoints[currWaypointIndex].transform.position.x, transform.position.y, waypoints[currWaypointIndex].transform.position.z), 1);
-        //Debug.Log(Vector3.Distance(transform.position, waypoints[currWaypointIndex].transform.position));
-        if(Vector3.Distance(transform.position, waypoints[currWaypointIndex].transform.position) <= 1f){
+        if (dist <= movementBias){
             currWaypointIndex++;
-            //Debug.Log(currWaypointIndex);
+            passingDistance = dist;
         }
         //look at next waypoint
-        //transform.LookAt(new Vector3(waypoints[currWaypointIndex].transform.position.x, transform.position.y, waypoints[currWaypointIndex].transform.position.z));
-
-        /*
-        var pos : Vector3 = destination - transform.position;
-        var newRot = Quaternion.LookRotation(pos);
-        transform.rotation = Quaternion.Lerp(transform.rotation, newRot, speed);
-        */
-
         var rot = Quaternion.LookRotation(waypoints[currWaypointIndex].transform.position - transform.position);
-        //Debug.Log(waypoints[currWaypointIndex].transform.position);
-        transform.rotation = Quaternion.Lerp(transform.rotation, rot, 0.1f);
-
-        //transform.LookAt(Vector3.Lerp(transform.position, new Vector3(waypoints[currWaypointIndex].transform.position.x, transform.position.y, waypoints[currWaypointIndex].transform.position.z), 0.01f));
-
-        //if there are no waypoints left in the list stop all movement
+        transform.rotation = Quaternion.Lerp(transform.rotation, rot, 0.05f);
 
     }
 }
