@@ -24,7 +24,7 @@ public class NewPlayerMovement : MonoBehaviour {
         foreach (GameObject g in points){
             PlayerTrackingPoint p = g.GetComponent<PlayerTrackingPoint>();
             g.transform.position = new Vector3(g.transform.position.x, transform.position.y, g.transform.position.z);
-            waypoints[p.pointIndex] = g;
+            waypoints[p.PointIndex] = g;
         }
         Debug.Log(points.Length);
     }
@@ -34,7 +34,7 @@ public class NewPlayerMovement : MonoBehaviour {
         float lateralSpeed = new Vector2(rb.velocity.x, rb.velocity.z).magnitude;
         rb.velocity = new Vector3(transform.forward.x * lateralSpeed, 0, transform.forward.z * lateralSpeed);
         if(rb.velocity.magnitude >= 50){
-            rb.velocity = rb.velocity * (movementBias -= passingDistance);
+            rb.velocity = rb.velocity * maxSpeed/*(movementBias -= passingDistance)*/;
             Debug.Log("Limiting speed");
         }
         Debug.Log(lateralSpeed + " " + passingDistance);
@@ -53,7 +53,7 @@ public class NewPlayerMovement : MonoBehaviour {
             return;
         }
 
-        float dist= Vector3.Distance(transform.position, waypoints[currWaypointIndex].transform.position);
+        float dist = Vector3.Distance(transform.position, waypoints[currWaypointIndex].transform.position);
         //if the player is within a certain range of the waypoint go to the next one
         if (dist <= movementBias){
             currWaypointIndex++;

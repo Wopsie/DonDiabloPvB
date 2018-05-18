@@ -89,7 +89,12 @@ class OVRPluginUpdater
 		};
 	}
 
-	private static List<PluginPackage> GetAllUtilitiesPluginPackages()
+    private static PluginPackage GetBundledPluginPackage()
+    {
+        return GetPluginPackage(GetBundledPluginRootPath());
+    }
+
+    private static List<PluginPackage> GetAllUtilitiesPluginPackages()
 	{
 		string pluginRootPath = GetUtilitiesPluginRootPath();
 		List<PluginPackage> packages = new List<PluginPackage>();
@@ -495,11 +500,6 @@ class OVRPluginUpdater
 	}
 
 	private static void RestartUnityEditor()
-	{
-		restartPending = true;
-		EditorApplication.OpenProject(GetCurrentProjectPath());
-	}
-}
 	{
 		restartPending = true;
 		EditorApplication.OpenProject(GetCurrentProjectPath());

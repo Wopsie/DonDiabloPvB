@@ -40,8 +40,4 @@ class OVRManifestPreprocessor
 		AssetDatabase.DeleteAsset("Assets/Plugins/Android/AndroidManifest.xml");
 		AssetDatabase.Refresh();
 	}
-}
-		AssetDatabase.DeleteAsset("Assets/Plugins/Android/AndroidManifest.xml");
-		AssetDatabase.Refresh();
-	}
-}
+} 
