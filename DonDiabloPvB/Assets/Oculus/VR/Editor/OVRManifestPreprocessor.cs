@@ -2,10 +2,10 @@ using UnityEngine;
 using UnityEditor;
 using System.IO;
 
-class OVRManifestPreprocessor 
+class OVRManifestPreprocessor
 {
-	[MenuItem("Tools/Oculus/Create store-compatible AndroidManifest.xml", false, 100000)]	
-	public static void GenerateManifestForSubmission() 
+	[MenuItem("Tools/Oculus/Create store-compatible AndroidManifest.xml", false, 100000)]
+	public static void GenerateManifestForSubmission()
 	{
 		string srcFile = Application.dataPath + "/OVR/Editor/AndroidManifest.OVRSubmission.xml";
 
@@ -37,6 +37,10 @@ class OVRManifestPreprocessor
 	[MenuItem("Tools/Oculus/Remove AndroidManifest.xml")]
 	public static void RemoveAndroidManifest() 
 	{        
+		AssetDatabase.DeleteAsset("Assets/Plugins/Android/AndroidManifest.xml");
+		AssetDatabase.Refresh();
+	}
+}
 		AssetDatabase.DeleteAsset("Assets/Plugins/Android/AndroidManifest.xml");
 		AssetDatabase.Refresh();
 	}

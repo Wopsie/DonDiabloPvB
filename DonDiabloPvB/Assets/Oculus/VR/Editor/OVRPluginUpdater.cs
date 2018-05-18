@@ -58,6 +58,11 @@ class OVRPluginUpdater
 
     static OVRPluginUpdater()
 	{
+		EditorApplication.delayCall += OnDelayCall;
+	}
+
+	static void OnDelayCall()
+	{
 		if (ShouldAttemptPluginUpdate())
 		{
 			AttemptPluginUpdate(true);
@@ -82,11 +87,6 @@ class OVRPluginUpdater
 				{ BuildTarget.StandaloneWindows64, rootPath + GetPluginBuildTargetSubPath(BuildTarget.StandaloneWindows64) },
 			}
 		};
-	}
-
-	private static PluginPackage GetBundledPluginPackage()
-	{
-		return GetPluginPackage(GetBundledPluginRootPath());
 	}
 
 	private static List<PluginPackage> GetAllUtilitiesPluginPackages()
@@ -495,6 +495,11 @@ class OVRPluginUpdater
 	}
 
 	private static void RestartUnityEditor()
+	{
+		restartPending = true;
+		EditorApplication.OpenProject(GetCurrentProjectPath());
+	}
+}
 	{
 		restartPending = true;
 		EditorApplication.OpenProject(GetCurrentProjectPath());
