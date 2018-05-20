@@ -13,7 +13,7 @@ public class RoadCreator : MonoBehaviour {
     public bool autoUpdate;
     public float tiling = 1;
 
-    private Vector2[] vertexOffsetVectors;
+    private Vector3[] vertexOffsetVectors;
 
     public void UpdateRoad(){
         Path path = GetComponent<PathCreator>().path;
@@ -28,7 +28,7 @@ public class RoadCreator : MonoBehaviour {
 	Mesh CreateRoadMesh(Vector2[] points, bool isClosed){
         Vector3[] verts = new Vector3[points.Length * 2];
         Vector2[] uvs = new Vector2[verts.Length];
-        vertexOffsetVectors = new Vector2[points.Length];
+        vertexOffsetVectors = new Vector3[points.Length];
         int numTris = 2 * (points.Length - 1) + ((isClosed) ? 2 : 0);
         int[] tris = new int[numTris * 3];
         int vertIndex = 0;

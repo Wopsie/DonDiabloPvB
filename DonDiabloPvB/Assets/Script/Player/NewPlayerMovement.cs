@@ -23,7 +23,7 @@ public class NewPlayerMovement : MonoBehaviour {
         waypoints = new GameObject[points.Length];
         foreach (GameObject g in points){
             PlayerTrackingPoint p = g.GetComponent<PlayerTrackingPoint>();
-            g.transform.position = new Vector3(g.transform.position.x, transform.position.y, g.transform.position.z);
+            g.transform.position = new Vector3(g.transform.position.x, /*transform.position.y*/0, g.transform.position.z);
             waypoints[p.PointIndex] = g;
         }
         Debug.Log(points.Length);
@@ -34,7 +34,7 @@ public class NewPlayerMovement : MonoBehaviour {
         float lateralSpeed = new Vector2(rb.velocity.x, rb.velocity.z).magnitude;
         rb.velocity = new Vector3(transform.forward.x * lateralSpeed, 0, transform.forward.z * lateralSpeed);
         if(rb.velocity.magnitude >= 50){
-            rb.velocity = rb.velocity * maxSpeed/*(movementBias -= passingDistance)*/;
+            rb.velocity = rb.velocity * maxSpeed;
             Debug.Log("Limiting speed");
         }
         Debug.Log(lateralSpeed + " " + passingDistance);
@@ -44,23 +44,21 @@ public class NewPlayerMovement : MonoBehaviour {
         //point the current velocity in the direction of the next waypoint
     }
 
-    private void Update()
-    {
+    private void Update(){
         //if there are no waypoints left in the list stop all movement
-        if(waypoints.Length == currWaypointIndex)
-        {
+        if(waypoints.Length == currWaypointIndex){
             rb.velocity = Vector3.zero;
             return;
         }
 
-        float dist = Vector3.Distance(transform.position, waypoints[currWaypointIndex].transform.position);
+        float dist = Vector3.Distance(transform.position, new Vector3(waypoints[currWaypointIndex].transform.position.x, 0, waypoints[currWaypointIndex].transform.position.z));
         //if the player is within a certain range of the waypoint go to the next one
         if (dist <= movementBias){
             currWaypointIndex++;
             passingDistance = dist;
         }
         //look at next waypoint
-        var rot = Quaternion.LookRotation(waypoints[currWaypointIndex].transform.position - transform.position);
+        Quaternion rot = Quaternion.LookRotation(new Vector3(waypoints[currWaypointIndex].transform.position.x, .75f, waypoints[currWaypointIndex].transform.position.z) - transform.position);
         transform.rotation = Quaternion.Lerp(transform.rotation, rot, 0.05f);
 
     }

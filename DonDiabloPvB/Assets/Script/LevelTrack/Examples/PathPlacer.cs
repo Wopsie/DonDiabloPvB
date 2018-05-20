@@ -12,21 +12,15 @@ public class PathPlacer : MonoBehaviour {
     public GameObject playerTrackPoint;
     private GameObject[] trackedObjs;
 
-    public void PlacePath(Vector2[] points, Vector2[] dstToMeshEdgePerPoint, float meshWidth){
+    public void PlacePath(Vector2[] points, Vector3[] dstToMeshEdgePerPoint, float meshWidth){
+
+        DestroyTrackedObjects();
 
         if (!playerTrackPoint){
             Debug.LogWarning("The path placer has no player tracking point obj assigned");
             return;
         }else if( trackedObjs == null){
             trackedObjs = new GameObject[0];
-        }
-        
-        for (int i = 0; i < trackedObjs.Length; i++){
-            if (trackedObjs[i] != null)
-            {
-                DestroyImmediate(trackedObjs[i]);
-
-            }
         }
 
         //Vector2[] points = FindObjectOfType<PathCreator>().path.CalculateEvenSpacePoints(spacing, resolution);
@@ -40,21 +34,35 @@ public class PathPlacer : MonoBehaviour {
             trackedObjs[i].GetComponent<PlayerTrackingPoint>().PointIndex = i;
 
             //rotate the prop objects to their center point
+            GameObject g = Instantiate(trackProp1, trackedObjs[i].transform.position + dstToMeshEdgePerPoint[i] * meshWidth * 0.5f, Quaternion.identity, trackedObjs[i].transform);
+            //REBUILD WITH QUATERNIONS
+            //g.transform.LookAt(trackedObjs[i].transform.position);
+            //g.transform.localEulerAngles = new Vector3(g.transform.localEulerAngles.x + 90, g.transform.localEulerAngles.y, g.transform.localEulerAngles.z + 90);
 
-            GameObject g = Instantiate(trackProp1, points[i] + dstToMeshEdgePerPoint[i] * meshWidth * 0.5f, Quaternion.identity, trackedObjs[i].transform);
-            //g.transform.localEulerAngles = new Vector3(0, points[i].x - transform.localPosition.x, points[i].y - transform.localPosition.y);
-            //g.transform.localEulerAngles = new Vector3(-90, 0, 0);
-            g.transform.LookAt(new Vector3(-90, points[i].y, 0));
-            //calculate the edge
-            //rotate object to the points[i] direction. Target pos - own pos
-            g = Instantiate(trackProp1, points[i] - dstToMeshEdgePerPoint[i] * meshWidth * 0.5f, Quaternion.identity, trackedObjs[i].transform);
-            //g.transform.localEulerAngles = new Vector3(-90, 0, 0);
-            g.transform.LookAt(new Vector3(-90, points[i].y, 0));
+            Quaternion rot = Quaternion.LookRotation(trackedObjs[i].transform.position, g.transform.position);
+            g.transform.rotation = rot;
+
+            g = Instantiate(trackProp1, trackedObjs[i].transform.position - dstToMeshEdgePerPoint[i] * meshWidth * 0.5f, Quaternion.identity, trackedObjs[i].transform);
+            //REBUILD WITH QUATERNIONS
+            //g.transform.LookAt(trackedObjs[i].transform.position);
+            //g.transform.localEulerAngles = new Vector3(g.transform.localEulerAngles.x - 90, g.transform.localEulerAngles.y, g.transform.localEulerAngles.z - 90);
+            //rotate object over x axis to look at center point
+            //rot = Quaternion.LookRotation(trackedObjs[i].transform.position, g.transform.position);
+            //g.transform.rotation = rot;
+
 
             /*
             verts[vertIndex] = points[i] + left * roadWidth * 0.5f;
             verts[vertIndex + 1] = points[i] - left * roadWidth * 0.5f;
             */
+        }
+    }
+
+    void DestroyTrackedObjects(){
+        if (trackedObjs[0]){
+            for (int i = 0; i < trackedObjs.Length; i++){
+                DestroyImmediate(trackedObjs[i]);
+            }
         }
     }
 }
