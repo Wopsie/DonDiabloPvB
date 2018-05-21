@@ -11,6 +11,7 @@ public class PathPlacer : MonoBehaviour {
     [Tooltip("The object that the player will use to navigate the track")]
     public GameObject playerTrackPoint;
     private GameObject[] trackedObjs;
+    private Vector3 gScaleFix = new Vector3(1, -1, 1);
 
     public void PlacePath(Vector2[] points, Vector3[] dstToMeshEdgePerPoint, float meshWidth){
 
@@ -34,32 +35,30 @@ public class PathPlacer : MonoBehaviour {
             trackedObjs[i].GetComponent<PlayerTrackingPoint>().PointIndex = i;
 
             //rotate the prop objects to their center point
+            //REBUILD WITH EXCLUSIVELY QUATERNIONS
+            //Debug.DrawRay(g.transform.position, v, Color.red);
             GameObject g = Instantiate(trackProp1, trackedObjs[i].transform.position + dstToMeshEdgePerPoint[i] * meshWidth * 0.5f, Quaternion.identity, trackedObjs[i].transform);
-            //REBUILD WITH QUATERNIONS
-            //g.transform.LookAt(trackedObjs[i].transform.position);
-            //g.transform.localEulerAngles = new Vector3(g.transform.localEulerAngles.x + 90, g.transform.localEulerAngles.y, g.transform.localEulerAngles.z + 90);
+            Vector3 v = trackedObjs[i].transform.position - g.transform.position;
+            g.transform.localRotation = Quaternion.LookRotation(v);
+            g.transform.rotation *= Quaternion.Euler(90, 0, 90);
 
-            Quaternion rot = Quaternion.LookRotation(trackedObjs[i].transform.position, g.transform.position);
-            g.transform.rotation = rot;
+            //if(g.transform.localEulerAngles.y >= 89 && g.transform.localEulerAngles.y <= 91)
+            //    g.transform.localScale = gScaleFix;
 
             g = Instantiate(trackProp1, trackedObjs[i].transform.position - dstToMeshEdgePerPoint[i] * meshWidth * 0.5f, Quaternion.identity, trackedObjs[i].transform);
-            //REBUILD WITH QUATERNIONS
-            //g.transform.LookAt(trackedObjs[i].transform.position);
-            //g.transform.localEulerAngles = new Vector3(g.transform.localEulerAngles.x - 90, g.transform.localEulerAngles.y, g.transform.localEulerAngles.z - 90);
-            //rotate object over x axis to look at center point
-            //rot = Quaternion.LookRotation(trackedObjs[i].transform.position, g.transform.position);
-            //g.transform.rotation = rot;
+            //REBUILD WITH EXCLUSIVELY QUATERNIONS
+            v = trackedObjs[i].transform.position - g.transform.position;
+            Debug.DrawRay(g.transform.position, v, Color.red);
+            g.transform.localRotation= Quaternion.LookRotation(v);
+            g.transform.localRotation *= Quaternion.Euler(90, 0, 90);
 
-
-            /*
-            verts[vertIndex] = points[i] + left * roadWidth * 0.5f;
-            verts[vertIndex + 1] = points[i] - left * roadWidth * 0.5f;
-            */
+            //if(g.transform.localEulerAngles.y == 90)
+            //    g.transform.localScale = gScaleFix;
         }
     }
 
     void DestroyTrackedObjects(){
-        if (trackedObjs[0]){
+        if (trackedObjs != null){
             for (int i = 0; i < trackedObjs.Length; i++){
                 DestroyImmediate(trackedObjs[i]);
             }

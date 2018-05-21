@@ -23,7 +23,7 @@ public class NewPlayerMovement : MonoBehaviour {
         waypoints = new GameObject[points.Length];
         foreach (GameObject g in points){
             PlayerTrackingPoint p = g.GetComponent<PlayerTrackingPoint>();
-            g.transform.position = new Vector3(g.transform.position.x, /*transform.position.y*/0, g.transform.position.z);
+            g.transform.position = new Vector3(g.transform.position.x, 0, g.transform.position.z);
             waypoints[p.PointIndex] = g;
         }
         Debug.Log(points.Length);
@@ -59,7 +59,7 @@ public class NewPlayerMovement : MonoBehaviour {
         }
         //look at next waypoint
         Quaternion rot = Quaternion.LookRotation(new Vector3(waypoints[currWaypointIndex].transform.position.x, .75f, waypoints[currWaypointIndex].transform.position.z) - transform.position);
-        transform.rotation = Quaternion.Lerp(transform.rotation, rot, 0.05f);
+        transform.rotation = Quaternion.Lerp(transform.rotation, rot, 0.05f * Time.deltaTime);
 
     }
 }
