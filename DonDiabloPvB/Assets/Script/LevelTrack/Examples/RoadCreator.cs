@@ -1,8 +1,6 @@
 ﻿using SplineEditor;
 using UnityEngine;
 
-[RequireComponent(typeof(MeshRenderer))]
-[RequireComponent(typeof(MeshFilter))]
 [RequireComponent(typeof(PathCreator))]
 [RequireComponent(typeof(PathPlacer))]
 public class RoadCreator : MonoBehaviour {
@@ -13,15 +11,22 @@ public class RoadCreator : MonoBehaviour {
     public bool autoUpdate;
     public float tiling = 1;
 
+    public MeshFilter filter;
+    public new MeshRenderer renderer;
+
     private Vector3[] vertexOffsetVectors;
 
     public void UpdateRoad(){
+        if(!renderer || !filter){
+            Debug.LogError("Please select a mesh filter and rederer in the RoadCreator editor");
+            return;
+        }
+
         Path path = GetComponent<PathCreator>().path;
         Vector2[] points = path.CalculateEvenSpacePoints(spacing);
-        GetComponent<MeshFilter>().mesh = CreateRoadMesh(points, path.IsClosed);
-
+        filter.mesh = CreateRoadMesh(points, path.IsClosed);
         int textureRepeat = Mathf.RoundToInt(tiling * points.Length * spacing * 0.05f);
-        GetComponent<MeshRenderer>().sharedMaterial.mainTextureScale = new Vector2(1, textureRepeat);
+        renderer.sharedMaterial.mainTextureScale = new Vector2(1, textureRepeat);
         GetComponent<PathPlacer>().PlacePath(points, vertexOffsetVectors, roadWidth);
     }
 
@@ -49,6 +54,10 @@ public class RoadCreator : MonoBehaviour {
             vertexOffsetVectors[i] = left;
             verts[vertIndex] = points[i] + left * roadWidth * 0.5f;
             verts[vertIndex + 1] = points[i] - left * roadWidth * 0.5f;
+
+            //verts[vertIndex] = new Vector3(points[i].x, 0, points[i].y) + left * roadWidth * 0.5f;
+            //verts[vertIndex + 1] = new Vector3(points[i].x, 0, points[i].y) + left * roadWidth * 0.5f;
+
 
             float completionPercent = i / (float)(points.Length - 1);
             float v = 1 - Mathf.Abs(2 * completionPercent - 1);

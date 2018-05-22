@@ -26,7 +26,7 @@ public class NewPlayerMovement : MonoBehaviour {
             g.transform.position = new Vector3(g.transform.position.x, 0, g.transform.position.z);
             waypoints[p.PointIndex] = g;
         }
-        Debug.Log(points.Length);
+        //Debug.Log(points.Length);
     }
 
     private void FixedUpdate(){
@@ -44,22 +44,22 @@ public class NewPlayerMovement : MonoBehaviour {
         //point the current velocity in the direction of the next waypoint
     }
 
-    private void Update(){
+    private void Update() {
         //if there are no waypoints left in the list stop all movement
-        if(waypoints.Length == currWaypointIndex){
+        if (waypoints.Length == currWaypointIndex) {
             rb.velocity = Vector3.zero;
             return;
         }
 
-        float dist = Vector3.Distance(transform.position, new Vector3(waypoints[currWaypointIndex].transform.position.x, 0, waypoints[currWaypointIndex].transform.position.z));
+        float dist = Vector3.Distance(transform.position, new Vector3(waypoints[currWaypointIndex].transform.position.x, 0.75f, waypoints[currWaypointIndex].transform.position.z));
         //if the player is within a certain range of the waypoint go to the next one
-        if (dist <= movementBias){
+        if (dist <= movementBias) {
             currWaypointIndex++;
             passingDistance = dist;
         }
         //look at next waypoint
         Quaternion rot = Quaternion.LookRotation(new Vector3(waypoints[currWaypointIndex].transform.position.x, .75f, waypoints[currWaypointIndex].transform.position.z) - transform.position);
         transform.rotation = Quaternion.Lerp(transform.rotation, rot, 0.05f * Time.deltaTime);
-
+        //Debug.Log(waypoints[currWaypointIndex].transform.localPosition + " Current waypoint tracking index " + waypoints[currWaypointIndex].GetComponent<PlayerTrackingPoint>().PointIndex + " Current waypoint: " + currWaypointIndex);
     }
 }

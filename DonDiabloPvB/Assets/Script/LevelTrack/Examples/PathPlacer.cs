@@ -30,30 +30,25 @@ public class PathPlacer : MonoBehaviour {
         for (int i = 0; i < points.Length; i++){
             trackedObjs[i] = Instantiate(playerTrackPoint, transform);
             trackedObjs[i].tag = Tags.WaypointTag;
-            trackedObjs[i].transform.position = points[i];
+            trackedObjs[i].transform.position = new Vector3(points[i].x, 0, points[i].y);
             trackedObjs[i].transform.localScale = Vector3.one * spacing * 0.5f;
             trackedObjs[i].GetComponent<PlayerTrackingPoint>().PointIndex = i;
-
+            /*
             //rotate the prop objects to their center point
             //REBUILD WITH EXCLUSIVELY QUATERNIONS
             GameObject g = Instantiate(trackProp1, trackedObjs[i].transform.position + dstToMeshEdgePerPoint[i] * meshWidth * 0.5f, Quaternion.identity, trackedObjs[i].transform);
             Vector3 v = trackedObjs[i].transform.position - g.transform.position;
-            Debug.DrawRay(g.transform.position, v, Color.red);
+            //Debug.DrawRay(g.transform.position, v, Color.red);
             g.transform.localRotation = Quaternion.LookRotation(v);
             g.transform.rotation *= Quaternion.Euler(90, 0, 90);
-
-            //if(g.transform.localEulerAngles.y >= 89 && g.transform.localEulerAngles.y <= 91)
-            //    g.transform.localScale = gScaleFix;
 
             g = Instantiate(trackProp1, trackedObjs[i].transform.position - dstToMeshEdgePerPoint[i] * meshWidth * 0.5f, Quaternion.identity, trackedObjs[i].transform);
             //REBUILD WITH EXCLUSIVELY QUATERNIONS
             v = trackedObjs[i].transform.position - g.transform.position;
-            Debug.DrawRay(g.transform.position, v, Color.red);
+            //Debug.DrawRay(g.transform.position, v, Color.red);
             g.transform.localRotation= Quaternion.LookRotation(v);
             g.transform.localRotation *= Quaternion.Euler(90, 0, 90);
-
-            //if(g.transform.localEulerAngles.y == 90)
-            //    g.transform.localScale = gScaleFix;
+            */
         }
     }
 

@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class PlayerTrackingPoint : MonoBehaviour {
     //set this index at creation
-    [HideInInspector]
+    //[HideInInspector]
     [SerializeField]
     private int pointIndex;
     public int PointIndex {
         get { return pointIndex;  }
         set { pointIndex = value; }
     }
+    /*
     [HideInInspector]
     [SerializeField]
     private Vector3 localPosRelativeToWorld;
@@ -18,6 +19,7 @@ public class PlayerTrackingPoint : MonoBehaviour {
         get { return localPosRelativeToWorld; }
         set { localPosRelativeToWorld = value; }
     }
+    
     [HideInInspector]
     [SerializeField]
     private Vector3[] meshEdgePosArray = new Vector3[2];
@@ -25,4 +27,5 @@ public class PlayerTrackingPoint : MonoBehaviour {
         get { return (i > meshEdgePosArray.Length) ? meshEdgePosArray[meshEdgePosArray.Length] : meshEdgePosArray[i]; }
         set { meshEdgePosArray[i] = value; }
     }
+    */
 }
