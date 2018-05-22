@@ -1,7 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using SplineEditor;
 using UnityEngine;
-using SplineEditor;
 
 [RequireComponent(typeof(MeshRenderer))]
 [RequireComponent(typeof(MeshFilter))]
@@ -15,6 +13,8 @@ public class RoadCreator : MonoBehaviour {
     public bool autoUpdate;
     public float tiling = 1;
 
+    private Vector3[] vertexOffsetVectors;
+
     public void UpdateRoad(){
         Path path = GetComponent<PathCreator>().path;
         Vector2[] points = path.CalculateEvenSpacePoints(spacing);
@@ -22,12 +22,13 @@ public class RoadCreator : MonoBehaviour {
 
         int textureRepeat = Mathf.RoundToInt(tiling * points.Length * spacing * 0.05f);
         GetComponent<MeshRenderer>().sharedMaterial.mainTextureScale = new Vector2(1, textureRepeat);
-        GetComponent<PathPlacer>().PlacePath();
+        GetComponent<PathPlacer>().PlacePath(points, vertexOffsetVectors, roadWidth);
     }
 
 	Mesh CreateRoadMesh(Vector2[] points, bool isClosed){
         Vector3[] verts = new Vector3[points.Length * 2];
         Vector2[] uvs = new Vector2[verts.Length];
+        vertexOffsetVectors = new Vector3[points.Length];
         int numTris = 2 * (points.Length - 1) + ((isClosed) ? 2 : 0);
         int[] tris = new int[numTris * 3];
         int vertIndex = 0;
@@ -44,7 +45,8 @@ public class RoadCreator : MonoBehaviour {
 
             forward.Normalize();
             Vector2 left = new Vector2(-forward.y, forward.x);
-
+            //store the left vector to calculate the edges of the mesh later
+            vertexOffsetVectors[i] = left;
             verts[vertIndex] = points[i] + left * roadWidth * 0.5f;
             verts[vertIndex + 1] = points[i] - left * roadWidth * 0.5f;
 

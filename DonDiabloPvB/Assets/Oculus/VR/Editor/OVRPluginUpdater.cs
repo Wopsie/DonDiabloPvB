@@ -1,4 +1,4 @@
-/************************************************************************************
+﻿/************************************************************************************
 
 Copyright   :   Copyright 2017 Oculus VR, LLC. All Rights reserved.
 
@@ -89,12 +89,12 @@ class OVRPluginUpdater
 		};
 	}
 
-	private static PluginPackage GetBundledPluginPackage()
-	{
-		return GetPluginPackage(GetBundledPluginRootPath());
-	}
+    private static PluginPackage GetBundledPluginPackage()
+    {
+        return GetPluginPackage(GetBundledPluginRootPath());
+    }
 
-	private static List<PluginPackage> GetAllUtilitiesPluginPackages()
+    private static List<PluginPackage> GetAllUtilitiesPluginPackages()
 	{
 		string pluginRootPath = GetUtilitiesPluginRootPath();
 		List<PluginPackage> packages = new List<PluginPackage>();
