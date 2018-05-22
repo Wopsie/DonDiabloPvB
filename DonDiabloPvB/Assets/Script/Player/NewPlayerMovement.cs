@@ -29,7 +29,6 @@ public class NewPlayerMovement : MonoBehaviour {
             g.transform.position = new Vector3(g.transform.position.x, 0, g.transform.position.z);
             waypoints[p.PointIndex] = g;
         }
-        //Debug.Log(points.Length);
     }
 
     private void FixedUpdate(){
@@ -37,10 +36,11 @@ public class NewPlayerMovement : MonoBehaviour {
         float lateralSpeed = new Vector2(rb.velocity.x, rb.velocity.z).magnitude;
         rb.velocity = new Vector3(transform.forward.x * lateralSpeed, 0, transform.forward.z * lateralSpeed);
         if(rb.velocity.magnitude >= 50){
-            rb.velocity = rb.velocity * maxSpeed;
+            //rb.velocity = rb.velocity * maxSpeed;
+            rb.velocity *= 0.99f;
             Debug.Log("Limiting speed");
         }
-        //Debug.Log(lateralSpeed + " " + passingDistance);
+        Debug.Log(lateralSpeed);
 
         //add velocity to the rigidbody
 
@@ -49,7 +49,6 @@ public class NewPlayerMovement : MonoBehaviour {
 
     private void Update() {
         //if there are no waypoints left in the list stop all movement
-        Debug.Log(waypoints.Length + " " + (currWaypointIndex-1));
         if((currWaypointIndex -1) == waypoints.Length || currWaypointIndex >= waypoints.Length) {
             rb.velocity = Vector3.zero;
             return;
