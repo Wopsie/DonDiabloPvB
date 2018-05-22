@@ -16,6 +16,8 @@ public class NewPlayerMovement : MonoBehaviour {
     [SerializeField]
     [Tooltip("the higher this is the move the player can move off track in corners")]
     private float movementBias = 1.2f;
+    [SerializeField]
+    private float lookSpeed = 10f;
     private float passingDistance;
 
     private void Awake(){
@@ -47,10 +49,15 @@ public class NewPlayerMovement : MonoBehaviour {
 
     private void Update() {
         //if there are no waypoints left in the list stop all movement
-        if (waypoints.Length == currWaypointIndex) {
+        Debug.Log(waypoints.Length + " " + (currWaypointIndex-1));
+        if((currWaypointIndex -1) == waypoints.Length || currWaypointIndex >= waypoints.Length) {
             rb.velocity = Vector3.zero;
             return;
         }
+        
+        //look at next waypoint
+        Quaternion rot = Quaternion.LookRotation(new Vector3(waypoints[currWaypointIndex].transform.position.x, .75f, waypoints[currWaypointIndex].transform.position.z) - transform.position);
+        transform.rotation = Quaternion.Lerp(transform.rotation, rot, lookSpeed * Time.deltaTime);
 
         float dist = Vector3.Distance(transform.position, new Vector3(waypoints[currWaypointIndex].transform.position.x, 0.75f, waypoints[currWaypointIndex].transform.position.z));
         //if the player is within a certain range of the waypoint go to the next one
@@ -58,9 +65,5 @@ public class NewPlayerMovement : MonoBehaviour {
             currWaypointIndex++;
             passingDistance = dist;
         }
-        //look at next waypoint
-        Quaternion rot = Quaternion.LookRotation(new Vector3(waypoints[currWaypointIndex].transform.position.x, .75f, waypoints[currWaypointIndex].transform.position.z) - transform.position);
-        transform.rotation = Quaternion.Lerp(transform.rotation, rot, 0.05f * Time.deltaTime);
-        //Debug.Log(waypoints[currWaypointIndex].transform.localPosition + " Current waypoint tracking index " + waypoints[currWaypointIndex].GetComponent<PlayerTrackingPoint>().PointIndex + " Current waypoint: " + currWaypointIndex);
     }
 }
