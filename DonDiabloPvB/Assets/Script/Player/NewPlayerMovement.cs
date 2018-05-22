@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody))]
 public class NewPlayerMovement : MonoBehaviour {
     [HideInInspector]
     public GameObject[] waypoints;

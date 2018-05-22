@@ -8,16 +8,10 @@ public class Progress : MonoBehaviour {
     [SerializeField]
     private Score scoreScript;
     [SerializeField]
-    private List<AudioClip> songs = new List<AudioClip>();
-    public AudioClip[] temp;
-    public string[] a;
-    public string[] songNames;
-
-	void Awake () {
-        temp = Resources.LoadAll<AudioClip>("Audio");
-        songNames = new string[temp.Length];
+    void Awake()
+    {
+        scoreScript = GetComponent<Score>();
     }
-
     // Update is called once per frame
     void Update () {
 
