@@ -834,9 +834,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _levelSelectScreens:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 21300000, guid: e4f0696f79739e74f94556541ee02367, type: 3}
+  - {fileID: 21300000, guid: 73d0608462b38114d94bbc76cef16427, type: 3}
+  - {fileID: 21300000, guid: a8933cc88fdbcf5438080300864a2c5d, type: 3}
   - {fileID: 0}
 --- !u!1 &571641388
 GameObject:
