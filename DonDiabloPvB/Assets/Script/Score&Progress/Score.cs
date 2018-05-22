@@ -6,12 +6,13 @@ using UnityEngine.UI;
 public class Score : MonoBehaviour {
     private string songName;
     private int currentScore;
-    public int CurrentScore { get { return currentScore; } set { currentScore = value; } }
+   // public int CurrentScore { get { return currentScore; } set { currentScore = value; } }
     [SerializeField]
     private Text text;
 	// Use this for initialization
 	void Start () {
         StartCoroutine(wait());
+        currentScore = 0;
 	}
 	
 	// Update is called once per frame
@@ -24,9 +25,10 @@ public class Score : MonoBehaviour {
         songName = name;
     }
 
-    void AddScore()
+    void AddScore(int amountGain = 1)
     {
-        currentScore = currentScore + 1;
+        currentScore += amountGain;
+        Debug.Log(amountGain);
         text.text = currentScore.ToString();
     }
 
