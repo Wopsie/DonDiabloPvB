@@ -36,9 +36,9 @@ public class PathPlacer : MonoBehaviour {
 
             //rotate the prop objects to their center point
             //REBUILD WITH EXCLUSIVELY QUATERNIONS
-            //Debug.DrawRay(g.transform.position, v, Color.red);
             GameObject g = Instantiate(trackProp1, trackedObjs[i].transform.position + dstToMeshEdgePerPoint[i] * meshWidth * 0.5f, Quaternion.identity, trackedObjs[i].transform);
             Vector3 v = trackedObjs[i].transform.position - g.transform.position;
+            Debug.DrawRay(g.transform.position, v, Color.red);
             g.transform.localRotation = Quaternion.LookRotation(v);
             g.transform.rotation *= Quaternion.Euler(90, 0, 90);
 
