@@ -1,23 +1,34 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
+using System.Linq;
 
 public class Progress : MonoBehaviour {
+    [SerializeField]
     private Score scoreScript;
-	// Use this for initialization
+    [SerializeField]
+    private List<AudioClip> songs = new List<AudioClip>();
+    public AudioClip[] temp;
+    public string[] a;
+    public string[] songNames;
+
 	void Awake () {
-        scoreScript = GameObject.Find("Score").GetComponent<Score>();
-        UpdateProgress("1",scoreScript.highScore);
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
+        temp = Resources.LoadAll<AudioClip>("Audio");
+        songNames = new string[temp.Length];
+    }
+
+    // Update is called once per frame
+    void Update () {
+
 	}
 
-    void UpdateProgress(string name,int score)
-    {
+    void UpdateProgress(string name,int score) {
         PlayerPrefs.SetInt(name, score);
-        Debug.Log(PlayerPrefs.HasKey("0"));
+    }
+
+    int GetProgress(string name) {
+        int i = PlayerPrefs.GetInt(name);
+        return i;
     }
 }

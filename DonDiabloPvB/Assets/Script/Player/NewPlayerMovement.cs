@@ -37,7 +37,7 @@ public class NewPlayerMovement : MonoBehaviour {
             rb.velocity = rb.velocity * (movementBias -= passingDistance);
             Debug.Log("Limiting speed");
         }
-        Debug.Log(lateralSpeed + " " + passingDistance);
+        //Debug.Log(lateralSpeed + " " + passingDistance);
 
         //add velocity to the rigidbody
 

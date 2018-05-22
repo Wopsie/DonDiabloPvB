@@ -1,14 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Score : MonoBehaviour {
     private string songName;
-    public int highScore;
-    private int amount = 1;
+    private int currentScore;
+    public int CurrentScore { get { return currentScore; } set { currentScore = value; } }
+    [SerializeField]
+    private Text text;
 	// Use this for initialization
 	void Start () {
-		
+        StartCoroutine(wait());
 	}
 	
 	// Update is called once per frame
@@ -23,6 +26,14 @@ public class Score : MonoBehaviour {
 
     void AddScore()
     {
-        highScore = highScore + amount;
+        currentScore = currentScore + 1;
+        text.text = currentScore.ToString();
+    }
+
+    IEnumerator wait()
+    {
+        yield return new WaitForSeconds(1);
+        AddScore();
+        StartCoroutine(wait());
     }
 }
