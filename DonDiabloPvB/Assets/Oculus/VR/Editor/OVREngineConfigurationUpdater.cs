@@ -30,8 +30,6 @@ class OVREngineConfigurationUpdater
 {
 	private const string prefName = "OVREngineConfigurationUpdater_Enabled";
 	private const string menuItemName = "Tools/Oculus/Use Required Project Settings";
-	private const string androidAssetsPath = "Assets/Plugins/Android/assets";
-	private const string androidManifestPath = "Assets/Plugins/Android/AndroidManifest.xml";
 	static bool setPrefsForUtilities;
 
 	[MenuItem(menuItemName)]
@@ -234,25 +232,22 @@ class OVREngineConfigurationUpdater
 			return;
 		
 		// Don't warn if the project may be set up for submission or global signing.
-		if (File.Exists(androidManifestPath))
+		if (File.Exists("Assets/Plugins/Android/AndroidManifest.xml"))
 			return;
-
+		
+		var files = Directory.GetFiles("Assets/Plugins/Android/assets");
 		bool foundPossibleOsig = false;
-		if (Directory.Exists(androidAssetsPath))
+		for (int i = 0; i < files.Length; ++i)
 		{
-			var files = Directory.GetFiles(androidAssetsPath);
-			for (int i = 0; i < files.Length; ++i)
+			if (!files[i].Contains(".txt"))
 			{
-				if (!files[i].Contains(".txt"))
-				{
-					foundPossibleOsig = true;
-					break;
-				}
+				foundPossibleOsig = true;
+				break;
 			}
 		}
 
 		if (!foundPossibleOsig)
-			Debug.LogWarning("Missing Gear VR OSIG at " + androidAssetsPath + ". Please see https://dashboard.oculus.com/tools/osig-generator");
+			Debug.LogWarning("Missing Gear VR OSIG at Assets/Plugins/Android/assets. Please see https://dashboard.oculus.com/tools/osig-generator");
 	}
 
 	private class Axis
