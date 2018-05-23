@@ -2,6 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum ShieldState{
+    TapShield,      //enter when tapping button
+    TapOverShield,  //enter after tapping state should be over to allow for some more precise hit detection
+    HoldShield,     //enter when played holds button, always preceded by TapShieldState
+    NoShield,       //if nothing is pressed
+};
+
 [RequireComponent(typeof(Rigidbody))]
 public class NewPlayerMovement : MonoBehaviour {
     [HideInInspector]
@@ -19,8 +26,15 @@ public class NewPlayerMovement : MonoBehaviour {
     [SerializeField]
     private float lookSpeed = 10f;
     private float passingDistance;
+    private PlayerInput pInput;
+    private ShieldState currShieldState;
 
     private void Awake(){
+        pInput = GetComponent<PlayerInput>();
+        pInput.OnPressButton += SetShieldState;
+        pInput.OnHoldButton += SetShieldState;
+        pInput.OnReleaseButton += SetShieldState;
+
         rb = GetComponent<Rigidbody>();
         GameObject[] points = GameObject.FindGameObjectsWithTag(Tags.WaypointTag);
         waypoints = new GameObject[points.Length];
@@ -64,5 +78,9 @@ public class NewPlayerMovement : MonoBehaviour {
             currWaypointIndex++;
             passingDistance = dist;
         }
+    }
+
+    private void SetShieldState(){
+        //currShieldState = state;
     }
 }

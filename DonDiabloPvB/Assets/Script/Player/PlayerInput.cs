@@ -34,7 +34,7 @@ public class PlayerInput : MonoBehaviour {
 
             buttonPressed = false;
             //released key
-         //   Debug.Log(heldFrameCounter);
+            Debug.Log(heldFrameCounter);
         }
 
         if (Input.GetMouseButton(0)){

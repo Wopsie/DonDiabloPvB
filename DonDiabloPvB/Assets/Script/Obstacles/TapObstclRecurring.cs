@@ -8,7 +8,7 @@ public class TapObstclRecurring : Obstacle {
     private ObstacleType type;
 
     private void Awake(){
-        base.SetInduvidualData();
+        SetInduvidualData();
     }
 
     private void Update(){
@@ -18,6 +18,9 @@ public class TapObstclRecurring : Obstacle {
     private void OnTriggerEnter(Collider coll){
         if(waypointPositionIndex == 0)
             base.SnapToClosestTrackPoint(coll);
+
+        if (coll.gameObject.tag == Tags.PlayerTag)
+            OnPlayerCollision();
     }
     //enable obstacle based on what waypoints the player has passed and how far that number is from the waypointPositionIndex, receive this data from ObstacleHelper
     //enable obstacleModel if player is within a certain range

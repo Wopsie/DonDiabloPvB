@@ -34,13 +34,29 @@ public class Obstacle : MonoBehaviour {
 
     private void Update(){
         CheckPlayerDistances();
+
+        //add gameplay functionality
+
+        //upon passing check what state player is in ith input
+
+        //if player matches the state required to pass
+            //add score & destroy obstacle
+        //else
+            //Reset player "die"
     }
 
     private void OnTriggerEnter(Collider coll){
         SnapToClosestTrackPoint(coll);
+
+        if (coll.gameObject.tag == Tags.PlayerTag)
+            OnPlayerCollision();
+    }
+
+    protected virtual void OnPlayerCollision(){
+        
     }
     
-    protected void SetInduvidualData(){
+    protected virtual void SetInduvidualData(){
         collider = gameObject.AddComponent<SphereCollider>();
         collider.radius = 5;
         collider.isTrigger = true;

@@ -8,7 +8,9 @@ using UnityEngine;
 public class ObstacleHelper : MonoBehaviour {
 
     private Obstacle[] obstacleColl = null;
-    private NewPlayerMovement player = null;
+    [HideInInspector]
+    public NewPlayerMovement player = null;
+    [HideInInspector]
     public int playerPassIndex;
 
     private void Awake(){

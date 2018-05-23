@@ -551,6 +551,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5699356308aecb45a25282466e0b79d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
   playerPassIndex: 0
 --- !u!1 &333775544 stripped
 GameObject:
@@ -1274,6 +1275,10 @@ Prefab:
     - target: {fileID: 2300002, guid: d73bcc13a707c634babebb38e9256f65, type: 3}
       propertyPath: m_ReceiveShadows
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2300006, guid: d73bcc13a707c634babebb38e9256f65, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d73bcc13a707c634babebb38e9256f65, type: 3}
