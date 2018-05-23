@@ -9,6 +9,8 @@ DonDiabloPvB/[Bb]uild/
 DonDiabloPvB/[Bb]uilds/
 DonDiabloPvB/Assets/AssetStoreTools*
 DonDiabloPvB/Library
+DonDiabloPvB/Assets/GoogleVR/
+
 
 # Visual Studio 2015 cache directory
 /.vs/
