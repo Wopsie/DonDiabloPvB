@@ -16,7 +16,7 @@ public class NewPlayerMovement : MonoBehaviour {
     [SerializeField][Range(0,0.9f)]
     private float maxSpeed = 0.8f;
     [SerializeField]
-    private float speedMultiplier = 2f;
+    private float speedMultiplier = 100f;
     [SerializeField]
     [Tooltip("the higher this is the move the player can move off track in corners")]
     private float movementBias = 1.2f;
@@ -27,10 +27,11 @@ public class NewPlayerMovement : MonoBehaviour {
     [HideInInspector]
     private Rigidbody rb;
     private PlayerInput pInput;
+    private float tapFrames = 1f;
+    public bool tappedShield = false;
     public ShieldState currShieldState;
     public GameObject[] waypoints;
     //private ShieldState prevShieldState;
-    //private int tapFrames;
 
     private void Awake(){
         pInput = GetComponent<PlayerInput>();
@@ -52,7 +53,7 @@ public class NewPlayerMovement : MonoBehaviour {
     }
 
     private void FixedUpdate(){
-        rb.AddForce(transform.forward * speedMultiplier);
+        rb.AddForce(transform.forward * (speedMultiplier * Time.deltaTime));
         float lateralSpeed = new Vector2(rb.velocity.x, rb.velocity.z).magnitude;
         rb.velocity = new Vector3(transform.forward.x * lateralSpeed, 0, transform.forward.z * lateralSpeed);
         if(rb.velocity.magnitude >= 50){
@@ -68,8 +69,8 @@ public class NewPlayerMovement : MonoBehaviour {
     }
 
     private void Update() {
-
-        Debug.Log(currShieldState);
+        TimeShieldTapState();
+        //Debug.Log(currShieldState);
 
         //if there are no waypoints left in the list stop all movement
         if((currWaypointIndex -1) == waypoints.Length || currWaypointIndex >= waypoints.Length) {
@@ -91,15 +92,25 @@ public class NewPlayerMovement : MonoBehaviour {
 
     private void SetShieldState(ShieldState state){
         currShieldState = state;
-        /*
-        //if previous shieldstate does not match the current state or the tap shield state
-        if(prevShieldState == ShieldState.TapShield){
-            //tap shield state should be held for the remaining tapframes
-            //int remTapFrames = 20;
-        }
+        if (state == ShieldState.TapShield)
+            tappedShield = true;
+    }
 
-        prevShieldState = state;
-        */
+    /// <summary>
+    /// this method handles the timing at which the TapShield state is active
+    /// this is necessary because the actual state is only active for 1 frame, so we have to store the state another way
+    /// </summary>
+    void TimeShieldTapState(){
+        if(tapFrames >= 0 && tappedShield){
+            //tapshield is still active
+            Debug.Log("TapShield state LINGERING");
+            tapFrames -= (1 * Time.deltaTime);
+        }else{
+            //when this is reached it means the timer at which the TapShield state should be active has run out
+            tappedShield = false;
+            Debug.Log("TapShield state FINISHED");
+            tapFrames = 1f;
+        }
     }
 
     public void Reset(){

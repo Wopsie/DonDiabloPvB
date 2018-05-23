@@ -8,7 +8,7 @@ public class TapObstclRecurring : Obstacle {
     private ObstacleType type;
     //private ObstacleHelper helper;
     [SerializeField]
-    private ShieldState reqShieldState = ShieldState.TapShield;
+    private new ShieldState reqShieldState = ShieldState.TapShield;
 
     private void Awake(){
         SetInduvidualData();
@@ -17,12 +17,11 @@ public class TapObstclRecurring : Obstacle {
     private void Update(){
         base.CheckPlayerDistances();
 
-        Debug.Log("RECURRING REQUIRED STATE IS: " + reqShieldState);
+        //Debug.Log("RECURRING REQUIRED STATE IS: " + reqShieldState);
     }
 
     protected override void OnPlayerCollision(){
-        //base.OnPlayerCollision();
-        if(helper.player.currShieldState == reqShieldState || helper.player.currShieldState == ShieldState.HoldShield)
+        if(helper.player.currShieldState == reqShieldState || helper.player.tappedShield == true)
         {
             //player passes with success
             helper.AddScore(scoreToAward);

@@ -30,7 +30,7 @@ public class PlayerInput : MonoBehaviour {
         if (Input.GetMouseButtonUp(0)){
             if(OnReleaseButton != null){
                 OnReleaseButton(ShieldState.NoShield);
-                Debug.Log("BUTTON RELEASED");
+                //Debug.Log("BUTTON RELEASED");
             }
 
             buttonPressed = false;
@@ -48,20 +48,5 @@ public class PlayerInput : MonoBehaviour {
                 heldFrameCounter++;
             }
         }
-
-        /*
-        if (Input.GetMouseButtonDown(0))
-        {
-            //reset the counter and fire tap
-        }
-
-        if (Input.GetMouseButton(0))
-        {
-            //holding button
-            
-            //when button has been held for set number of frames
-            //end 
-        }
-        */
     }
 }
