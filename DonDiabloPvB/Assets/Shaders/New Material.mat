@@ -67,7 +67,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SecondTex:
-        m_Texture: {fileID: 2800000, guid: 24063d1465c90224e9736f631b6c8eda, type: 3}
+        m_Texture: {fileID: 2800000, guid: a8933cc88fdbcf5438080300864a2c5d, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
@@ -79,7 +79,7 @@ Material:
     - _Cutoff: 0.5
     - _CutoutThresh: 1
     - _DetailNormalMapScale: 1
-    - _DisolveCount: -0.6356871
+    - _DisolveCount: 0
     - _DisolveTime: 2
     - _DisolveY: 0
     - _DissolveEdgeMultiplier: 1
