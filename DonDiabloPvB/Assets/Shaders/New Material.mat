@@ -79,7 +79,7 @@ Material:
     - _Cutoff: 0.5
     - _CutoutThresh: 1
     - _DetailNormalMapScale: 1
-    - _DisolveCount: 0
+    - _DisolveCount: -0.635403
     - _DisolveTime: 2
     - _DisolveY: 0
     - _DissolveEdgeMultiplier: 1
@@ -106,7 +106,7 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _ColorChange: {r: 0, g: 0.60294116, b: 0.2571366, a: 1}
+    - _ColorChange: {r: 0, g: 0.8103528, b: 0.984, a: 1}
     - _ColorMap: {r: 0, g: 0, b: 0, a: 1}
     - _ColorNormal: {r: 1, g: 1, b: 1, a: 1}
     - _ColorTint: {r: 0.09338232, g: 0.8967452, b: 0.9338235, a: 1}
