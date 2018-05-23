@@ -1,27 +1,15 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEditor;
-using System.Linq;
+﻿using UnityEngine;
 
-public class Progress : MonoBehaviour {
-    [SerializeField]
-    private Score scoreScript;
-    [SerializeField]
-    void Awake()
-    {
-        scoreScript = GetComponent<Score>();
-    }
-    // Update is called once per frame
-    void Update () {
+public class Progress {
 
-	}
-
-    void UpdateProgress(string name,int score) {
-        PlayerPrefs.SetInt(name, score);
+    public static void SetProgress(string name,int score) {
+        if (PlayerPrefs.GetInt(name) < score)
+        {
+            PlayerPrefs.SetInt(name, score);
+        }
     }
 
-    int GetProgress(string name) {
+    public static int GetProgress(string name) {
         int i = PlayerPrefs.GetInt(name);
         return i;
     }

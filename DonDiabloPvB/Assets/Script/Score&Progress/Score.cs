@@ -5,37 +5,29 @@ using UnityEngine.UI;
 
 public class Score : MonoBehaviour {
     private string songName;
-    private int currentScore;
+    private int score;
    // public int CurrentScore { get { return currentScore; } set { currentScore = value; } }
     [SerializeField]
     private Text text;
 	// Use this for initialization
 	void Start () {
         StartCoroutine(wait());
-        currentScore = 0;
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
+        score = 0;
 	}
 
-    void SetSong(string name = "0")
-    {
-        songName = name;
-    }
-
+    //Adds score with given amount
     void AddScore(int amountGain = 1)
     {
-        currentScore += amountGain;
-        Debug.Log(amountGain);
-        text.text = currentScore.ToString();
+        score += amountGain;
+        text.text = score.ToString();
     }
 
+    //Only for testing score it adds 1 to score each second
     IEnumerator wait()
     {
         yield return new WaitForSeconds(1);
         AddScore();
+        Progress.SetProgress(songName, score);
         StartCoroutine(wait());
     }
 }

@@ -164,7 +164,7 @@ PlayerSettings:
     iOS: com.oculus.UnitySample
   buildNumber: {}
   AndroidBundleVersionCode: 1
-  AndroidMinSdkVersion: 21
+  AndroidMinSdkVersion: 19
   AndroidTargetSdkVersion: 0
   AndroidPreferredInstallLocation: 0
   aotOptions: 
@@ -266,7 +266,7 @@ PlayerSettings:
   - m_BuildTarget: Android
     m_Enabled: 1
     m_Devices:
-    - Oculus
+    - cardboard
   - m_BuildTarget: iOS
     m_Enabled: 1
     m_Devices: []
