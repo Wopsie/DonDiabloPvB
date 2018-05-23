@@ -12,11 +12,16 @@ public class ObstacleHelper : MonoBehaviour {
     public NewPlayerMovement player = null;
     [HideInInspector]
     public int playerPassIndex;
+    private float maxScore;
+    public float MaxScore { get { return maxScore; } }
+    private float currentScore;
+    public float CurrentScore { get { return currentScore; } }
 
     private void Awake(){
         obstacleColl = FindObjectsOfType<Obstacle>();
         for (int i = 0; i < obstacleColl.Length; i++){
             obstacleColl[i].ReceiveHelper(this);
+            maxScore += obstacleColl[i].scoreToAward;
         }
         player = FindObjectOfType<NewPlayerMovement>();
     }
@@ -24,6 +29,10 @@ public class ObstacleHelper : MonoBehaviour {
     private void Update(){
         if (playerPassIndex != player.CurrWaypointIndex)
             playerPassIndex = player.CurrWaypointIndex;
+    }
+
+    public void AddScore(float score){
+        currentScore += score;
     }
 
     //when placing obstacles in scene, check what trackpoint is closest & snap obstacles position to that point

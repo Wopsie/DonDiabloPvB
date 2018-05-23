@@ -8,19 +8,19 @@ public class PlayerInput : MonoBehaviour {
     private bool buttonPressed;
     private int heldFrameCounter;
 
-    public delegate void PressButton();
+    public delegate void PressButton(ShieldState state);
     public PressButton OnPressButton;
 
-    public delegate void HoldButton();
+    public delegate void HoldButton(ShieldState state );
     public HoldButton OnHoldButton;
 
-    public delegate void ReleaseButton();
+    public delegate void ReleaseButton(ShieldState state);
     public ReleaseButton OnReleaseButton;
 
     private void Update(){
         if (Input.GetMouseButtonDown(0)){
             if(OnPressButton != null){
-                OnPressButton();
+                OnPressButton(ShieldState.TapShield);
             }
             //pressed key
             heldFrameCounter = 1;
@@ -29,7 +29,8 @@ public class PlayerInput : MonoBehaviour {
 
         if (Input.GetMouseButtonUp(0)){
             if(OnReleaseButton != null){
-                OnReleaseButton();
+                OnReleaseButton(ShieldState.NoShield);
+                Debug.Log("BUTTON RELEASED");
             }
 
             buttonPressed = false;
@@ -41,11 +42,26 @@ public class PlayerInput : MonoBehaviour {
             if (buttonPressed){
 
                 if(OnHoldButton != null){
-                    OnHoldButton();
+                    OnHoldButton(ShieldState.HoldShield);
                 }
 
                 heldFrameCounter++;
             }
         }
+
+        /*
+        if (Input.GetMouseButtonDown(0))
+        {
+            //reset the counter and fire tap
+        }
+
+        if (Input.GetMouseButton(0))
+        {
+            //holding button
+            
+            //when button has been held for set number of frames
+            //end 
+        }
+        */
     }
 }

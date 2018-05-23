@@ -6,6 +6,9 @@ public class TapObstclRecurring : Obstacle {
 
     [SerializeField][Tooltip("The type of obstacle, this determines the state the player must be in to successfully pass")]
     private ObstacleType type;
+    //private ObstacleHelper helper;
+    [SerializeField]
+    private ShieldState reqShieldState = ShieldState.TapShield;
 
     private void Awake(){
         SetInduvidualData();
@@ -13,6 +16,23 @@ public class TapObstclRecurring : Obstacle {
 
     private void Update(){
         base.CheckPlayerDistances();
+
+        Debug.Log("RECURRING REQUIRED STATE IS: " + reqShieldState);
+    }
+
+    protected override void OnPlayerCollision(){
+        //base.OnPlayerCollision();
+        if(helper.player.currShieldState == reqShieldState || helper.player.currShieldState == ShieldState.HoldShield)
+        {
+            //player passes with success
+            helper.AddScore(scoreToAward);
+            Debug.Log("<color=green>VERRY G00D</color>");
+        }else{
+            //played dies
+            //reset player to the start of the track for the demo
+            helper.player.Reset();
+            Debug.Log("<color=red>SUKKEL</color>");
+        }
     }
 
     private void OnTriggerEnter(Collider coll){
