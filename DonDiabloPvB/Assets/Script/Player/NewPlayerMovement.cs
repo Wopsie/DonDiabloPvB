@@ -3,19 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public enum ShieldState{
+    NoShield,       //if nothing is pressed
     TapShield,      //enter when tapping button
     TapOverShield,  //enter after tapping state should be over to allow for some more precise hit detection
     HoldShield,     //enter when played holds button, always preceded by TapShieldState
-    NoShield,       //if nothing is pressed
 };
 
 [RequireComponent(typeof(Rigidbody))]
 public class NewPlayerMovement : MonoBehaviour {
-    [HideInInspector]
-    public GameObject[] waypoints;
     private int currWaypointIndex = 1;
     public int CurrWaypointIndex { get { return currWaypointIndex; } }
-    private Rigidbody rb;
     [SerializeField][Range(0,0.9f)]
     private float maxSpeed = 0.8f;
     [SerializeField]
@@ -26,8 +23,14 @@ public class NewPlayerMovement : MonoBehaviour {
     [SerializeField]
     private float lookSpeed = 10f;
     private float passingDistance;
+    private Vector3 startingPos;
+    [HideInInspector]
+    private Rigidbody rb;
     private PlayerInput pInput;
-    private ShieldState currShieldState;
+    public ShieldState currShieldState;
+    public GameObject[] waypoints;
+    //private ShieldState prevShieldState;
+    //private int tapFrames;
 
     private void Awake(){
         pInput = GetComponent<PlayerInput>();
@@ -36,6 +39,9 @@ public class NewPlayerMovement : MonoBehaviour {
         pInput.OnReleaseButton += SetShieldState;
 
         rb = GetComponent<Rigidbody>();
+
+        startingPos = transform.position;
+
         GameObject[] points = GameObject.FindGameObjectsWithTag(Tags.WaypointTag);
         waypoints = new GameObject[points.Length];
         foreach (GameObject g in points){
@@ -62,6 +68,9 @@ public class NewPlayerMovement : MonoBehaviour {
     }
 
     private void Update() {
+
+        Debug.Log(currShieldState);
+
         //if there are no waypoints left in the list stop all movement
         if((currWaypointIndex -1) == waypoints.Length || currWaypointIndex >= waypoints.Length) {
             rb.velocity = Vector3.zero;
@@ -80,7 +89,21 @@ public class NewPlayerMovement : MonoBehaviour {
         }
     }
 
-    private void SetShieldState(){
-        //currShieldState = state;
+    private void SetShieldState(ShieldState state){
+        currShieldState = state;
+        /*
+        //if previous shieldstate does not match the current state or the tap shield state
+        if(prevShieldState == ShieldState.TapShield){
+            //tap shield state should be held for the remaining tapframes
+            //int remTapFrames = 20;
+        }
+
+        prevShieldState = state;
+        */
+    }
+
+    public void Reset(){
+        transform.position = startingPos;
+        rb.velocity = Vector3.zero;
     }
 }

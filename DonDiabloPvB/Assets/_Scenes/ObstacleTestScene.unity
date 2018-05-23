@@ -827,7 +827,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f3b3db7c7f524d46ba79be51f703848, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scoreToAward: 10
   type: 0
+  reqShieldState: 1
 --- !u!4 &562530138
 Transform:
   m_ObjectHideFlags: 0
@@ -1956,7 +1958,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f3b3db7c7f524d46ba79be51f703848, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scoreToAward: 10
   type: 0
+  reqShieldState: 1
 --- !u!4 &1250508444
 Transform:
   m_ObjectHideFlags: 0
@@ -2116,7 +2120,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f3b3db7c7f524d46ba79be51f703848, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scoreToAward: 10
   type: 0
+  reqShieldState: 1
 --- !u!4 &1383841769
 Transform:
   m_ObjectHideFlags: 0
@@ -2285,11 +2291,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74c000a994e0407459c11435e4494282, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waypoints: []
   maxSpeed: 0.8
   speedMultiplier: 1.1
   movementBias: 1.2
   lookSpeed: 10
+  currShieldState: 0
+  waypoints: []
 --- !u!54 &1545495139
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3098,7 +3105,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f3b3db7c7f524d46ba79be51f703848, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scoreToAward: 10
   type: 0
+  reqShieldState: 1
 --- !u!1 &2069062249 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1558422337328038, guid: d73f205039feab94e9e245fe83c2c2de,

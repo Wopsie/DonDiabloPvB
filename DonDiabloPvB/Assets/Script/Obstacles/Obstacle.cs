@@ -20,13 +20,15 @@ public class Obstacle : MonoBehaviour {
         Hold,
     };
 
-    private ObstacleHelper helper;
-    private new SphereCollider collider;
+    public int scoreToAward = 10;
     protected int waypointPositionIndex = 0;
-    private GameObject obstacleModel;
-    private int obstacleDrawDistance = 30;
-    private int obstacleAnimationTriggerDist = 20;
-    private Animator anim;
+    protected ObstacleHelper helper;
+    protected new SphereCollider collider;
+    protected GameObject obstacleModel;
+    protected int obstacleDrawDistance = 30;
+    protected int obstacleAnimationTriggerDist = 20;
+    protected Animator anim;
+    protected ShieldState reqShieldState = ShieldState.NoShield;
 
     private void Awake(){
         SetInduvidualData();
@@ -40,9 +42,9 @@ public class Obstacle : MonoBehaviour {
         //upon passing check what state player is in ith input
 
         //if player matches the state required to pass
-            //add score & destroy obstacle
+        //add score & destroy obstacle
         //else
-            //Reset player "die"
+        //Reset player "die"
     }
 
     private void OnTriggerEnter(Collider coll){
