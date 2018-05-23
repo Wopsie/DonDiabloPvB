@@ -40,7 +40,7 @@ public class NewPlayerMovement : MonoBehaviour {
             rb.velocity *= 0.99f;
             Debug.Log("Limiting speed");
         }
-        Debug.Log(lateralSpeed);
+        //Debug.Log(lateralSpeed);
 
         //add velocity to the rigidbody
 

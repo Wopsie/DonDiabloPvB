@@ -28,4 +28,8 @@ public class PlayerTrackingPoint : MonoBehaviour {
         set { meshEdgePosArray[i] = value; }
     }
     */
+
+    private void OnTriggerEnter(Collider other){
+        Debug.Log(other.gameObject.name);
+    }
 }
