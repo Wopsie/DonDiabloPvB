@@ -1810,6 +1810,7 @@ GameObject:
   - component: {fileID: 4583591557823320}
   - component: {fileID: 114374366207848806}
   - component: {fileID: 54991642445674154}
+  - component: {fileID: 114276672136325706}
   m_Layer: 0
   m_Name: Player 1
   m_TagString: Untagged
@@ -2735,7 +2736,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1066889212964698}
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -0.877, y: 0.306, z: -0.062}
+  m_LocalPosition: {x: 0.107, y: 0.306, z: -1.023}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4627334472209254}
@@ -4795,6 +4796,17 @@ MonoBehaviour:
     touching: 0
     touchPos: {x: 0.5, y: 0.5}
   maximumAlpha: 1
+--- !u!114 &114276672136325706
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1932798318170454}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3ae1aa4442e4245bd248a5ea7daf35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114374366207848806
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4806,11 +4818,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74c000a994e0407459c11435e4494282, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waypoints: []
-  maxSpeed: 0.2
-  speedMultiplier: 0.2
+  maxSpeed: 25
+  speedMultiplier: 100
   movementBias: 1.2
   lookSpeed: 10
+  tappedShield: 0
+  currShieldState: 0
+  waypoints: []
 --- !u!114 &114416629186054866
 MonoBehaviour:
   m_ObjectHideFlags: 1

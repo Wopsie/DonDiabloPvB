@@ -13,8 +13,8 @@ public enum ShieldState{
 public class NewPlayerMovement : MonoBehaviour {
     private int currWaypointIndex = 1;
     public int CurrWaypointIndex { get { return currWaypointIndex; } }
-    [SerializeField][Range(0,0.9f)]
-    private float maxSpeed = 0.8f;
+    [SerializeField][Range(0,50f)]
+    private float maxSpeed = 25f;
     [SerializeField]
     private float speedMultiplier = 100f;
     [SerializeField]
@@ -28,10 +28,10 @@ public class NewPlayerMovement : MonoBehaviour {
     private Rigidbody rb;
     private PlayerInput pInput;
     private float tapFrames = 1f;
+    [HideInInspector]
     public bool tappedShield = false;
     public ShieldState currShieldState;
     public GameObject[] waypoints;
-    //private ShieldState prevShieldState;
 
     private void Awake(){
         pInput = GetComponent<PlayerInput>();
@@ -74,7 +74,8 @@ public class NewPlayerMovement : MonoBehaviour {
 
         //if there are no waypoints left in the list stop all movement
         if((currWaypointIndex -1) == waypoints.Length || currWaypointIndex >= waypoints.Length) {
-            rb.velocity = Vector3.zero;
+            //rb.velocity = Vector3.zero;
+            Reset();
             return;
         }
         
@@ -116,5 +117,6 @@ public class NewPlayerMovement : MonoBehaviour {
     public void Reset(){
         transform.position = startingPos;
         rb.velocity = Vector3.zero;
+        currWaypointIndex = 1;
     }
 }
