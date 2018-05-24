@@ -320,22 +320,6 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 400006, guid: 8d9fdeb894ef1384dbb86a4f2bb70028, type: 3}
   m_PrefabInternal: {fileID: 98745751}
---- !u!1 &170041657 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1932798318170454, guid: 6ae65217f54e47241b8d435372b44c07,
-    type: 2}
-  m_PrefabInternal: {fileID: 1764835341}
---- !u!114 &170041658
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 170041657}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e3ae1aa4442e4245bd248a5ea7daf35, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &246978434
 GameObject:
   m_ObjectHideFlags: 0
@@ -4095,24 +4079,6 @@ Prefab:
       propertyPath: _startButton
       value: 
       objectReference: {fileID: 626325945}
-    - target: {fileID: 4522596014285644, guid: 6ae65217f54e47241b8d435372b44c07, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0.107
-      objectReference: {fileID: 0}
-    - target: {fileID: 4522596014285644, guid: 6ae65217f54e47241b8d435372b44c07, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: -1.023
-      objectReference: {fileID: 0}
-    - target: {fileID: 114374366207848806, guid: 6ae65217f54e47241b8d435372b44c07,
-        type: 2}
-      propertyPath: speedMultiplier
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 114374366207848806, guid: 6ae65217f54e47241b8d435372b44c07,
-        type: 2}
-      propertyPath: maxSpeed
-      value: 25
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6ae65217f54e47241b8d435372b44c07, type: 2}
   m_IsPrefabParent: 0
