@@ -5,6 +5,10 @@ using UnityEngine;
 public class StartButton : MonoBehaviour
 {
 
+    [SerializeField] private GameObject _menuUI;
+    [SerializeField] private AudioSource _audioSource;
+    [SerializeField] private NewPlayerMovement _playermovement;
+
     private int _level;
 
     private SpriteRenderer _spriteRenderer;
@@ -20,6 +24,9 @@ public class StartButton : MonoBehaviour
     void OnMouseDown()
     {
         Debug.Log(_level);
+        _audioSource.Play();
+        _playermovement.enabled = true;
+        _menuUI.SetActive(false);
     }
 
     public void LevelNumber(int levelNumber)
