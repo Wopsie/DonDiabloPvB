@@ -22,7 +22,7 @@ public class SelectButton : MonoBehaviour
         //Changes the music that you hear in the menu.
         _audioSource.Stop();
         _audioSource.clip = _audioClip;
-        _audioSource.Play();
+        //_audioSource.Play();
         _shaderController.TriggerEffect();
 
         _startButton.LevelNumber(_levelNumber);
