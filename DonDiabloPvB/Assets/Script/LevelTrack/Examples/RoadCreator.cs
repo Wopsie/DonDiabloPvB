@@ -5,7 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(PathPlacer))]
 public class RoadCreator : MonoBehaviour {
 
-    [Range(0.05f, 1.5f)]
+    [Range(0.5f, 2.5f)]
     public float spacing = 1;
     public float roadWidth = 1;
     public bool autoUpdate;

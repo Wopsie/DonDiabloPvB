@@ -28,6 +28,8 @@ public class NewPlayerMovement : MonoBehaviour {
     private Rigidbody rb;
     private PlayerInput pInput;
     private float tapFrames = 1f;
+    [SerializeField]
+    private float tapCountdownPerFrame = 1;
     [HideInInspector]
     public bool tappedShield = false;
     public ShieldState currShieldState;
@@ -56,8 +58,7 @@ public class NewPlayerMovement : MonoBehaviour {
         rb.AddForce(transform.forward * (speedMultiplier * Time.deltaTime));
         float lateralSpeed = new Vector2(rb.velocity.x, rb.velocity.z).magnitude;
         rb.velocity = new Vector3(transform.forward.x * lateralSpeed, 0, transform.forward.z * lateralSpeed);
-        if(rb.velocity.magnitude >= 50){
-            //rb.velocity = rb.velocity * maxSpeed;
+        if(rb.velocity.magnitude >= maxSpeed){
             rb.velocity *= 0.99f;
             Debug.Log("Limiting speed");
         }
@@ -105,7 +106,7 @@ public class NewPlayerMovement : MonoBehaviour {
         if(tapFrames >= 0 && tappedShield){
             //tapshield is still active
             Debug.Log("TapShield state LINGERING");
-            tapFrames -= (1 * Time.deltaTime);
+            tapFrames -= (tapCountdownPerFrame * Time.deltaTime);
         }else{
             //when this is reached it means the timer at which the TapShield state should be active has run out
             tappedShield = false;
