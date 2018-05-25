@@ -33,22 +33,22 @@ public class PathPlacer : MonoBehaviour {
             trackedObjs[i].transform.position = new Vector3(points[i].x, 0, points[i].y);
             trackedObjs[i].transform.localScale = Vector3.one * spacing * 0.5f;
             trackedObjs[i].GetComponent<PlayerTrackingPoint>().PointIndex = i;
-            /*
+            
             //rotate the prop objects to their center point
             //REBUILD WITH EXCLUSIVELY QUATERNIONS
-            GameObject g = Instantiate(trackProp1, trackedObjs[i].transform.position + dstToMeshEdgePerPoint[i] * meshWidth * 0.5f, Quaternion.identity, trackedObjs[i].transform);
+            GameObject g = Instantiate(trackProp1, trackedObjs[i].transform.position + new Vector3(dstToMeshEdgePerPoint[i].x,0,dstToMeshEdgePerPoint[i].y) /*dstToMeshEdgePerPoint[i]*/ * meshWidth * 0.5f, Quaternion.identity, trackedObjs[i].transform);
             Vector3 v = trackedObjs[i].transform.position - g.transform.position;
             //Debug.DrawRay(g.transform.position, v, Color.red);
             g.transform.localRotation = Quaternion.LookRotation(v);
-            g.transform.rotation *= Quaternion.Euler(90, 0, 90);
+            g.transform.rotation *= Quaternion.Euler(0, -90, 0);
 
-            g = Instantiate(trackProp1, trackedObjs[i].transform.position - dstToMeshEdgePerPoint[i] * meshWidth * 0.5f, Quaternion.identity, trackedObjs[i].transform);
+            g = Instantiate(trackProp1, trackedObjs[i].transform.position - new Vector3(dstToMeshEdgePerPoint[i].x, 0, dstToMeshEdgePerPoint[i].y) /*dstToMeshEdgePerPoint[i]*/ * meshWidth * 0.5f, Quaternion.identity, trackedObjs[i].transform);
             //REBUILD WITH EXCLUSIVELY QUATERNIONS
             v = trackedObjs[i].transform.position - g.transform.position;
             //Debug.DrawRay(g.transform.position, v, Color.red);
-            g.transform.localRotation= Quaternion.LookRotation(v);
-            g.transform.localRotation *= Quaternion.Euler(90, 0, 90);
-            */
+            g.transform.localRotation = Quaternion.LookRotation(v);
+            g.transform.localRotation *= Quaternion.Euler(0, -90, 0);
+            
         }
     }
 
