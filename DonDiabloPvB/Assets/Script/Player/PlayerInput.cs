@@ -6,7 +6,7 @@ using UnityEngine;
 public class PlayerInput : MonoBehaviour {
 
     private bool buttonPressed;
-    private int heldFrameCounter;
+    //private int heldFrameCounter;
 
     public delegate void PressButton(ShieldState state);
     public PressButton OnPressButton;
@@ -23,7 +23,7 @@ public class PlayerInput : MonoBehaviour {
                 OnPressButton(ShieldState.TapShield);
             }
             //pressed key
-            heldFrameCounter = 1;
+            //heldFrameCounter = 1;
             buttonPressed = true;
         }
 
@@ -35,7 +35,7 @@ public class PlayerInput : MonoBehaviour {
 
             buttonPressed = false;
             //released key
-            Debug.Log(heldFrameCounter);
+            //Debug.Log(heldFrameCounter);
         }
 
         if (Input.GetMouseButton(0)){
@@ -45,7 +45,7 @@ public class PlayerInput : MonoBehaviour {
                     OnHoldButton(ShieldState.HoldShield);
                 }
 
-                heldFrameCounter++;
+                //heldFrameCounter++;
             }
         }
     }

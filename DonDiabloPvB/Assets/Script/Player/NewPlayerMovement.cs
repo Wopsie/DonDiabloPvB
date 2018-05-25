@@ -28,7 +28,7 @@ public class NewPlayerMovement : MonoBehaviour {
     private Rigidbody rb;
     private PlayerInput pInput;
     private float tapFrames = 1f;
-    [SerializeField]
+    [SerializeField][Tooltip("The amount of time each frame that is taken from the remaining frames. Higher number means shorter tap window")]
     private float tapCountdownPerFrame = 1;
     [HideInInspector]
     public bool tappedShield = false;
