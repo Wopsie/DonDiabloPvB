@@ -26,7 +26,7 @@ public class ObstacleHelper : MonoBehaviour {
             maxScore += obstacleColl[i].scoreToAward;
         }
         player = FindObjectOfType<NewPlayerMovement>();
-        scoreText = GameObject.FindGameObjectWithTag("ScoreText").GetComponent<Text>();
+        scoreText = GameObject.FindGameObjectWithTag(Tags.ScoreTextTag).GetComponent<Text>();
     }
 
     private void Update(){
