@@ -7,6 +7,7 @@ TagManager:
   - TrackSpawner
   - WayPoint
   - TrackParent
+  - ScoreText
   layers:
   - Default
   - TransparentFX
