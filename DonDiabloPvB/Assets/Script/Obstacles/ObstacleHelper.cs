@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 /// <summary>
 /// ensures that the obstacles are placed on the track properly & ensures the right obstacles are enabled in the right order
@@ -16,6 +17,7 @@ public class ObstacleHelper : MonoBehaviour {
     public float MaxScore { get { return maxScore; } }
     private float currentScore;
     public float CurrentScore { get { return currentScore; } }
+    private Text scoreText;
 
     private void Awake(){
         obstacleColl = FindObjectsOfType<Obstacle>();
@@ -24,6 +26,7 @@ public class ObstacleHelper : MonoBehaviour {
             maxScore += obstacleColl[i].scoreToAward;
         }
         player = FindObjectOfType<NewPlayerMovement>();
+        scoreText = GameObject.FindGameObjectWithTag("ScoreText").GetComponent<Text>();
     }
 
     private void Update(){
@@ -33,6 +36,7 @@ public class ObstacleHelper : MonoBehaviour {
 
     public void AddScore(float score){
         currentScore += score;
+        scoreText.text = currentScore.ToString();
     }
 
     //when placing obstacles in scene, check what trackpoint is closest & snap obstacles position to that point
