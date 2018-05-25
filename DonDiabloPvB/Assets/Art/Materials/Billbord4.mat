@@ -6,8 +6,8 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: New Material
-  m_Shader: {fileID: 4800000, guid: 23886bfd103115c46a9a29f0af6ea90a, type: 3}
+  m_Name: Billbord4
+  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -34,24 +34,12 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _DisolveTex:
-        m_Texture: {fileID: 2800000, guid: 67409cec3265eca4886404c3e397e185, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _DissolveTex:
-        m_Texture: {fileID: 2800000, guid: 67409cec3265eca4886404c3e397e185, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: -0.61240196, y: 0.25345203}
     - _EmissionMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _GradientTex:
-        m_Texture: {fileID: 2800000, guid: 67409cec3265eca4886404c3e397e185, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 40810c7815298e944bc0e81a2a1932f6, type: 3}
+        m_Texture: {fileID: 2800000, guid: 9328f0d82688fbd498afdff2205e8b34, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -66,52 +54,23 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _SecondTex:
-        m_Texture: {fileID: 2800000, guid: 24063d1465c90224e9736f631b6c8eda, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     m_Floats:
-    - _Amount: 1
-    - _Amplitude: 1
-    - _BumpPower: 1
     - _BumpScale: 1
-    - _ColorMap: -0.79
     - _Cutoff: 0.5
-    - _CutoutThresh: 1
     - _DetailNormalMapScale: 1
-    - _DisolveCount: -0.39862135
-    - _DisolveTime: 2
-    - _DisolveY: 0
-    - _DissolveEdgeMultiplier: 1
-    - _DissolveEdgeRange: 0.01
-    - _DissolveIntensity: 0
-    - _Distance: 1
     - _DstBlend: 0
     - _GlossMapScale: 1
-    - _Glossiness: 0
+    - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _LerpValue: 1
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
-    - _RimPower: 1
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
-    - _Speed: 1
     - _SrcBlend: 1
-    - _StartingY: 0
-    - _Transparency: 1
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _ColorChange: {r: 0, g: 0.8103528, b: 0.984, a: 1}
-    - _ColorMap: {r: 0, g: 0, b: 0, a: 1}
-    - _ColorNormal: {r: 1, g: 1, b: 1, a: 1}
-    - _ColorTint: {r: 0.09338232, g: 0.8967452, b: 0.9338235, a: 1}
-    - _DissolveEdgeColor: {r: 0, g: 0, b: 0, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _GradientColor: {r: 0.14205316, g: 0.00443713, b: 0.25735295, a: 0.941}
-    - _RimColor: {r: 0.16349481, g: 0.4688462, b: 0.5294118, a: 0}
-    - _TintColor: {r: 1, g: 0, b: 0, a: 1}
