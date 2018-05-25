@@ -13,6 +13,6 @@ public class LightOnAudio : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        _light.intensity = Mathf.Round((AudioPeer._audioBandBuffer[_band] * (_maxIntensity - _minIntensity)) + _minIntensity);
+        _light.intensity = AudioPeer._audioBandBuffer[_band] * (_maxIntensity - _minIntensity) + _minIntensity;
 	}
 }

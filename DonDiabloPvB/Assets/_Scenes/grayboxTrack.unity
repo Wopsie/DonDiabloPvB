@@ -2222,6 +2222,41 @@ Prefab:
       propertyPath: movementBias
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 33036688148092826, guid: 76e5f1dbc4389884fbff9894d2dc1613,
+        type: 2}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 82120472490047702, guid: 76e5f1dbc4389884fbff9894d2dc1613,
+        type: 2}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 5d593a0c0e0e1624d9e7feb9e2a2cb53, type: 3}
+    - target: {fileID: 114220588252919106, guid: 76e5f1dbc4389884fbff9894d2dc1613,
+        type: 2}
+      propertyPath: _band
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114220588252919106, guid: 76e5f1dbc4389884fbff9894d2dc1613,
+        type: 2}
+      propertyPath: _maxIntensity
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 114220588252919106, guid: 76e5f1dbc4389884fbff9894d2dc1613,
+        type: 2}
+      propertyPath: _minIntensity
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114230005115485016, guid: 76e5f1dbc4389884fbff9894d2dc1613,
+        type: 2}
+      propertyPath: _minIntensity
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 114230005115485016, guid: 76e5f1dbc4389884fbff9894d2dc1613,
+        type: 2}
+      propertyPath: _maxIntensity
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 76e5f1dbc4389884fbff9894d2dc1613, type: 2}
   m_IsPrefabParent: 0
