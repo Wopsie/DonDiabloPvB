@@ -79,7 +79,11 @@ Material:
     - _Cutoff: 0.5
     - _CutoutThresh: 1
     - _DetailNormalMapScale: 1
+<<<<<<< HEAD
     - _DisolveCount: -0.39862135
+=======
+    - _DisolveCount: -0.39796606
+>>>>>>> fa09668abc8853a5fcafbaa75d155769b8e88af8
     - _DisolveTime: 2
     - _DisolveY: 0
     - _DissolveEdgeMultiplier: 1

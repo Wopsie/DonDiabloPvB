@@ -28,6 +28,7 @@ public class Obstacle : MonoBehaviour {
     protected int obstacleDrawDistance = 30;
     protected int obstacleAnimationTriggerDist = 20;
     protected Animator anim;
+    [SerializeField]
     protected ShieldState reqShieldState = ShieldState.NoShield;
 
     private void Awake(){
@@ -69,13 +70,17 @@ public class Obstacle : MonoBehaviour {
 
     protected void SnapToClosestTrackPoint(Collider coll){
         if (coll.gameObject.tag == Tags.WaypointTag && waypointPositionIndex == 0){
+            //Snap position
             transform.position = new Vector3(coll.gameObject.transform.position.x, transform.position.y, coll.gameObject.transform.position.z);
             waypointPositionIndex = coll.gameObject.GetComponent<PlayerTrackingPoint>().PointIndex;
+            //rotate
+            transform.LookAt(helper.player.waypoints[waypointPositionIndex + 1].transform.position);
         }
     }
 
     protected void CheckPlayerDistances(){
-        if ((waypointPositionIndex - obstacleDrawDistance) == helper.playerPassIndex){
+        Debug.Log(waypointPositionIndex + " " + obstacleDrawDistance);
+        if ((waypointPositionIndex - obstacleDrawDistance) <= helper.playerPassIndex){
             obstacleModel.SetActive(true);
         }else if ((waypointPositionIndex - obstacleAnimationTriggerDist) == helper.playerPassIndex){
             anim.SetBool("PlayerInRange", true);

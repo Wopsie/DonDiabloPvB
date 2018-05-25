@@ -5,4 +5,5 @@ public class Tags{
     public static string WaypointTag = "WayPoint";
     public static string TrackParentTag = "TrackParent";
     public static string PlayerTag = "Player";
+    public static string ScoreTextTag = "ScoreText";
 }

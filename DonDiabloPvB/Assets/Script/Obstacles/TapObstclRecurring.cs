@@ -6,9 +6,7 @@ public class TapObstclRecurring : Obstacle {
 
     [SerializeField][Tooltip("The type of obstacle, this determines the state the player must be in to successfully pass")]
     private ObstacleType type;
-    //private ObstacleHelper helper;
-    [SerializeField]
-    private new ShieldState reqShieldState = ShieldState.TapShield;
+    private ShieldState reqShieldState = ShieldState.TapShield;
 
     private void Awake(){
         SetInduvidualData();
