@@ -64,8 +64,6 @@ public class NewPlayerMovement : MonoBehaviour {
         }
         //Debug.Log(lateralSpeed);
 
-        //add velocity to the rigidbody
-
         //point the current velocity in the direction of the next waypoint
     }
 
