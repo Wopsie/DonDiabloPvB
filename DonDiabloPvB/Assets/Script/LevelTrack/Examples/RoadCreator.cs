@@ -8,9 +8,13 @@ public class RoadCreator : MonoBehaviour {
     [Range(0.5f, 2.5f)]
     public float spacing = 1;
     public float roadWidth = 1;
+    [Tooltip("Live road creation updates")]
     public bool autoUpdate;
+    [Tooltip("Live waypoint placing updates")]
     public bool placePoints;
+    [Tooltip("Live prop placing updates directly adjacent to road edge")]
     public bool placeProps;
+    [Tooltip("Live building placing updates around track")]
     public bool placeBuildings;
     public float tiling = 1;
 
@@ -33,7 +37,7 @@ public class RoadCreator : MonoBehaviour {
         int textureRepeat = Mathf.RoundToInt(tiling * points.Length * spacing * 0.05f);
         renderer.sharedMaterial.mainTextureScale = new Vector2(1, textureRepeat);
         //method to place waypoints & props along track
-        GetComponent<PathPlacer>().PlacePath(points, vertexOffsetVectors, roadWidth, placeProps, false, placePoints);
+        GetComponent<PathPlacer>().GenerateRoadProperties(points, vertexOffsetVectors, roadWidth, placeProps, false, placePoints);
     }
 
     public void FinalizePath(){
@@ -41,7 +45,6 @@ public class RoadCreator : MonoBehaviour {
             Debug.LogError("No target mesh components selected; Automatic detection");
             renderer = GameObject.FindWithTag(Tags.targetRoadMeshTag).GetComponent<MeshRenderer>();
             filter = GameObject.FindWithTag(Tags.targetRoadMeshTag).GetComponent<MeshFilter>();
-            //return;
         }
 
         Path path = GetComponent<PathCreator>().path;
@@ -49,8 +52,7 @@ public class RoadCreator : MonoBehaviour {
         filter.mesh = CreateRoadMesh(points, path.IsClosed);
         int textureRepeat = Mathf.RoundToInt(tiling * points.Length * spacing * 0.05f);
         renderer.sharedMaterial.mainTextureScale = new Vector2(1, textureRepeat);
-        //method to place waypoints & props along track
-        GetComponent<PathPlacer>().PlacePath(points, vertexOffsetVectors, roadWidth, true, true, true);
+        GetComponent<PathPlacer>().GenerateRoadProperties(points, vertexOffsetVectors, roadWidth, true, true, true);
     }
 
 	Mesh CreateRoadMesh(Vector2[] points, bool isClosed){

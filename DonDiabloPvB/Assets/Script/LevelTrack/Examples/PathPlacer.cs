@@ -7,14 +7,12 @@ using UnityEditor;
 public class PathPlacer : MonoBehaviour {
 
     public float spacing = 1f;
-    public float resolution = 1;
     public GameObject trackProp1;
     [Tooltip("The object that the player will use to navigate the track")]
     public GameObject playerTrackPoint;
     private GameObject[] trackedObjs;
-    private Vector3 gScaleFix = new Vector3(1, -1, 1);
 
-    public void PlacePath(Vector2[] points, Vector3[] dstToMeshEdgePerPoint, float meshWidth, bool placeProps, bool makeStatic, bool placePoints){
+    public void GenerateRoadProperties(Vector2[] points, Vector3[] dstToMeshEdgePerPoint, float meshWidth, bool placeProps, bool makeStatic, bool placePoints){
 
         DestroyTrackedObjects();
 
@@ -41,8 +39,8 @@ public class PathPlacer : MonoBehaviour {
                 GameObjectUtility.SetStaticEditorFlags(trackedObjs[i], StaticEditorFlags.BatchingStatic);
 
             if (placeProps){
-                PlaceProp(true, trackedObjs, dstToMeshEdgePerPoint, meshWidth, makeStatic, i);
-                PlaceProp(false, trackedObjs, dstToMeshEdgePerPoint, meshWidth, makeStatic, i);
+                PlaceRoadProps(true, trackedObjs, dstToMeshEdgePerPoint, meshWidth, makeStatic, i);
+                PlaceRoadProps(false, trackedObjs, dstToMeshEdgePerPoint, meshWidth, makeStatic, i);
             }
         }
     }
@@ -56,7 +54,7 @@ public class PathPlacer : MonoBehaviour {
     /// <param name="meshWidth"></param>
     /// <param name="makeStatic"></param>
     /// <param name="i"></param>
-    void PlaceProp(bool left, GameObject[] trackedObjs, Vector3[] dstToMeshEdgePerPoint, float meshWidth, bool makeStatic, int i){
+    void PlaceRoadProps(bool left, GameObject[] trackedObjs, Vector3[] dstToMeshEdgePerPoint, float meshWidth, bool makeStatic, int i){
         //place object at position depending on position of the trackedObj center point in the mesh
         GameObject g;
         if (left){
