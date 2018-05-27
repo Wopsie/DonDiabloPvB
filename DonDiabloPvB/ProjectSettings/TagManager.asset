@@ -8,6 +8,7 @@ TagManager:
   - WayPoint
   - TrackParent
   - ScoreText
+  - TargetRoadMesh
   layers:
   - Default
   - TransparentFX

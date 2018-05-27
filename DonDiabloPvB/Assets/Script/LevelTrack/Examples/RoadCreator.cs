@@ -9,6 +9,9 @@ public class RoadCreator : MonoBehaviour {
     public float spacing = 1;
     public float roadWidth = 1;
     public bool autoUpdate;
+    public bool placePoints;
+    public bool placeProps;
+    public bool placeBuildings;
     public float tiling = 1;
 
     public MeshFilter filter;
@@ -18,7 +21,9 @@ public class RoadCreator : MonoBehaviour {
 
     public void UpdateRoad(){
         if(!renderer || !filter){
-            Debug.LogError("Please select a mesh filter and rederer in the RoadCreator editor");
+            Debug.LogError("No target mesh components selected; Automatic detection");
+            renderer = GameObject.FindWithTag(Tags.targetRoadMeshTag).GetComponent<MeshRenderer>();
+            filter = GameObject.FindWithTag(Tags.targetRoadMeshTag).GetComponent<MeshFilter>();
             return;
         }
 
@@ -27,7 +32,25 @@ public class RoadCreator : MonoBehaviour {
         filter.mesh = CreateRoadMesh(points, path.IsClosed);
         int textureRepeat = Mathf.RoundToInt(tiling * points.Length * spacing * 0.05f);
         renderer.sharedMaterial.mainTextureScale = new Vector2(1, textureRepeat);
-        GetComponent<PathPlacer>().PlacePath(points, vertexOffsetVectors, roadWidth);
+        //method to place waypoints & props along track
+        GetComponent<PathPlacer>().PlacePath(points, vertexOffsetVectors, roadWidth, placeProps, false, placePoints);
+    }
+
+    public void FinalizePath(){
+        if (!renderer || !filter){
+            Debug.LogError("No target mesh components selected; Automatic detection");
+            renderer = GameObject.FindWithTag(Tags.targetRoadMeshTag).GetComponent<MeshRenderer>();
+            filter = GameObject.FindWithTag(Tags.targetRoadMeshTag).GetComponent<MeshFilter>();
+            //return;
+        }
+
+        Path path = GetComponent<PathCreator>().path;
+        Vector2[] points = path.CalculateEvenSpacePoints(spacing);
+        filter.mesh = CreateRoadMesh(points, path.IsClosed);
+        int textureRepeat = Mathf.RoundToInt(tiling * points.Length * spacing * 0.05f);
+        renderer.sharedMaterial.mainTextureScale = new Vector2(1, textureRepeat);
+        //method to place waypoints & props along track
+        GetComponent<PathPlacer>().PlacePath(points, vertexOffsetVectors, roadWidth, true, true, true);
     }
 
 	Mesh CreateRoadMesh(Vector2[] points, bool isClosed){

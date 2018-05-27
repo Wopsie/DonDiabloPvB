@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+using SplineEditor;
 
 [CustomEditor(typeof(RoadCreator))]
 public class RoadEditor : Editor{
@@ -10,6 +11,26 @@ public class RoadEditor : Editor{
     private void OnSceneGUI(){
         if (creator.autoUpdate && Event.current.type == EventType.Repaint){
             creator.UpdateRoad();
+        }
+    }
+
+    public override void OnInspectorGUI()
+    {
+        base.OnInspectorGUI();
+        if (GUILayout.Button("Finalize")){
+            Undo.RecordObject(creator, "Finalize track");
+            creator.FinalizePath();
+            //set objects static for static batching. rendering optimization technique
+            GameObjectUtility.SetStaticEditorFlags(creator.filter.gameObject, StaticEditorFlags.BatchingStatic);
+            GameObjectUtility.SetStaticEditorFlags(creator.gameObject, StaticEditorFlags.BatchingStatic);
+
+            GameObject g = creator.gameObject;
+
+            DestroyImmediate(g.GetComponent<RoadCreator>());
+            DestroyImmediate(g.GetComponent<PathCreator>());
+            DestroyImmediate(g.GetComponent<PathPlacer>());
+
+            //save track with mesh to to scriptable object
         }
     }
 
