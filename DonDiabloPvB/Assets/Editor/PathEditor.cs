@@ -29,8 +29,8 @@ namespace SplineEditor
                 StartUpWindow.CreateFileEvent.AddListener(SetObjectName);
             }
 
-            bool isClosed = GUILayout.Toggle(Path.IsClosed, "Closed");
-
+            //bool isClosed = GUILayout.Toggle(Path.IsClosed, "Closed");
+            bool isClosed = false;
             if (isClosed != Path.IsClosed){
                 Undo.RecordObject(creator, "Toggle closed");
                 Path.IsClosed = isClosed;
@@ -61,8 +61,6 @@ namespace SplineEditor
         {
             Event guiEvent = Event.current;
             Vector2 mousePos = HandleUtility.GUIPointToWorldRay(guiEvent.mousePosition).origin;
-            //Vector3 mouseDir = HandleUtility.GUIPointToWorldRay(guiEvent.mousePosition).direction;
-            //Vector3 mousePos = Input.mousePosition;
 
             if (guiEvent.type == EventType.MouseDown && guiEvent.button == 0 && guiEvent.shift){
                 if(selectedSegmentIndex != -1){

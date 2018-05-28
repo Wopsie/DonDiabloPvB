@@ -64,10 +64,7 @@ public class PathPlacer : MonoBehaviour {
                 if (i % (buildingClusters.Length * buildingFrequency) == 0){
                     PlaceBuildings(true, 1, trackedObjs, dstToMeshEdgePerPoint, makeStatic, i);
                     PlaceBuildings(false, 1, trackedObjs, dstToMeshEdgePerPoint, makeStatic, i);
-                }//else if(i % (buildingClusters.Length * buildingFrequency) * 0.5f == 0.5f){
-                   // PlaceBuildings(true, 2, trackedObjs, dstToMeshEdgePerPoint, makeStatic, i);
-                   // PlaceBuildings(false, 2, trackedObjs, dstToMeshEdgePerPoint, makeStatic, i);
-                //}
+                }
             }
         }
     }

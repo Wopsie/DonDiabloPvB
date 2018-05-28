@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4089808699436600}
   - component: {fileID: 33958120239814114}
   - component: {fileID: 23990818746931824}
+  - component: {fileID: 114873302475500900}
   m_Layer: 0
   m_Name: Mesh
   m_TagString: TargetRoadMesh
@@ -128,17 +129,17 @@ MonoBehaviour:
   path:
     points:
     - {x: -1, y: 0}
-    - {x: -0.5, y: 0.5}
-    - {x: 0.5, y: -0.5}
-    - {x: 1, y: 0}
+    - {x: -10, y: 10}
+    - {x: -30, y: 30}
+    - {x: -50, y: 50}
     isClosed: 0
     autoSetControlPoints: 0
   anchorCol: {r: 1, g: 0, b: 0, a: 1}
   controlColor: {r: 1, g: 1, b: 1, a: 1}
   segmentCol: {r: 0, g: 1, b: 0, a: 1}
   selectSegCol: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
-  anchorDia: 0.1
-  controlDia: 0.075
+  anchorDia: 2
+  controlDia: 1.5
   displayCntrlPoints: 1
   displayPoints: 1
 --- !u!114 &114636315150631098
@@ -152,14 +153,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9e7e866d8a21b044b0a507882cbfd96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spacing: 1
-  roadWidth: 1
+  spacing: 2
+  roadWidth: 2
   autoUpdate: 0
   placePoints: 0
   placeProps: 0
   tiling: 1
+  points: []
   filter: {fileID: 0}
   renderer: {fileID: 0}
+--- !u!114 &114873302475500900
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1370975602237424}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a11d46bebd446764a8f66ccf4d43ed65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vertexOffsetVectors: []
+  meshPoints: []
+  meshWidth: 0
+  texTiling: 0
+  pointsSpacing: 0
 --- !u!114 &114953692482473200
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -175,6 +193,10 @@ MonoBehaviour:
   propSpacing: 1
   buildingFrequency: 5
   buildingDistance: 50
-  trackProp1: {fileID: 0}
-  playerTrackPoint: {fileID: 0}
-  buildingClusters: []
+  trackProp1: {fileID: 1055669284977536, guid: 26664baae8aed9540b0e1b38ce0ebd85, type: 2}
+  playerTrackPoint: {fileID: 1171681852992168, guid: dfe63bb262c8bae4baabd300bde42666,
+    type: 2}
+  buildingClusters:
+  - {fileID: 1793857825868620, guid: 2b21cb217ec533b40bc9b1bed64b408d, type: 2}
+  - {fileID: 1430864437112848, guid: f97a9c7cc7903e544a9019ecd4cbf283, type: 2}
+  - {fileID: 1765967508736088, guid: eac190f0484e88748b046f10ddfde5fd, type: 2}

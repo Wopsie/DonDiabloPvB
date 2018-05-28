@@ -12,3 +12,7 @@ MonoBehaviour:
   m_Name: LevelOne
   m_EditorClassIdentifier: 
   levelObject: {fileID: 0}
+  roadWidth: 0
+  points: []
+  pointSpacing: 0
+  textureTiling: 0

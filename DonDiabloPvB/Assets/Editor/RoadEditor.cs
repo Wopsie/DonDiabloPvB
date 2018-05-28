@@ -27,21 +27,32 @@ public class RoadEditor : Editor{
         if (GUILayout.Button("Finalize")){
             Undo.RecordObject(creator, "Finalize track");
             creator.FinalizePath();
+
             //set objects static for static batching. rendering optimization technique
             GameObjectUtility.SetStaticEditorFlags(creator.filter.gameObject, StaticEditorFlags.BatchingStatic);
             GameObjectUtility.SetStaticEditorFlags(creator.gameObject, StaticEditorFlags.BatchingStatic);
 
             GameObject g = creator.gameObject;
 
+            //save track with mesh to to scriptable object
+            ScriptableObjectsUtility.CreateAsset<LevelData>(g.name);
+            LevelData level = Resources.Load<LevelData>(g.name);
+
+            //set leveldata variables
+            level.points = creator.points;
+            level.roadWidth = creator.roadWidth;
+            level.textureTiling = creator.tiling;
+            level.pointSpacing = creator.spacing;
+
+            //remove unnecessary components in preperation of prefab creation
             DestroyImmediate(g.GetComponent<RoadCreator>());
             DestroyImmediate(g.GetComponent<PathCreator>());
             DestroyImmediate(g.GetComponent<PathPlacer>());
 
-            //save track with mesh to to scriptable object
-            ScriptableObjectsUtility.CreateAsset<LevelData>(g.name);
-            LevelData level = Resources.Load<LevelData>(g.name);
+            //create prefab & set last leveldata property
             GameObject t = PrefabUtility.CreatePrefab("Assets/Resources/" + g.name + "Prefab.prefab", g);
             level.levelObject = t;
+            
             AssetDatabase.SaveAssets();
             AssetDatabase.Refresh();
         }
