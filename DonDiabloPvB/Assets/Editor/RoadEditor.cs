@@ -38,9 +38,9 @@ public class RoadEditor : Editor{
             DestroyImmediate(g.GetComponent<PathPlacer>());
 
             //save track with mesh to to scriptable object
-            ScriptableObjectsUtility.CreateAsset<LevelData>("TestLevel");
-            LevelData level = Resources.Load<LevelData>("TestLevel");
-            GameObject t = PrefabUtility.CreatePrefab("Assets/Resources/TestPrefab.prefab", g);
+            ScriptableObjectsUtility.CreateAsset<LevelData>(g.name);
+            LevelData level = Resources.Load<LevelData>(g.name);
+            GameObject t = PrefabUtility.CreatePrefab("Assets/Resources/" + g.name + "Prefab.prefab", g);
             level.levelObject = t;
             AssetDatabase.SaveAssets();
             AssetDatabase.Refresh();

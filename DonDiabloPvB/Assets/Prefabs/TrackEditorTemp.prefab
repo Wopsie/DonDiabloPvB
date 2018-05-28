@@ -36,9 +36,9 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4444749105178978}
-  - component: {fileID: 114371813543182472}
-  - component: {fileID: 114409954725708350}
-  - component: {fileID: 114779342796544952}
+  - component: {fileID: 114636315150631098}
+  - component: {fileID: 114323774225449938}
+  - component: {fileID: 114953692482473200}
   m_Layer: 0
   m_Name: TrackEditorTemp
   m_TagString: Untagged
@@ -82,7 +82,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
+  m_DynamicOccludee: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -114,7 +114,7 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1370975602237424}
   m_Mesh: {fileID: 0}
---- !u!114 &114371813543182472
+--- !u!114 &114323774225449938
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -127,46 +127,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   path:
     points:
-    - {x: -65.75203, y: 36.679634}
-    - {x: -61.809746, y: 25.124176}
-    - {x: -57.867466, y: 13.56872}
-    - {x: -39.056942, y: 4.091507}
-    - {x: -13.962788, y: -8.551556}
-    - {x: 1.5556822, y: -3.604323}
-    - {x: 17.074152, y: 1.3429098}
+    - {x: -1, y: 0}
+    - {x: -0.5, y: 0.5}
+    - {x: 0.5, y: -0.5}
+    - {x: 1, y: 0}
     isClosed: 0
-    autoSetControlPoints: 1
+    autoSetControlPoints: 0
   anchorCol: {r: 1, g: 0, b: 0, a: 1}
   controlColor: {r: 1, g: 1, b: 1, a: 1}
   segmentCol: {r: 0, g: 1, b: 0, a: 1}
   selectSegCol: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
-  anchorDia: 3.38
-  controlDia: 3.05
+  anchorDia: 0.1
+  controlDia: 0.075
   displayCntrlPoints: 1
   displayPoints: 1
---- !u!114 &114409954725708350
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1790116820867098}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 10f74553aecc3504c92eaf38eada8020, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spacing: 1
-  propSpacing: 1
-  buildingFrequency: 3
-  buildingDistance: 16
-  trackProp1: {fileID: 1055669284977536, guid: 26664baae8aed9540b0e1b38ce0ebd85, type: 2}
-  playerTrackPoint: {fileID: 1171681852992168, guid: dfe63bb262c8bae4baabd300bde42666,
-    type: 2}
-  buildingClusters:
-  - {fileID: 1793857825868620, guid: 2b21cb217ec533b40bc9b1bed64b408d, type: 2}
-  - {fileID: 1430864437112848, guid: f97a9c7cc7903e544a9019ecd4cbf283, type: 2}
-  - {fileID: 1765967508736088, guid: eac190f0484e88748b046f10ddfde5fd, type: 2}
---- !u!114 &114779342796544952
+--- !u!114 &114636315150631098
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -180,8 +155,26 @@ MonoBehaviour:
   spacing: 1
   roadWidth: 1
   autoUpdate: 0
-  placePoints: 1
+  placePoints: 0
   placeProps: 0
   tiling: 1
-  filter: {fileID: 33958120239814114}
-  renderer: {fileID: 23990818746931824}
+  filter: {fileID: 0}
+  renderer: {fileID: 0}
+--- !u!114 &114953692482473200
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1790116820867098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10f74553aecc3504c92eaf38eada8020, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spacing: 1
+  propSpacing: 1
+  buildingFrequency: 5
+  buildingDistance: 50
+  trackProp1: {fileID: 0}
+  playerTrackPoint: {fileID: 0}
+  buildingClusters: []

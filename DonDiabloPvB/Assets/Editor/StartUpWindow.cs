@@ -1,6 +1,12 @@
 ﻿using UnityEngine;
 using UnityEditor;
 using System.IO;
+using UnityEngine.Events;
+
+[System.Serializable]
+public class UnityStringEvent : UnityEvent<string>
+{
+}
 
 /// <summary>
 /// Gewoon een voorbeeld van een startup window speciaal voor jou omdat je zo cool bent
@@ -10,20 +16,20 @@ using System.IO;
 /// 
 /// btw.. let niet teveel op de code dit was ff snel gedaan
 /// </summary>
-public class StartUpWindow : EditorWindow 
+public class StartUpWindow : EditorWindow
 {
     private static StartUpWindow window;
 
-    private enum ScreenState 
-    { 
+    private enum ScreenState {
         Init,
         Input,
     };
 
     private ScreenState screenState;
     private string dataName;
+    public static UnityStringEvent CreateFileEvent;
 
-    [MenuItem("Tool/JochemsKekkeOpstartScherm")]
+    [MenuItem("Tool/LevelEditor")]
     public static void ShowWindow()
     {
         window = new StartUpWindow();
@@ -34,6 +40,10 @@ public class StartUpWindow : EditorWindow
 
     private void OnGUI()
     {
+        if(CreateFileEvent == null){
+            CreateFileEvent = new UnityStringEvent();
+        }
+
         switch (screenState)
         {
             case ScreenState.Init:
@@ -80,6 +90,7 @@ public class StartUpWindow : EditorWindow
                 ScriptableObjectsUtility.CreateAsset<LevelData>(dataName);
                 Debug.Log("Data created: " + dataName);
                 //send Unity event that sends out file name of level
+                CreateFileEvent.Invoke(dataName);
                 window.Close();
             }
             else

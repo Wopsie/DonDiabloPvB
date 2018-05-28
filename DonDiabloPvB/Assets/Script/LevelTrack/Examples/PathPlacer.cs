@@ -24,8 +24,6 @@ public class PathPlacer : MonoBehaviour {
         //behaviour for allowing points to be placed when other things are being placed that depend on them
         if (placeProps && !placePoints)
             Debug.LogWarning("Props cannot be placed if points are not placed");
-        //else if (placeBuildings && !placePoints)
-        //    Debug.LogWarning("Buidlings cannot be placed if points are not placed");
 
         if (!placePoints)
             return;

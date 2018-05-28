@@ -26,6 +26,7 @@ namespace SplineEditor
                 Undo.RecordObject(creator, "Create new");
                 creator.CreatePath();
                 StartUpWindow.ShowWindow();
+                StartUpWindow.CreateFileEvent.AddListener(SetObjectName);
             }
 
             bool isClosed = GUILayout.Toggle(Path.IsClosed, "Closed");
@@ -49,6 +50,11 @@ namespace SplineEditor
         private void OnSceneGUI(){
             Draw();
             PathInput();
+        }
+
+        void SetObjectName(string s){
+            Debug.Log("SET NAME OF OBJ TO " + s);
+            creator.gameObject.name = s;
         }
 
         void PathInput()

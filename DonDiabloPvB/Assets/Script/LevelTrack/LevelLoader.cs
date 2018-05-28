@@ -6,10 +6,10 @@ public class LevelLoader : MonoBehaviour {
 
     private LevelData level;
 
-    private void Start(){
+    private void Awake(){
 
-        LevelData level = Resources.Load<LevelData>("TestLevel");
-        Debug.Log(level);
+        LevelData level = Resources.Load<LevelData>("LevelOne");
+        //Debug.Log(level);
         Instantiate(level.levelObject);
     }
 }
