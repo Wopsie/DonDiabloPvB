@@ -17,6 +17,13 @@ public class RoadEditor : Editor{
     public override void OnInspectorGUI()
     {
         base.OnInspectorGUI();
+
+        if(GUILayout.Button("Place Buildings"))
+        {
+            Undo.RecordObject(creator, "Placed buildings");
+            creator.PlaceBuildings();
+        }
+
         if (GUILayout.Button("Finalize")){
             Undo.RecordObject(creator, "Finalize track");
             creator.FinalizePath();
@@ -31,6 +38,12 @@ public class RoadEditor : Editor{
             DestroyImmediate(g.GetComponent<PathPlacer>());
 
             //save track with mesh to to scriptable object
+            ScriptableObjectsUtility.CreateAsset<LevelData>("TestLevel");
+            LevelData level = Resources.Load<LevelData>("TestLevel");
+            GameObject t = PrefabUtility.CreatePrefab("Assets/Resources/TestPrefab.prefab", g);
+            level.levelObject = t;
+            AssetDatabase.SaveAssets();
+            AssetDatabase.Refresh();
         }
     }
 

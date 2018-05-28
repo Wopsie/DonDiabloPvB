@@ -1,4 +1,5 @@
-﻿using SplineEditor;
+﻿#if (UNITY_EDITOR) 
+using SplineEditor;
 using UnityEngine;
 
 [RequireComponent(typeof(PathCreator))]
@@ -14,8 +15,6 @@ public class RoadCreator : MonoBehaviour {
     public bool placePoints;
     [Tooltip("Live prop placing updates directly adjacent to road edge")]
     public bool placeProps;
-    [Tooltip("Live building placing updates around track")]
-    public bool placeBuildings;
     public float tiling = 1;
 
     public MeshFilter filter;
@@ -37,7 +36,19 @@ public class RoadCreator : MonoBehaviour {
         int textureRepeat = Mathf.RoundToInt(tiling * points.Length * spacing * 0.05f);
         renderer.sharedMaterial.mainTextureScale = new Vector2(1, textureRepeat);
         //method to place waypoints & props along track
-        GetComponent<PathPlacer>().GenerateRoadProperties(points, vertexOffsetVectors, roadWidth, placeProps, false, placePoints);
+        GetComponent<PathPlacer>().GenerateRoadProperties(points, vertexOffsetVectors, roadWidth, placeProps, placePoints, false, false);
+    }
+
+    public void PlaceBuildings(){
+        autoUpdate = false;
+
+        Path path = GetComponent<PathCreator>().path;
+        Vector2[] points = path.CalculateEvenSpacePoints(spacing);
+        //filter.mesh = CreateRoadMesh(points, path.IsClosed);
+        //int textureRepeat = Mathf.RoundToInt(tiling * points.Length * spacing * 0.05f);
+        //renderer.sharedMaterial.mainTextureScale = new Vector2(1, textureRepeat);
+        //method to place waypoints & props along track
+        GetComponent<PathPlacer>().GenerateRoadProperties(points, vertexOffsetVectors, roadWidth, placeProps, placePoints, true, false);
     }
 
     public void FinalizePath(){
@@ -52,7 +63,7 @@ public class RoadCreator : MonoBehaviour {
         filter.mesh = CreateRoadMesh(points, path.IsClosed);
         int textureRepeat = Mathf.RoundToInt(tiling * points.Length * spacing * 0.05f);
         renderer.sharedMaterial.mainTextureScale = new Vector2(1, textureRepeat);
-        GetComponent<PathPlacer>().GenerateRoadProperties(points, vertexOffsetVectors, roadWidth, true, true, true);
+        GetComponent<PathPlacer>().GenerateRoadProperties(points, vertexOffsetVectors, roadWidth, true, true, true, true);
     }
 
 	Mesh CreateRoadMesh(Vector2[] points, bool isClosed){
@@ -110,3 +121,4 @@ public class RoadCreator : MonoBehaviour {
         return mesh;
     }
 }
+#endif
