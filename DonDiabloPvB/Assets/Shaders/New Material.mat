@@ -62,7 +62,11 @@ Material:
     - _BumpScale: 1
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
+<<<<<<< HEAD
     - _DisolveCount: -0.39760295
+=======
+    - _DisolveCount: -0.39601293
+>>>>>>> 8d10fccdc9f2879d87148d932efa52293b85deaf
     - _DstBlend: 0
     - _GlossMapScale: 1
     - _Glossiness: 0.5

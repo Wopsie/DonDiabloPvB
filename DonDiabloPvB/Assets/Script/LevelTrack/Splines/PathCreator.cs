@@ -1,5 +1,4 @@
-﻿#if (UNITY_EDITOR) 
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -17,11 +16,9 @@ namespace SplineEditor {
         public float controlDia = 0.075f;
         public bool displayCntrlPoints = true;
         public bool displayPoints = true;
-        private string fileName;
 
         public void CreatePath(){
             path = new Path(transform.position);
         }
     }
 }
-#endif

@@ -20,9 +20,9 @@ namespace SplineEditor
         public Path(Vector2 centre) {
             points = new List<Vector2>{
                 centre+Vector2.left,
-                centre+(Vector2.left + Vector2.up)*10f,
-                centre+(Vector2.left + Vector2.up)* 30f,
-                centre+(Vector2.left + Vector2.up) * 50,
+                centre+(Vector2.left + Vector2.up)*.5f,
+                centre+(Vector2.right + Vector2.down)*.5f,
+                centre+Vector2.right,
             };
         }
 

@@ -1,5 +1,4 @@
-﻿#if (UNITY_EDITOR) 
-using SplineEditor;
+﻿using SplineEditor;
 using UnityEngine;
 
 [RequireComponent(typeof(PathCreator))]
@@ -15,15 +14,14 @@ public class RoadCreator : MonoBehaviour {
     public bool placePoints;
     [Tooltip("Live prop placing updates directly adjacent to road edge")]
     public bool placeProps;
+    [Tooltip("Live building placing updates around track")]
+    public bool placeBuildings;
     public float tiling = 1;
-    [HideInInspector]
-    public Vector2[] points;
 
     public MeshFilter filter;
     public new MeshRenderer renderer;
 
     private Vector3[] vertexOffsetVectors;
-    private MeshGenerator generator;
 
     public void UpdateRoad(){
         if(!renderer || !filter){
@@ -33,27 +31,13 @@ public class RoadCreator : MonoBehaviour {
             return;
         }
 
-        if (!generator){
-            generator = GameObject.FindObjectOfType<MeshGenerator>();
-        }
-
         Path path = GetComponent<PathCreator>().path;
-        points = path.CalculateEvenSpacePoints(spacing);
-        //filter.mesh = CreateRoadMesh(points, path.IsClosed);
-        filter.mesh = GetRoad();
-        vertexOffsetVectors = generator.vertexOffsetVectors;
+        Vector2[] points = path.CalculateEvenSpacePoints(spacing);
+        filter.mesh = CreateRoadMesh(points, path.IsClosed);
         int textureRepeat = Mathf.RoundToInt(tiling * points.Length * spacing * 0.05f);
         renderer.sharedMaterial.mainTextureScale = new Vector2(1, textureRepeat);
         //method to place waypoints & props along track
-        GetComponent<PathPlacer>().GenerateRoadProperties(points, vertexOffsetVectors, roadWidth, placeProps, placePoints, false, false);
-    }
-
-    public void PlaceBuildings(){
-        autoUpdate = false;
-        Path path = GetComponent<PathCreator>().path;
-        points = path.CalculateEvenSpacePoints(spacing);
-        vertexOffsetVectors = generator.vertexOffsetVectors;
-        GetComponent<PathPlacer>().GenerateRoadProperties(points, vertexOffsetVectors, roadWidth, placeProps, placePoints, true, false);
+        GetComponent<PathPlacer>().GenerateRoadProperties(points, vertexOffsetVectors, roadWidth, placeProps, false, placePoints);
     }
 
     public void FinalizePath(){
@@ -64,21 +48,13 @@ public class RoadCreator : MonoBehaviour {
         }
 
         Path path = GetComponent<PathCreator>().path;
-        points = path.CalculateEvenSpacePoints(spacing);
-        //filter.mesh = CreateRoadMesh(points, path.IsClosed);
-        filter.mesh = GetRoad();
-        vertexOffsetVectors = generator.vertexOffsetVectors;
+        Vector2[] points = path.CalculateEvenSpacePoints(spacing);
+        filter.mesh = CreateRoadMesh(points, path.IsClosed);
         int textureRepeat = Mathf.RoundToInt(tiling * points.Length * spacing * 0.05f);
         renderer.sharedMaterial.mainTextureScale = new Vector2(1, textureRepeat);
-        GetComponent<PathPlacer>().GenerateRoadProperties(points, vertexOffsetVectors, roadWidth, true, true, true, true);
+        GetComponent<PathPlacer>().GenerateRoadProperties(points, vertexOffsetVectors, roadWidth, true, true, true);
     }
 
-    Mesh GetRoad(){
-        Path path = GetComponent<PathCreator>().path;
-        points = path.CalculateEvenSpacePoints(spacing);
-        return generator.CreateRoadMesh(points, false, roadWidth);
-    }
-    /*
 	Mesh CreateRoadMesh(Vector2[] points, bool isClosed){
         Vector3[] verts = new Vector3[points.Length * 2];
         Vector2[] uvs = new Vector2[verts.Length];
@@ -133,6 +109,4 @@ public class RoadCreator : MonoBehaviour {
         mesh.uv = uvs;
         return mesh;
     }
-    */
 }
-#endif
