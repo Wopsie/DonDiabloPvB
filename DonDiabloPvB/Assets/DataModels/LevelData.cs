@@ -5,7 +5,9 @@ using System;
 [CreateAssetMenu]
 public class LevelData : ScriptableObject 
 {
-    public string LevelName;
-    public List<Vector2> Points = new List<Vector2>();
-    public AudioClip LevelMusic;
+    public GameObject levelObject;
+    public float roadWidth;
+    public Vector2[] points;
+    public float pointSpacing;
+    public float textureTiling;
 }

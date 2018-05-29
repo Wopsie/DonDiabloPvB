@@ -24,11 +24,13 @@ namespace SplineEditor
 
             if (GUILayout.Button("Create New")){
                 Undo.RecordObject(creator, "Create new");
+                StartUpWindow.ShowWindow();
+                StartUpWindow.CreateFileEvent.AddListener(SetObjectName);
                 creator.CreatePath();
             }
 
-            bool isClosed = GUILayout.Toggle(Path.IsClosed, "Closed");
-
+            //bool isClosed = GUILayout.Toggle(Path.IsClosed, "Closed");
+            bool isClosed = false;
             if (isClosed != Path.IsClosed){
                 Undo.RecordObject(creator, "Toggle closed");
                 Path.IsClosed = isClosed;
@@ -50,12 +52,15 @@ namespace SplineEditor
             PathInput();
         }
 
+        void SetObjectName(string s){
+            Debug.Log("SET NAME OF OBJ TO " + s);
+            creator.gameObject.name = s;
+        }
+
         void PathInput()
         {
             Event guiEvent = Event.current;
             Vector2 mousePos = HandleUtility.GUIPointToWorldRay(guiEvent.mousePosition).origin;
-            //Vector3 mouseDir = HandleUtility.GUIPointToWorldRay(guiEvent.mousePosition).direction;
-            //Vector3 mousePos = Input.mousePosition;
 
             if (guiEvent.type == EventType.MouseDown && guiEvent.button == 0 && guiEvent.shift){
                 if(selectedSegmentIndex != -1){
