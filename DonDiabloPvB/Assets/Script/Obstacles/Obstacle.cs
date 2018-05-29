@@ -15,7 +15,7 @@ public class Obstacle : MonoBehaviour {
     //every obstacle has particle/animation for "initiation"
     //every obstacle has colour shift as player get closer (?)
 
-    protected enum ObstacleType{
+    protected enum ObstacleType {
         Tap,
         Hold,
     };
@@ -25,17 +25,17 @@ public class Obstacle : MonoBehaviour {
     protected ObstacleHelper helper;
     protected new SphereCollider collider;
     protected GameObject obstacleModel;
-    protected int obstacleDrawDistance = 30;
-    protected int obstacleAnimationTriggerDist = 20;
+    protected int obstacleDrawDistance = 10;
+    protected int obstacleAnimationTriggerDist = 11;
     protected Animator anim;
     [SerializeField]
     protected ShieldState reqShieldState = ShieldState.NoShield;
 
-    private void Awake(){
+    private void Awake() {
         SetInduvidualData();
     }
 
-    private void Update(){
+    private void Update() {
         CheckPlayerDistances();
 
         //add gameplay functionality
@@ -48,16 +48,14 @@ public class Obstacle : MonoBehaviour {
         //Reset player "die"
     }
 
-    private void OnTriggerEnter(Collider coll){
+    private void OnTriggerEnter(Collider coll) {
         SnapToClosestTrackPoint(coll);
 
         if (coll.gameObject.tag == Tags.PlayerTag)
             OnPlayerCollision();
     }
 
-    protected virtual void OnPlayerCollision(){
-        
-    }
+    protected virtual void OnPlayerCollision() { }
     
     protected virtual void SetInduvidualData(){
         collider = gameObject.AddComponent<SphereCollider>();
@@ -78,12 +76,16 @@ public class Obstacle : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// Draw and/or animate obstacle depending on player distance
+    /// </summary>
     protected void CheckPlayerDistances(){
-        Debug.Log(waypointPositionIndex + " " + obstacleDrawDistance);
+        Debug.Log(waypointPositionIndex - obstacleDrawDistance + " " + helper.playerPassIndex + " " + waypointPositionIndex);
         if ((waypointPositionIndex - obstacleDrawDistance) <= helper.playerPassIndex){
             obstacleModel.SetActive(true);
         }else if ((waypointPositionIndex - obstacleAnimationTriggerDist) == helper.playerPassIndex){
             anim.SetBool("PlayerInRange", true);
+            Debug.Log("START ANIMATION");
         }
     }
 
