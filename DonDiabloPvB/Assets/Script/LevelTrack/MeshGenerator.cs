@@ -28,6 +28,13 @@ public class MeshGenerator : MonoBehaviour{
        }
     }
 
+    private void Start(){
+        filter.mesh = CreateRoadMesh(meshPoints, false, meshWidth);
+        int textureRepeat = Mathf.RoundToInt(texTiling * meshPoints.Length * pointsSpacing * 0.05f);
+        renderer.sharedMaterial.mainTextureScale = new Vector2(1, textureRepeat);
+        //Debug.Log("Rendererd Mesh after importing");
+    }
+
     public void SetRoadAfterSave(){
         if (!filter || !renderer){
             filter = GetComponent<MeshFilter>();
