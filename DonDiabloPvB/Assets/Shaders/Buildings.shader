@@ -3,7 +3,7 @@
 // Shader created with Shader Forge v1.36 
 // Shader Forge (c) Neat Corporation / Joachim Holmer - http://www.acegikmo.com/shaderforge/
 // Note: Manually altering this data may prevent you from opening it in Shader Forge
-/*SF_DATA;ver:1.36;sub:START;pass:START;ps:flbk:,iptp:0,cusa:False,bamd:0,cgin:,lico:1,lgpr:1,limd:1,spmd:1,trmd:0,grmd:0,uamb:True,mssp:True,bkdf:False,hqlp:False,rprd:False,enco:False,rmgx:True,imps:True,rpth:0,vtps:0,hqsc:True,nrmq:1,nrsp:0,vomd:0,spxs:False,tesm:0,olmd:1,culm:0,bsrc:0,bdst:1,dpts:2,wrdp:True,dith:0,atcv:False,rfrpo:True,rfrpn:Refraction,coma:15,ufog:True,aust:True,igpj:False,qofs:0,qpre:1,rntp:1,fgom:False,fgoc:False,fgod:False,fgor:False,fgmd:0,fgcr:0.5,fgcg:0.5,fgcb:0.5,fgca:1,fgde:0.01,fgrn:0,fgrf:300,stcl:False,stva:128,stmr:255,stmw:255,stcp:6,stps:0,stfa:0,stfz:0,ofsf:0,ofsu:0,f2p0:False,fnsp:False,fnfb:False,fsmp:False;n:type:ShaderForge.SFN_Final,id:4013,x:33080,y:32708,varname:node_4013,prsc:2|diff-5889-OUT,emission-662-OUT;n:type:ShaderForge.SFN_Tex2d,id:1634,x:32390,y:32497,ptovrint:False,ptlb:Emission,ptin:_Emission,varname:node_1634,prsc:2,glob:False,taghide:False,taghdr:False,tagprd:False,tagnsco:False,tagnrm:False,tex:2ac3876ccab12b041b2a3da2ea5b29d7,ntxv:0,isnm:False;n:type:ShaderForge.SFN_Tex2d,id:4451,x:32390,y:32830,ptovrint:False,ptlb:Albido,ptin:_Albido,varname:_node_7713_copy,prsc:2,glob:False,taghide:False,taghdr:False,tagprd:False,tagnsco:False,tagnrm:False,tex:3d2c9dbe576087d488b3a5b3351b2345,ntxv:0,isnm:False;n:type:ShaderForge.SFN_Slider,id:2566,x:32390,y:32689,ptovrint:False,ptlb:Emissive_Degree,ptin:_Emissive_Degree,varname:node_2566,prsc:2,glob:False,taghide:False,taghdr:False,tagprd:False,tagnsco:False,tagnrm:False,min:0,cur:1,max:1;n:type:ShaderForge.SFN_Slider,id:6725,x:32390,y:33021,ptovrint:False,ptlb:Albido_Degree,ptin:_Albido_Degree,varname:_Emission_Degree_copy,prsc:2,glob:False,taghide:False,taghdr:False,tagprd:False,tagnsco:False,tagnrm:False,min:0,cur:1,max:1;n:type:ShaderForge.SFN_Multiply,id:662,x:32758,y:32847,varname:node_662,prsc:2|A-4451-RGB,B-6725-OUT;n:type:ShaderForge.SFN_Multiply,id:5889,x:32777,y:32584,varname:node_5889,prsc:2|A-1634-RGB,B-2566-OUT;proporder:4451-1634-2566-6725;pass:END;sub:END;*/
+/*SF_DATA;ver:1.36;sub:START;pass:START;ps:flbk:,iptp:0,cusa:False,bamd:0,cgin:,lico:1,lgpr:1,limd:1,spmd:1,trmd:0,grmd:0,uamb:True,mssp:True,bkdf:False,hqlp:False,rprd:False,enco:False,rmgx:True,imps:True,rpth:0,vtps:0,hqsc:True,nrmq:1,nrsp:0,vomd:0,spxs:False,tesm:0,olmd:1,culm:0,bsrc:0,bdst:1,dpts:2,wrdp:True,dith:0,atcv:False,rfrpo:True,rfrpn:Refraction,coma:15,ufog:True,aust:True,igpj:False,qofs:0,qpre:1,rntp:1,fgom:False,fgoc:False,fgod:False,fgor:False,fgmd:0,fgcr:0.5,fgcg:0.5,fgcb:0.5,fgca:1,fgde:0.01,fgrn:0,fgrf:300,stcl:False,stva:128,stmr:255,stmw:255,stcp:6,stps:0,stfa:0,stfz:0,ofsf:0,ofsu:0,f2p0:True,fnsp:True,fnfb:True,fsmp:False;n:type:ShaderForge.SFN_Final,id:4013,x:33080,y:32708,varname:node_4013,prsc:2|diff-5889-OUT,emission-662-OUT;n:type:ShaderForge.SFN_Tex2d,id:1634,x:32390,y:32497,ptovrint:False,ptlb:Emission,ptin:_Emission,varname:node_1634,prsc:2,glob:False,taghide:False,taghdr:False,tagprd:False,tagnsco:False,tagnrm:False,tex:2ac3876ccab12b041b2a3da2ea5b29d7,ntxv:0,isnm:False;n:type:ShaderForge.SFN_Tex2d,id:4451,x:32390,y:32830,ptovrint:False,ptlb:Albido,ptin:_Albido,varname:_node_7713_copy,prsc:2,glob:False,taghide:False,taghdr:False,tagprd:False,tagnsco:False,tagnrm:False,tex:3d2c9dbe576087d488b3a5b3351b2345,ntxv:0,isnm:False;n:type:ShaderForge.SFN_Slider,id:2566,x:32390,y:32689,ptovrint:False,ptlb:Emissive_Degree,ptin:_Emissive_Degree,varname:node_2566,prsc:2,glob:False,taghide:False,taghdr:False,tagprd:False,tagnsco:False,tagnrm:False,min:0,cur:1,max:1;n:type:ShaderForge.SFN_Slider,id:6725,x:32390,y:33021,ptovrint:False,ptlb:Albido_Degree,ptin:_Albido_Degree,varname:_Emission_Degree_copy,prsc:2,glob:False,taghide:False,taghdr:False,tagprd:False,tagnsco:False,tagnrm:False,min:0,cur:1,max:1;n:type:ShaderForge.SFN_Multiply,id:662,x:32758,y:32847,varname:node_662,prsc:2|A-4451-RGB,B-6725-OUT;n:type:ShaderForge.SFN_Multiply,id:5889,x:32777,y:32584,varname:node_5889,prsc:2|A-1634-RGB,B-2566-OUT;proporder:4451-1634-2566-6725;pass:END;sub:END;*/
 
 Shader "Shader Forge/Buildings" {
     Properties {
@@ -31,8 +31,8 @@ Shader "Shader Forge/Buildings" {
             #include "AutoLight.cginc"
             #pragma multi_compile_fwdbase_fullshadows
             #pragma multi_compile_fog
-            #pragma only_renderers d3d9 d3d11 glcore gles 
-            //#pragma target 3.0
+            #pragma only_renderers d3d9 d3d11 glcore gles gles3 metal d3d11_9x 
+            #pragma target 2.0
             uniform float4 _LightColor0;
             uniform sampler2D _Emission; uniform float4 _Emission_ST;
             uniform sampler2D _Albido; uniform float4 _Albido_ST;
@@ -105,8 +105,8 @@ Shader "Shader Forge/Buildings" {
             #include "AutoLight.cginc"
             #pragma multi_compile_fwdadd_fullshadows
             #pragma multi_compile_fog
-            #pragma only_renderers d3d9 d3d11 glcore gles 
-            //#pragma target 3.0
+            #pragma only_renderers d3d9 d3d11 glcore gles gles3 metal d3d11_9x 
+            #pragma target 2.0
             uniform float4 _LightColor0;
             uniform sampler2D _Emission; uniform float4 _Emission_ST;
             uniform sampler2D _Albido; uniform float4 _Albido_ST;
@@ -159,6 +159,5 @@ Shader "Shader Forge/Buildings" {
             ENDCG
         }
     }
-    FallBack "Diffuse"
     CustomEditor "ShaderForgeMaterialInspector"
 }

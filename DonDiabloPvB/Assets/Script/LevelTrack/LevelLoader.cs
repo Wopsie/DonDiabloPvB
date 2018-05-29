@@ -7,7 +7,7 @@ public class LevelLoader : MonoBehaviour {
     private LevelData level;
 
     private void Awake(){
-        PlaceLevel("LevelTwo");
+        PlaceLevel("TestLevel");
     }
 
     void PlaceLevel(string levelName){

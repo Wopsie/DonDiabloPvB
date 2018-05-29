@@ -35,8 +35,10 @@ public class RoadEditor : Editor{
             GameObject g = creator.gameObject;
 
             //save track with mesh to to scriptable object
-            ScriptableObjectsUtility.CreateAsset<LevelData>(g.name);
+            //ScriptableObjectsUtility.CreateAsset<LevelData>(g.name);
             LevelData level = Resources.Load<LevelData>(g.name);
+
+            EditorUtility.SetDirty(level);
 
             //set leveldata variables
             level.points = creator.points;

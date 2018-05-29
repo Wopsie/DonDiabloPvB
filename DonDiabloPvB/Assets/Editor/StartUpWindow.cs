@@ -4,9 +4,7 @@ using System.IO;
 using UnityEngine.Events;
 
 [System.Serializable]
-public class UnityStringEvent : UnityEvent<string>
-{
-}
+public class UnityStringEvent : UnityEvent<string> { }
 
 /// <summary>
 /// Gewoon een voorbeeld van een startup window speciaal voor jou omdat je zo cool bent
@@ -30,22 +28,19 @@ public class StartUpWindow : EditorWindow
     public static UnityStringEvent CreateFileEvent;
 
     [MenuItem("Tool/LevelEditor")]
-    public static void ShowWindow()
-    {
+    public static void ShowWindow(){
         window = new StartUpWindow();
         window.minSize = new Vector2(300, 100);
         window.maxSize = window.minSize;
         window.ShowUtility();
     }
 
-    private void OnGUI()
-    {
+    private void OnGUI(){
         if(CreateFileEvent == null){
             CreateFileEvent = new UnityStringEvent();
         }
 
-        switch (screenState)
-        {
+        switch (screenState){
             case ScreenState.Init:
                 DrawInit();
                 break;
@@ -55,46 +50,26 @@ public class StartUpWindow : EditorWindow
         }
     }
 
-    private void DrawInit()
-    {
-        if (GUILayout.Button("Choose"))
-        {
-            LevelData data = null;
-            string path = EditorUtility.OpenFilePanel("LevelData", "", "asset");
-
-            if (!string.IsNullOrEmpty(path))
-            {
-                data = Resources.Load<LevelData>(Path.GetFileNameWithoutExtension(path));
-                Debug.Log("Data found: " + data);
-
-                window.Close();
-            }
-
-            // TODO: stuur het naar je path creator ding of idk... doe iets Jochem..
-        }
-
-        if (GUILayout.Button("New File"))
-        {
+    private void DrawInit(){
+        if (GUILayout.Button("New File")){
             screenState = ScreenState.Input;
         }
     }
 
-    private void DrawInput()
-    {
+    private void DrawInput(){
         dataName = EditorGUILayout.TextField("Data Name", dataName);
 
-        if (GUILayout.Button("Create"))
-        {
-            if(!string.IsNullOrEmpty(dataName))
-            {
+        if (GUILayout.Button("Create")){
+            if(!string.IsNullOrEmpty(dataName)){
                 ScriptableObjectsUtility.CreateAsset<LevelData>(dataName);
                 Debug.Log("Data created: " + dataName);
                 //send Unity event that sends out file name of level
-                CreateFileEvent.Invoke(dataName);
+                if (CreateFileEvent != null)
+                    CreateFileEvent.Invoke(dataName);
+                else
+                    Debug.LogError("NOTHING IS LISTENING TO THE EVENT");
                 window.Close();
-            }
-            else
-            {
+            }else{
                 EditorUtility.DisplayDialog("Invalid input", "You must give it a name first!", "OK");
             }
         }

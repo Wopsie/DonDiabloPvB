@@ -44,8 +44,11 @@ public class PathPlacer : MonoBehaviour {
             trackedObjs[i].transform.localScale = Vector3.one * spacing * 0.5f;
             trackedObjs[i].GetComponent<PlayerTrackingPoint>().PointIndex = i;
 
-            if (makeStatic)
+            if (makeStatic){
                 GameObjectUtility.SetStaticEditorFlags(trackedObjs[i], StaticEditorFlags.BatchingStatic);
+                GameObjectUtility.SetStaticEditorFlags(trackedObjs[i], StaticEditorFlags.OccludeeStatic);
+                GameObjectUtility.SetStaticEditorFlags(trackedObjs[i], StaticEditorFlags.OccluderStatic);
+            }
 
             //place props along track edges
             if (placeProps){
@@ -86,8 +89,11 @@ public class PathPlacer : MonoBehaviour {
         int dir = Random.Range(0, 360);
         g.transform.rotation = Quaternion.Euler(0, dir, 0);
 
-        if (makeStatic)
+        if (makeStatic){
             GameObjectUtility.SetStaticEditorFlags(g, StaticEditorFlags.BatchingStatic);
+            GameObjectUtility.SetStaticEditorFlags(g, StaticEditorFlags.OccludeeStatic);
+            GameObjectUtility.SetStaticEditorFlags(g, StaticEditorFlags.OccluderStatic);
+        }
     }
 
     /// <summary>
@@ -113,8 +119,11 @@ public class PathPlacer : MonoBehaviour {
         g.transform.localRotation = Quaternion.LookRotation(v);
         g.transform.rotation *= Quaternion.Euler(0, -90, 0);
 
-        if (makeStatic)
+        if (makeStatic){
             GameObjectUtility.SetStaticEditorFlags(g, StaticEditorFlags.BatchingStatic);
+            GameObjectUtility.SetStaticEditorFlags(g, StaticEditorFlags.OccludeeStatic);
+            GameObjectUtility.SetStaticEditorFlags(g, StaticEditorFlags.OccluderStatic);
+        }
     }
 
     void DestroyTrackedObjects(){

@@ -24,9 +24,9 @@ namespace SplineEditor
 
             if (GUILayout.Button("Create New")){
                 Undo.RecordObject(creator, "Create new");
-                creator.CreatePath();
                 StartUpWindow.ShowWindow();
                 StartUpWindow.CreateFileEvent.AddListener(SetObjectName);
+                creator.CreatePath();
             }
 
             //bool isClosed = GUILayout.Toggle(Path.IsClosed, "Closed");

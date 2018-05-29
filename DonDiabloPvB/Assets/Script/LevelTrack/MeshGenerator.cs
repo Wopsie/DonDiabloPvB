@@ -36,6 +36,7 @@ public class MeshGenerator : MonoBehaviour{
         filter.mesh = CreateRoadMesh(meshPoints, false, meshWidth);
         int textureRepeat = Mathf.RoundToInt(texTiling * meshPoints.Length * pointsSpacing * 0.05f);
         renderer.sharedMaterial.mainTextureScale = new Vector2(1, textureRepeat);
+        Debug.Log("Rendererd Mesh after importing");
     }
 
     public Mesh CreateRoadMesh(Vector2[] points, bool isClosed, float roadWidth){
