@@ -7,43 +7,33 @@ using UnityEngine;
 public class MeshGenerator : MonoBehaviour{
 
     private MeshFilter filter;
-    private MeshRenderer renderer;
+    private MeshRenderer rend;
     [HideInInspector]
     public Vector3[] vertexOffsetVectors;
-
-    //values set by LevelDataObject
-    [HideInInspector]
-    public Vector2[] meshPoints;
-    [HideInInspector]
-    public float meshWidth;
-    [HideInInspector]
-    public float texTiling;
-    [HideInInspector]
-    public float pointsSpacing;
-
-    private void Awake(){
-       if(!filter || !renderer){
-            filter = GetComponent<MeshFilter>();
-            renderer = GetComponent<MeshRenderer>();
-       }
-    }
-
+    
     private void Start(){
-        filter.mesh = CreateRoadMesh(meshPoints, false, meshWidth);
-        int textureRepeat = Mathf.RoundToInt(texTiling * meshPoints.Length * pointsSpacing * 0.05f);
-        renderer.sharedMaterial.mainTextureScale = new Vector2(1, textureRepeat);
-        //Debug.Log("Rendererd Mesh after importing");
-    }
+        //Get the name of the parent object as it matches the LevelData object name
+        string dataName = this.transform.parent.gameObject.name;
+        dataName = dataName.Replace("Prefab(Clone)", "");
+        //Load Leveldata for rendering the mesh
+        LevelData level = Resources.Load<LevelData>(dataName);
 
-    public void SetRoadAfterSave(){
-        if (!filter || !renderer){
+        if (!filter || !rend){
             filter = GetComponent<MeshFilter>();
-            renderer = GetComponent<MeshRenderer>();
+            rend = GetComponent<MeshRenderer>();
         }
-        filter.mesh = CreateRoadMesh(meshPoints, false, meshWidth);
-        int textureRepeat = Mathf.RoundToInt(texTiling * meshPoints.Length * pointsSpacing * 0.05f);
-        renderer.sharedMaterial.mainTextureScale = new Vector2(1, textureRepeat);
-        Debug.Log("Rendererd Mesh after importing");
+
+        //copy over values from level data for mesh generation
+        Vector2[] pointsArr = level.points;
+        float meshWidth = level.roadWidth;
+        float texTiling = level.textureTiling;
+        float pointSpacing = level.pointSpacing;
+
+        //Set mesh filter mesh to generated mesh & texture it
+        filter.mesh = CreateRoadMesh(pointsArr, false, meshWidth);
+        int textureRepeat = Mathf.RoundToInt(texTiling * pointsArr.Length * pointSpacing * 0.05f);
+        rend.sharedMaterial.mainTextureScale = new Vector2(1, textureRepeat);
+        //Debug.Log("RENDER MESH FROM START");
     }
 
     public Mesh CreateRoadMesh(Vector2[] points, bool isClosed, float roadWidth){
@@ -51,6 +41,7 @@ public class MeshGenerator : MonoBehaviour{
         Vector2[] uvs = new Vector2[verts.Length];
         vertexOffsetVectors = new Vector3[points.Length];
         int numTris = 2 * (points.Length - 1) + ((isClosed) ? 2 : 0);
+        //Debug.Log(numTris * 3 + " Number of tris");
         int[] tris = new int[numTris * 3];
         int vertIndex = 0;
         int trisIndex = 0;

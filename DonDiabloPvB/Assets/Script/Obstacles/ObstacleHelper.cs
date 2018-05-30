@@ -39,6 +39,11 @@ public class ObstacleHelper : MonoBehaviour {
         scoreText.text = currentScore.ToString();
     }
 
+    public Obstacle[] GetAllObstacles()
+    {
+        return obstacleColl;
+    }
+
     //when placing obstacles in scene, check what trackpoint is closest & snap obstacles position to that point
     //rotate obstacle correctly in direction of next waypoint
     //alternatively i can rotate the obstacle in the direction of one of the mesh edges & add/subtract 90 degrees from it idk yet

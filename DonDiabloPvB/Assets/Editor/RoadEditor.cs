@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 using SplineEditor;
+using UnityEditor.SceneManagement;
 
 [CustomEditor(typeof(RoadCreator))]
 public class RoadEditor : Editor{
@@ -35,7 +36,6 @@ public class RoadEditor : Editor{
             GameObject g = creator.gameObject;
 
             //save track with mesh to to scriptable object
-            //ScriptableObjectsUtility.CreateAsset<LevelData>(g.name);
             LevelData level = Resources.Load<LevelData>(g.name);
 
             EditorUtility.SetDirty(level);
@@ -57,6 +57,8 @@ public class RoadEditor : Editor{
             
             AssetDatabase.SaveAssets();
             AssetDatabase.Refresh();
+
+            EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo();
         }
     }
 
