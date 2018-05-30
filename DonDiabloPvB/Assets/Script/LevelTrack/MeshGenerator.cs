@@ -33,7 +33,7 @@ public class MeshGenerator : MonoBehaviour{
         filter.mesh = CreateRoadMesh(pointsArr, false, meshWidth);
         int textureRepeat = Mathf.RoundToInt(texTiling * pointsArr.Length * pointSpacing * 0.05f);
         rend.sharedMaterial.mainTextureScale = new Vector2(1, textureRepeat);
-        Debug.Log("RENDER MESH FROM START");
+        //Debug.Log("RENDER MESH FROM START");
     }
 
     public Mesh CreateRoadMesh(Vector2[] points, bool isClosed, float roadWidth){
@@ -41,7 +41,7 @@ public class MeshGenerator : MonoBehaviour{
         Vector2[] uvs = new Vector2[verts.Length];
         vertexOffsetVectors = new Vector3[points.Length];
         int numTris = 2 * (points.Length - 1) + ((isClosed) ? 2 : 0);
-        Debug.Log(numTris * 3 + " Number of tris");
+        //Debug.Log(numTris * 3 + " Number of tris");
         int[] tris = new int[numTris * 3];
         int vertIndex = 0;
         int trisIndex = 0;

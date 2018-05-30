@@ -10,5 +10,5 @@ public class LevelData : ScriptableObject
     public Vector2[] points;
     public float pointSpacing;
     public float textureTiling;
-    //public 
+    //think of way to include obstacles
 }
