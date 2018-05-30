@@ -25,8 +25,8 @@ public class Obstacle : MonoBehaviour {
     protected ObstacleHelper helper;
     protected new SphereCollider collider;
     protected GameObject obstacleModel;
-    protected int obstacleDrawDistance = 10;
-    protected int obstacleAnimationTriggerDist = 11;
+    protected int obstacleDrawDistance = 40;
+    protected int obstacleAnimationTriggerDist = 20;
     protected Animator anim;
     [SerializeField]
     protected ShieldState reqShieldState = ShieldState.NoShield;
@@ -80,12 +80,16 @@ public class Obstacle : MonoBehaviour {
     /// Draw and/or animate obstacle depending on player distance
     /// </summary>
     protected void CheckPlayerDistances(){
-        Debug.Log(waypointPositionIndex - obstacleDrawDistance + " " + helper.playerPassIndex + " " + waypointPositionIndex);
+        Debug.Log((waypointPositionIndex - obstacleDrawDistance) + " DRAW TRIGGER" + helper.playerPassIndex);
+        Debug.Log((waypointPositionIndex - obstacleAnimationTriggerDist) + " ANIMATION TRIGGER" + helper.playerPassIndex);
+
         if ((waypointPositionIndex - obstacleDrawDistance) <= helper.playerPassIndex){
             obstacleModel.SetActive(true);
-        }else if ((waypointPositionIndex - obstacleAnimationTriggerDist) == helper.playerPassIndex){
-            anim.SetBool("PlayerInRange", true);
+            Debug.Log("REVEAL OBSTACLE");
+        }
+        if ((waypointPositionIndex - obstacleAnimationTriggerDist) == helper.playerPassIndex){
             Debug.Log("START ANIMATION");
+            anim.SetBool("PlayerInRange", true);
         }
     }
 

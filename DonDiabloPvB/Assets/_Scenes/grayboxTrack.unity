@@ -2244,7 +2244,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ba3ceb27aa198e409e33cfa54d8548e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mat: {fileID: 2100000, guid: 6e315d330917f3943a5587b78ec9eef4, type: 2}
+  mat: {fileID: 2100000, guid: 8c9605427fa389a41a855e741d475d0f, type: 2}
   speed: 0.6
   max: -0.64
   currentPower: 0
@@ -2748,7 +2748,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 6e315d330917f3943a5587b78ec9eef4, type: 2}
+  - {fileID: 2100000, guid: 8c9605427fa389a41a855e741d475d0f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4408,7 +4408,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2014327934
 Transform:
   m_ObjectHideFlags: 0
@@ -4438,7 +4438,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: fce653afa1af29d4c9a99536a1509df3, type: 2}
+  - {fileID: 2100000, guid: 42f8054d1b5d7374fb2f0b4714086656, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
