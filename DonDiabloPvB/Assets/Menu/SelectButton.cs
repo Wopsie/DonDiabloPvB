@@ -23,7 +23,7 @@ public class SelectButton : MonoBehaviour
         _audioSource.Stop();
         _audioSource.clip = _audioClip;
         //_audioSource.Play();
-        _shaderController.TriggerEffect(1);
+        _shaderController.TriggerEffect(3);
 
         _startButton.LevelNumber(_levelNumber);
     }
