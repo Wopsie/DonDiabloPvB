@@ -12,13 +12,17 @@ public class StartButton : MonoBehaviour
     private int _level;
 
     private SpriteRenderer _spriteRenderer;
+    private Collider _collider;
 
     [SerializeField] private List<Sprite> _levelSelectScreens = new List<Sprite>();
 
 
     private void Start()
     {
+        _collider = this.gameObject.GetComponent<Collider>();
+        _collider.enabled = false;
         _spriteRenderer = this.gameObject.GetComponent<SpriteRenderer>();
+        ChangeLevelScreen();
     }
 
     void OnMouseDown()
@@ -38,6 +42,7 @@ public class StartButton : MonoBehaviour
     private void ChangeLevelScreen()
     {
         _spriteRenderer.sprite = _levelSelectScreens[_level];
+        _collider.enabled = true;
     }
 
     public void ToChangeLevel()
