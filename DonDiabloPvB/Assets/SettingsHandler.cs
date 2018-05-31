@@ -10,7 +10,7 @@ public class SettingsHandler : MonoBehaviour {
     public void Settings()
     {
         SetactiveObjects();
-        shader.TriggerEffect(0);//Is Broken will be fixed 
+        //shader.TriggerEffect(0);//Is Broken will be fixed 
     }
 
     public void SetactiveObjects()
