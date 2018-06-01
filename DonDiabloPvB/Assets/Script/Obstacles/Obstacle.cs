@@ -80,9 +80,8 @@ public class Obstacle : MonoBehaviour {
     /// Draw and/or animate obstacle depending on player distance
     /// </summary>
     protected void CheckPlayerDistances(){
-        Debug.Log((waypointPositionIndex - obstacleDrawDistance) + " DRAW TRIGGER" + helper.playerPassIndex);
-        Debug.Log((waypointPositionIndex - obstacleAnimationTriggerDist) + " ANIMATION TRIGGER" + helper.playerPassIndex);
-
+        //Debug.Log((waypointPositionIndex - obstacleDrawDistance) + " DRAW TRIGGER" + helper.playerPassIndex);
+        //Debug.Log((waypointPositionIndex - obstacleAnimationTriggerDist) + " ANIMATION TRIGGER" + helper.playerPassIndex);
         if ((waypointPositionIndex - obstacleDrawDistance) <= helper.playerPassIndex){
             obstacleModel.SetActive(true);
             Debug.Log("REVEAL OBSTACLE");

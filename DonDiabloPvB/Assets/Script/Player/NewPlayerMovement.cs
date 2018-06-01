@@ -62,8 +62,8 @@ public class NewPlayerMovement : MonoBehaviour {
             rb.velocity *= 0.99f;
             Debug.Log("Limiting speed");
         }
-        //Debug.Log(lateralSpeed);
-
+        Debug.Log(lateralSpeed);
+        
         //point the current velocity in the direction of the next waypoint
     }
 

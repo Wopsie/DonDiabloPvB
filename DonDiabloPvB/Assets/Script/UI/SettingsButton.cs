@@ -11,7 +11,7 @@ public class SettingsButton : MonoBehaviour {
         settingHandler = GetComponentInParent<SettingsHandler>();
     }
 
-    void OnMouseDown()
+    public void SettingButton()
     {
         settingHandler.Settings();
     }

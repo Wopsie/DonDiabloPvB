@@ -13,6 +13,8 @@ public class PathPlacer : MonoBehaviour {
     [Range(10, 50)]
     public float buildingDistance = 50;
     public GameObject trackProp1;
+    [SerializeField]
+    private GameObject tunnelGo;
     [Tooltip("The object that the player will use to navigate the track")]
     public GameObject playerTrackPoint;
     public GameObject[] buildingClusters;
@@ -50,11 +52,21 @@ public class PathPlacer : MonoBehaviour {
                 GameObjectUtility.SetStaticEditorFlags(trackedObjs[i], StaticEditorFlags.OccluderStatic);
             }
 
-            //place props along track edges
-            if (placeProps){
-                PlaceRoadProps(true, trackedObjs, dstToMeshEdgePerPoint, meshWidth, makeStatic, i);
-                PlaceRoadProps(false, trackedObjs, dstToMeshEdgePerPoint, meshWidth, makeStatic, i);
+            if (i <= 5)
+            {
+                PlaceTunnel(points,i, dstToMeshEdgePerPoint, meshWidth);
+
             }
+            else
+            {
+                //place props along track edges
+                if (placeProps)
+                {
+                    PlaceRoadProps(true, trackedObjs, dstToMeshEdgePerPoint, meshWidth, makeStatic, i);
+                    PlaceRoadProps(false, trackedObjs, dstToMeshEdgePerPoint, meshWidth, makeStatic, i);
+                }
+            }
+          
 
             //place buildings set distance from track with certain margin
             if (placeBuildings){
@@ -70,6 +82,8 @@ public class PathPlacer : MonoBehaviour {
                 }
             }
         }
+        // placeTunnelParts(trackedObjs, 5);
+        //new Vector3(points[i].x, 0, points[i].y);
     }
 
     void PlaceBuildings(bool left, int layer, GameObject[] trackedObjs, Vector3[] dstToMeshEdgePerPoint, bool makeStatic, int index){
@@ -126,6 +140,20 @@ public class PathPlacer : MonoBehaviour {
         }
     }
 
+    void PlaceTunnel(Vector2[] trackedObjs, int i, Vector3[] dstToMeshEdgePerPoint, float meshWidth)
+    {
+        GameObject g = tunnelGo;
+
+        Vector3 shinVec = new Vector3(trackedObjs[i].x, 0, trackedObjs[i].y);
+        g = Instantiate(tunnelGo, shinVec + new Vector3(dstToMeshEdgePerPoint[i].x, 0, dstToMeshEdgePerPoint[i].y)  * meshWidth * 0f, Quaternion.identity);
+        Vector3 neoVec = new Vector3(trackedObjs[i + 1].x, 0, trackedObjs[i + 1].y);
+        Vector3 v = neoVec - g.transform.position;
+        g.transform.localRotation = Quaternion.LookRotation(v);
+       // g.transform.LookAt(trackedObjs[i + 1].transform);
+
+
+    }
+        
     void DestroyTrackedObjects(){
         if (trackedObjs != null){
             for (int i = 0; i < trackedObjs.Length; i++){
