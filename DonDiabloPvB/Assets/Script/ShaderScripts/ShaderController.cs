@@ -78,13 +78,14 @@ public class ShaderController: MonoBehaviour
             currentPower = max;
             _FadeTransition = true;
             _StartFading = false;
+            _SetShader = 0;
         }
         else if (currentPower > 0)
         {
             currentPower = 0;
             _startButton.ToChangeLevel();
             _FadeTransition = false;
+            _SetShader = 0;
         }
-        _SetShader = 0;
     }
 }

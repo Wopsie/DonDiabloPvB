@@ -65,7 +65,6 @@ public class RoadCreator : MonoBehaviour {
 
         Path path = GetComponent<PathCreator>().path;
         points = path.CalculateEvenSpacePoints(spacing);
-        //filter.mesh = CreateRoadMesh(points, path.IsClosed);
         filter.mesh = GetRoad();
         vertexOffsetVectors = generator.vertexOffsetVectors;
         int textureRepeat = Mathf.RoundToInt(tiling * points.Length * spacing * 0.05f);

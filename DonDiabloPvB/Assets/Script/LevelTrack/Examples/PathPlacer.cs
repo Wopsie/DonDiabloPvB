@@ -6,7 +6,7 @@ using SplineEditor;
 using UnityEditor;
 
 public class PathPlacer : MonoBehaviour {
-    public float spacing = 1f;
+    //public float spacing = 1f;
     public int propSpacing = 1;
     [Tooltip("Frequency of building spawning. More is less")][Range(2, 20)]
     public int buildingFrequency = 5;
@@ -43,7 +43,7 @@ public class PathPlacer : MonoBehaviour {
             trackedObjs[i] = Instantiate(playerTrackPoint, transform);
             trackedObjs[i].tag = Tags.WaypointTag;
             trackedObjs[i].transform.position = new Vector3(points[i].x, 0, points[i].y);
-            trackedObjs[i].transform.localScale = Vector3.one * spacing * 0.5f;
+            trackedObjs[i].transform.localScale = Vector3.one * 0.5f;
             trackedObjs[i].GetComponent<PlayerTrackingPoint>().PointIndex = i;
 
             if (makeStatic){

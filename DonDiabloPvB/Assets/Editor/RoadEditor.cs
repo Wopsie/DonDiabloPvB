@@ -32,6 +32,9 @@ public class RoadEditor : Editor{
             //set objects static for static batching. rendering optimization technique
             GameObjectUtility.SetStaticEditorFlags(creator.filter.gameObject, StaticEditorFlags.BatchingStatic);
             GameObjectUtility.SetStaticEditorFlags(creator.gameObject, StaticEditorFlags.BatchingStatic);
+            GameObjectUtility.SetStaticEditorFlags(creator.gameObject, StaticEditorFlags.OccludeeStatic);
+            GameObjectUtility.SetStaticEditorFlags(creator.gameObject, StaticEditorFlags.OccluderStatic);
+            GameObjectUtility.SetStaticEditorFlags(creator.gameObject, StaticEditorFlags.LightmapStatic);
 
             GameObject g = creator.gameObject;
 
@@ -50,6 +53,8 @@ public class RoadEditor : Editor{
             DestroyImmediate(g.GetComponent<RoadCreator>());
             DestroyImmediate(g.GetComponent<PathCreator>());
             DestroyImmediate(g.GetComponent<PathPlacer>());
+
+            g.AddComponent<ObstacleHelper>();
 
             //create prefab & set last leveldata property
             GameObject t = PrefabUtility.CreatePrefab("Assets/Resources/" + g.name + "Prefab.prefab", g);
