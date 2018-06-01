@@ -5,18 +5,15 @@ using UnityEngine;
 public class SettingsHandler : MonoBehaviour {
     [SerializeField]
     public List<GameObject> obj = new List<GameObject>();
-    public ShaderController shader;
 
     public void Settings()
     {
-        SetactiveObjects();
+        SetActiveObjects();
         //shader.TriggerEffect(0);//Is Broken will be fixed 
     }
 
-    public void SetactiveObjects()
+    public void SetActiveObjects()
     {
-        Debug.Log("Hi");
-        
         for (int i = 0; i < obj.Count; i++)
         {   if (obj[i].activeSelf == true)
             {

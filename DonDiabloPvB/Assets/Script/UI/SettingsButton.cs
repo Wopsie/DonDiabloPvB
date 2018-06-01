@@ -8,7 +8,7 @@ public class SettingsButton : MonoBehaviour {
 
     void Start()
     {
-        settingHandler = GetComponentInParent<SettingsHandler>();
+        settingHandler = GameObject.FindGameObjectWithTag("SettingHandler").GetComponent<SettingsHandler>();
     }
 
     public void SettingButton()
