@@ -1,22 +1,47 @@
 fileFormatVersion: 2
-guid: ce6f3ea76b375c246a48fe6efb53b4b6
-timeCreated: 1527078793
+guid: 3465ab27901142447b75cf5f3e8c8290
+timeCreated: 1527774701
 licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
     100000: //RootNode
     400000: //RootNode
-    2100000: Hang_Thing_Purple
-    2100002: Obstacle_Base_Purple
-    2100004: Obstacle_Base_Purple1
-    2100006: Light_Ball
-    2100008: Light_Ball_Holder_Purple
+    2100000: Bars_Blue
+    2100002: Obstacle_Base_Blue
+    2100004: Light_Ball
+    2100006: Light_Ball_Holder_Blue
+    2100008: Hang_Thing_Blue
     2300000: //RootNode
     3300000: //RootNode
-    4300000: polySurface464
+    4300000: polySurface535
     9500000: //RootNode
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Bars_Blue
+    second: {fileID: 2100000, guid: d861dbf2f8692d54580eca181d92e0ef, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Hang_Thing_Blue
+    second: {fileID: 2100000, guid: 74cbf8891c8a3ec468d73987ebf19a55, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Light_Ball
+    second: {fileID: 2100000, guid: a6f930268297ea948bd5ccf833e71404, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Light_Ball_Holder_Blue
+    second: {fileID: 2100000, guid: 9f6a255e3f156024f914c2e39d641c6d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Obstacle_Base_Blue
+    second: {fileID: 2100000, guid: c27ed8e029ee30a46836cf0194c086b0, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

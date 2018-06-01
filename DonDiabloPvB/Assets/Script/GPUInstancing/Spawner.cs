@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
-
+/*
 public class ObjData{
     public Vector3 pos;
     public Vector3 scale;
@@ -18,6 +18,7 @@ public class ObjData{
         this.rot = rot;
     }
 }
+*/
 
 public class Spawner : MonoBehaviour {
 
@@ -25,6 +26,8 @@ public class Spawner : MonoBehaviour {
     public Vector3 maxPos;
     public Mesh objMesh;
     public Material objMat;
+
+    //public Dictionary<Mesh, Material>[] ObjectsToBatch = new Dictionary<Mesh, Material>()[];
 
     private List<List<ObjData>> batches = new List<List<ObjData>>();
 
@@ -48,11 +51,10 @@ public class Spawner : MonoBehaviour {
 
     private void AddObj(List<ObjData> currBatch, int i){
         Vector3 position = new Vector3(Random.Range(-maxPos.x, maxPos.x), Random.Range(-maxPos.y, maxPos.y), Random.Range(-maxPos.z, maxPos.z));
-        currBatch.Add(new ObjData(position, new Vector3(2, 2, 2), Quaternion.identity));
+        currBatch.Add(new ObjData(position, new Vector3(10, 10, 10), Quaternion.identity));
     }
 
-    private List<ObjData> BuildNewBatch()
-    {
+    private List<ObjData> BuildNewBatch(){
         return new List<ObjData>();
     }
 
