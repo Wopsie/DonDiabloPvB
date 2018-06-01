@@ -17,7 +17,7 @@ public class SceneChecker
 
         if(scene.name == "ToolScene")
         {
-            EditorApplication.ExecuteMenuItem("Tool/JochemsKekkeOpstartScherm");
+            EditorApplication.ExecuteMenuItem("Tool/LevelEditor");
         }
     }
 }

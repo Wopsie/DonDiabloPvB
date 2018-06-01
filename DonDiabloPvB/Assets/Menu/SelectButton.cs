@@ -5,7 +5,7 @@ using UnityEngine;
 public class SelectButton : MonoBehaviour
 {
 
-    [SerializeField] private AudioSource _audioSource;
+    private AudioSource _audioSource;
     [SerializeField] private AudioClip _audioClip;
 
     [SerializeField] private bool _IsSelectButton = false;
@@ -16,15 +16,18 @@ public class SelectButton : MonoBehaviour
 
     [SerializeField] private int _levelNumber;
 
+    private void Awake()
+    {
+        _audioSource = Camera.main.GetComponent<AudioSource>();
+    }
 
-    void OnMouseDown()
+    public void ButtonSelect()
     {
         //Changes the music that you hear in the menu.
         _audioSource.Stop();
         _audioSource.clip = _audioClip;
         //_audioSource.Play();
         _shaderController.TriggerEffect(3);
-        Debug.Log("Pressed: " + gameObject.name);
         _startButton.LevelNumber(_levelNumber);
     }
 }

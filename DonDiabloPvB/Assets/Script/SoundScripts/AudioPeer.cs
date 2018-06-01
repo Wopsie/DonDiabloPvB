@@ -57,7 +57,7 @@ public class AudioPeer : MonoBehaviour {
 
 
     void GetSpectrumAudioSource() {
-        _audioSource.GetSpectrumData(_samples,0,FFTWindow.BlackmanHarris);
+       _audioSource.GetSpectrumData(_samples,0,FFTWindow.BlackmanHarris);
     }
 
     void BandBuffer()

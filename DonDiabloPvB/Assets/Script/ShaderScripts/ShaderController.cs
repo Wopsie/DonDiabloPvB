@@ -51,7 +51,6 @@ public class ShaderController: MonoBehaviour
         {
             _StartFading = true;
         }
-        else if (Set == 0) Debug.Log("haha niets");
     }
 
     //this function will set the shader to turn off and on to make the button transition.
