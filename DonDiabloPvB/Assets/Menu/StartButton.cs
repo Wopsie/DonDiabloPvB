@@ -8,7 +8,7 @@ public class StartButton : MonoBehaviour
     [SerializeField] private GameObject _menuUI;
     private AudioSource _audioSource;
     [SerializeField] private NewPlayerMovement _playermovement;
-    private LevelLoader loader;
+    private LevelManager loader;
 
     private int _level;
 
@@ -21,15 +21,13 @@ public class StartButton : MonoBehaviour
     {
         _audioSource = Camera.main.GetComponent<AudioSource>();
         _spriteRenderer = this.gameObject.GetComponent<SpriteRenderer>();
-        loader = FindObjectOfType<LevelLoader>();
+        loader = FindObjectOfType<LevelManager>();
     }
 
     public void ButtonSelect()
     {
-        loader.PlaceLevel("LevelFour");
-        Debug.Log(_level);
+        loader.PlaceLevel("Level");
         _audioSource.Play();
-        _playermovement.enabled = true;
         _menuUI.SetActive(false);
     }
 

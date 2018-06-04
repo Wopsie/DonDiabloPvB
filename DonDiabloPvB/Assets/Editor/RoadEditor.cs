@@ -54,7 +54,9 @@ public class RoadEditor : Editor{
             DestroyImmediate(g.GetComponent<PathCreator>());
             DestroyImmediate(g.GetComponent<PathPlacer>());
 
-            g.AddComponent<ObstacleHelper>();
+            //Add a script that upon instantiation searches for obstacle helper & player movement.
+            //when the prefab is then loaded in, it will position the player on the right position & start the game
+            g.AddComponent<LevelStarter>();
 
             //create prefab & set last leveldata property
             GameObject t = PrefabUtility.CreatePrefab("Assets/Resources/" + g.name + "Prefab.prefab", g);

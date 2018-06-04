@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class LevelInputLoad : MonoBehaviour {
 
-    private LevelLoader loader;
+    private LevelManager loader;
 
     private void Awake(){
-        loader = GetComponent<LevelLoader>();
+        loader = GetComponent<LevelManager>();
     }
 
     private void Update(){
