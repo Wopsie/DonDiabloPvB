@@ -21,8 +21,7 @@ public class ObstacleHelper : MonoBehaviour {
 
     private void Awake(){
         Debug.Log("AWAKE HELPER");
-        player = FindObjectOfType<NewPlayerMovement>();
-        scoreText = GameObject.FindGameObjectWithTag(Tags.ScoreTextTag).GetComponent<Text>();
+        StartLevel();
     }
 
     private void Update(){
@@ -30,10 +29,14 @@ public class ObstacleHelper : MonoBehaviour {
             playerPassIndex = player.CurrWaypointIndex;
     }
 
-    void StartLevel(){
+    public void StartLevel(){
+        obstacleColl = null;
+
+        player = FindObjectOfType<NewPlayerMovement>();
+        scoreText = GameObject.FindGameObjectWithTag(Tags.ScoreTextTag).GetComponent<Text>();
         obstacleColl = FindObjectsOfType<Obstacle>();
-        for (int i = 0; i < obstacleColl.Length; i++)
-        {
+        //loop to pass helper reference to obstacles
+        for (int i = 0; i < obstacleColl.Length; i++){
             obstacleColl[i].ReceiveHelper(this);
             maxScore += obstacleColl[i].scoreToAward;
         }

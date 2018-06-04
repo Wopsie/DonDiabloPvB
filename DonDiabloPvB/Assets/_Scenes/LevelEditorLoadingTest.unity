@@ -751,7 +751,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _menuUI: {fileID: 822516295}
-  _audioSource: {fileID: 675838133}
   _playermovement: {fileID: 1197797200}
   _levelSelectScreens:
   - {fileID: 21300000, guid: 8ae0f4ae19fdf594aa28e0947f6bc0ee, type: 3}
@@ -873,7 +872,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   obj:
   - {fileID: 822516295}
-  shader: {fileID: 0}
 --- !u!1 &657257907
 GameObject:
   m_ObjectHideFlags: 0
@@ -1324,7 +1322,7 @@ GameObject:
   - component: {fileID: 731652864}
   m_Layer: 0
   m_Name: Manager
-  m_TagString: Untagged
+  m_TagString: Managers
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1388,10 +1386,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02b8491d1dd95814f8b90c349cb50e27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  objs: []
   instances: 10000
-  maxPos: {x: 200, y: 200, z: 200}
-  objMesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
-  objMat: {fileID: 2100000, guid: eb37dafd01c560044bb1d1a51ed971f7, type: 2}
 --- !u!1 &742797601
 GameObject:
   m_ObjectHideFlags: 0
@@ -1437,7 +1433,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac4a9e6044fdd6b47aeaf5e340753623, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _audioSource: {fileID: 675838133}
   _audioClip: {fileID: 8300000, guid: d0d39e8a8ae021e4da1038b43a593f97, type: 3}
   _IsSelectButton: 1
   _shaderController: {fileID: 857899896}
@@ -1742,7 +1737,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a72fa781d57bcf409664a8ee473c5bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _targetTransform: {fileID: 810240269}
 --- !u!114 &857899896
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1907,7 +1901,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac4a9e6044fdd6b47aeaf5e340753623, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _audioSource: {fileID: 675838133}
   _audioClip: {fileID: 8300000, guid: 3fa6816cd3b63f94babf509562b6fdd7, type: 3}
   _IsSelectButton: 1
   _shaderController: {fileID: 857899896}
@@ -2877,7 +2870,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac4a9e6044fdd6b47aeaf5e340753623, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _audioSource: {fileID: 675838133}
   _audioClip: {fileID: 8300000, guid: 911ea8f6470305148af6dfbbb92532b3, type: 3}
   _IsSelectButton: 1
   _shaderController: {fileID: 857899896}
@@ -3032,7 +3024,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac4a9e6044fdd6b47aeaf5e340753623, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _audioSource: {fileID: 675838133}
   _audioClip: {fileID: 8300000, guid: 7225300acea7257408b7d8540684aa92, type: 3}
   _IsSelectButton: 1
   _shaderController: {fileID: 857899896}

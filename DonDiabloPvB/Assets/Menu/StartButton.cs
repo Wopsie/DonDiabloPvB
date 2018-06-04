@@ -1,18 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class StartButton : MonoBehaviour
 {
 
     [SerializeField] private GameObject _menuUI;
     private AudioSource _audioSource;
-    [SerializeField] private NewPlayerMovement _playermovement;
-    private LevelLoader loader;
+    private LevelManager loader;
+
+    [SerializeField] private ShaderController _shaderController;
 
     private int _level;
 
-    private SpriteRenderer _spriteRenderer;
+    private Image _imageRenderer;
 
     [SerializeField] private List<Sprite> _levelSelectScreens = new List<Sprite>();
 
@@ -20,16 +22,16 @@ public class StartButton : MonoBehaviour
     void Awake()
     {
         _audioSource = Camera.main.GetComponent<AudioSource>();
-        _spriteRenderer = this.gameObject.GetComponent<SpriteRenderer>();
-        loader = FindObjectOfType<LevelLoader>();
+        _imageRenderer = this.gameObject.GetComponent<Image>();
+        loader = FindObjectOfType < LevelManager>();
     }
 
     public void ButtonSelect()
     {
-        loader.PlaceLevel("LevelFour");
+        //loader.PlaceLevel("LevelFour");
         Debug.Log(_level);
         _audioSource.Play();
-        _playermovement.enabled = true;
+        _shaderController.TriggerEffect(1);
         _menuUI.SetActive(false);
     }
 
@@ -41,7 +43,7 @@ public class StartButton : MonoBehaviour
 
     private void ChangeLevelScreen()
     {
-        _spriteRenderer.sprite = _levelSelectScreens[_level];
+        _imageRenderer.sprite = _levelSelectScreens[_level];
     }
 
     public void ToChangeLevel()

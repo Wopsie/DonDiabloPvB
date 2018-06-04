@@ -32,9 +32,10 @@ public class SettingsHandler : MonoBehaviour {
         {
             obj[i].SetActive(false);
         }
+    }
 
     public void Retry()
     {
-        
+        //Restart Scene?!?!
     }
 }
