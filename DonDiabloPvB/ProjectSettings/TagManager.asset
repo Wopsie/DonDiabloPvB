@@ -10,6 +10,7 @@ TagManager:
   - ScoreText
   - TargetRoadMesh
   - SettingHandler
+  - Managers
   layers:
   - Default
   - TransparentFX
