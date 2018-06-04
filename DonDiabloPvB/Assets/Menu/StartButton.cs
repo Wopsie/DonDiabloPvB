@@ -8,7 +8,7 @@ public class StartButton : MonoBehaviour
 
     [SerializeField] private GameObject _menuUI;
     private AudioSource _audioSource;
-    private LevelLoader loader;
+    private LevelManager loader;
 
     [SerializeField] private ShaderController _shaderController;
 
@@ -23,12 +23,12 @@ public class StartButton : MonoBehaviour
     {
         _audioSource = Camera.main.GetComponent<AudioSource>();
         _imageRenderer = this.gameObject.GetComponent<Image>();
-        loader = FindObjectOfType<LevelLoader>();
+        loader = FindObjectOfType < LevelManager>();
     }
 
     public void ButtonSelect()
     {
-        loader.PlaceLevel("LevelFour");
+        //loader.PlaceLevel("LevelFour");
         Debug.Log(_level);
         _audioSource.Play();
         _shaderController.TriggerEffect(1);

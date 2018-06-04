@@ -2512,9 +2512,19 @@ Prefab:
       propertyPath: _playermovement
       value: 
       objectReference: {fileID: 1197797200}
+    - target: {fileID: 114941975328739498, guid: 7c8a6c1e2e9acba40a0a8c2b8dd99b27,
+        type: 2}
+      propertyPath: _menuUI
+      value: 
+      objectReference: {fileID: 1241228557}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7c8a6c1e2e9acba40a0a8c2b8dd99b27, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1241228557 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1421730203550750, guid: 7c8a6c1e2e9acba40a0a8c2b8dd99b27,
+    type: 2}
+  m_PrefabInternal: {fileID: 1241228556}
 --- !u!4 &1316967961 stripped
 Transform:
   m_PrefabParentObject: {fileID: 424718, guid: 5ca80f4596fa44b87912a0592346d260, type: 2}
