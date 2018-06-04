@@ -9,6 +9,7 @@ TagManager:
   - TrackParent
   - ScoreText
   - TargetRoadMesh
+  - SettingHandler
   layers:
   - Default
   - TransparentFX
