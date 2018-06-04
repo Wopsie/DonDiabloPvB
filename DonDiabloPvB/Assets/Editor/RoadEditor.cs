@@ -19,10 +19,13 @@ public class RoadEditor : Editor{
     {
         base.OnInspectorGUI();
 
-        if(GUILayout.Button("Place Buildings"))
-        {
+        if(GUILayout.Button("Place Buildings")){
             Undo.RecordObject(creator, "Placed buildings");
             creator.PlaceBuildings();
+        }
+
+        if(GUILayout.Button("Clean Scene")){
+            creator.CleanScene();
         }
 
         if (GUILayout.Button("Finalize")){

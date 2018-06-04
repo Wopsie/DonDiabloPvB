@@ -751,7 +751,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _menuUI: {fileID: 822516295}
-  _playermovement: {fileID: 1197797200}
+  _shaderController: {fileID: 0}
   _levelSelectScreens:
   - {fileID: 21300000, guid: 8ae0f4ae19fdf594aa28e0947f6bc0ee, type: 3}
   - {fileID: 21300000, guid: 8ae0f4ae19fdf594aa28e0947f6bc0ee, type: 3}
@@ -1317,7 +1317,6 @@ GameObject:
   m_Component:
   - component: {fileID: 731652863}
   - component: {fileID: 731652862}
-  - component: {fileID: 731652861}
   - component: {fileID: 731652860}
   - component: {fileID: 731652864}
   - component: {fileID: 731652865}
@@ -1337,17 +1336,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ac10abe32e7224b41922a7b2c1f1c676, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &731652861
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 731652859}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0a03ef2883fcd48419339e2690a5d43d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &731652862

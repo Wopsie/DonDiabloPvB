@@ -35,7 +35,7 @@ public class NewPlayerMovement : MonoBehaviour {
     public ShieldState currShieldState;
     public GameObject[] waypoints;
 
-    private void Awake(){
+    private void OnEnable(){
         pInput = GetComponent<PlayerInput>();
         pInput.OnPressButton += SetShieldState;
         pInput.OnHoldButton += SetShieldState;
@@ -46,6 +46,7 @@ public class NewPlayerMovement : MonoBehaviour {
         startingPos = transform.position;
 
         GameObject[] points = GameObject.FindGameObjectsWithTag(Tags.WaypointTag);
+        Debug.Log("Look For Waypoints");
         waypoints = new GameObject[points.Length];
         foreach (GameObject g in points){
             PlayerTrackingPoint p = g.GetComponent<PlayerTrackingPoint>();
@@ -62,7 +63,7 @@ public class NewPlayerMovement : MonoBehaviour {
             rb.velocity *= 0.99f;
             Debug.Log("Limiting speed");
         }
-        Debug.Log(lateralSpeed);
+        //Debug.Log(lateralSpeed);
         
         //point the current velocity in the direction of the next waypoint
     }
