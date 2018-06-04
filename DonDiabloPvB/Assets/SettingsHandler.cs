@@ -25,4 +25,16 @@ public class SettingsHandler : MonoBehaviour {
             }
         }
     }
+
+    public void Resume()
+    {
+        for (int i = 0; i < obj.Count; i++)
+        {
+            obj[i].SetActive(false);
+        }
+
+    public void Retry()
+    {
+        
+    }
 }
