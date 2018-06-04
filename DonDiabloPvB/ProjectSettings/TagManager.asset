@@ -11,6 +11,8 @@ TagManager:
   - TargetRoadMesh
   - SettingHandler
   - Managers
+  - Menu
+  - UI
   layers:
   - Default
   - TransparentFX
