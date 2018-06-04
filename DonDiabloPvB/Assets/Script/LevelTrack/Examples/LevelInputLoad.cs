@@ -21,6 +21,8 @@ public class LevelInputLoad : MonoBehaviour {
             loader.PlaceLevel("LevelThree");
         }else if (Input.GetKeyDown(KeyCode.Alpha4)){
             loader.PlaceLevel("LevelFour");
+        }else if (Input.GetKeyDown(KeyCode.Alpha5)){
+            loader.PlaceLevel("Level");
         }
     }
 }

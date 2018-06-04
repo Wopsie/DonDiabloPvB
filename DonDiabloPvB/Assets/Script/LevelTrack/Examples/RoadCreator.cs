@@ -1,6 +1,7 @@
 ﻿#if (UNITY_EDITOR) 
 using SplineEditor;
 using UnityEngine;
+using System;
 
 [RequireComponent(typeof(PathCreator))]
 [RequireComponent(typeof(PathPlacer))]
@@ -69,7 +70,12 @@ public class RoadCreator : MonoBehaviour {
         vertexOffsetVectors = generator.vertexOffsetVectors;
         int textureRepeat = Mathf.RoundToInt(tiling * points.Length * spacing * 0.05f);
         renderer.sharedMaterial.mainTextureScale = new Vector2(1, textureRepeat);
+        GetComponent<PathPlacer>().CleanScene();
         GetComponent<PathPlacer>().GenerateRoadProperties(points, vertexOffsetVectors, roadWidth, true, true, true, true);
+    }
+
+    public void CleanScene(){
+        GetComponent<PathPlacer>().CleanScene();
     }
 
     Mesh GetRoad(){
@@ -77,6 +83,8 @@ public class RoadCreator : MonoBehaviour {
         points = path.CalculateEvenSpacePoints(spacing);
         return generator.CreateRoadMesh(points, false, roadWidth);
     }
+
+
     /*
 	Mesh CreateRoadMesh(Vector2[] points, bool isClosed){
         Vector3[] verts = new Vector3[points.Length * 2];

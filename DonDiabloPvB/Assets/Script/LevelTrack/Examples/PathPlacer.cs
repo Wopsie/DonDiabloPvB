@@ -150,8 +150,6 @@ public class PathPlacer : MonoBehaviour {
         Vector3 v = neoVec - g.transform.position;
         g.transform.localRotation = Quaternion.LookRotation(v);
        // g.transform.LookAt(trackedObjs[i + 1].transform);
-
-
     }
         
     void DestroyTrackedObjects(){
@@ -159,6 +157,13 @@ public class PathPlacer : MonoBehaviour {
             for (int i = 0; i < trackedObjs.Length; i++){
                 DestroyImmediate(trackedObjs[i]);
             }
+        }
+    }
+
+    public void CleanScene(){
+        GameObject[] g = GameObject.FindGameObjectsWithTag(Tags.WaypointTag);
+        for (int i = 0; i < g.Length; i++){
+            DestroyImmediate(g[i]);
         }
     }
 }
