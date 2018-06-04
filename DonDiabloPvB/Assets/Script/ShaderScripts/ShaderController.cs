@@ -1,26 +1,25 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ShaderController: MonoBehaviour
+public class ShaderController : MonoBehaviour
 {
     [SerializeField] Material mat;
     [SerializeField] private float speed, max;
     [SerializeField] private float currentPower, startPower;
     [SerializeField] private StartButton _startButton;
 
-    private bool _StartFading = false;
+    private bool _StartFading = true;
     private bool _FadeTransition = false;
     private float _SetShader = 0;
 
     private void Start()
     {
-        currentPower = 0;
+        currentPower = 0.2f;
         mat.SetFloat("_DisolveCount", currentPower);
     }
 
     private void Update()
     {
-        TransitionButton();
         CallTransition(_SetShader);
     }
 
@@ -36,54 +35,60 @@ public class ShaderController: MonoBehaviour
         {
             mat.SetFloat("_DisolveCount", currentPower);
             currentPower += -Time.deltaTime * speed;
+            ButtonTransition();
         }
 
         //this value will close the shader.
         else if (Set == 2)
         {
-            Debug.Log("help");
             mat.SetFloat("_DisolveCount", currentPower);
             currentPower += Time.deltaTime * speed;
+            ButtonTransition();
         }
 
         //this value will activate the button transition.
         else if (Set == 3)
         {
-            _StartFading = true;
-        }
-    }
-
-    //this function will set the shader to turn off and on to make the button transition.
-    private void TransitionButton()
-    {
-        if (_StartFading & !_FadeTransition)
-        {
-            _SetShader = 1;
-            CurrentValueCheck();
-        }
-
-        else if (_FadeTransition & _StartFading)
-        {
-            _SetShader = 2;
-            CurrentValueCheck();
-        }
-    }
-
-    //This function is used to check if the shaded is over his max value and changes booleans to change back.
-    private void CurrentValueCheck()
-    {
-        if (currentPower < max)
-        {
-            currentPower = max;
             _FadeTransition = true;
-            _StartFading = false;
-            _SetShader = 0;
+            _StartFading = true;
+            ButtonTransition();
         }
-        else if (currentPower > 0)
+    }
+
+    private void ButtonTransition()
+    {
+        if (_FadeTransition)
         {
-            currentPower = 0;
-            _startButton.ToChangeLevel();
-            _FadeTransition = false;
+            if (_StartFading)
+            {
+                if (currentPower > 0.1f)
+                {
+                    currentPower = 0.2f;
+                    _startButton.ToChangeLevel();
+                    _SetShader = 1;
+                    _StartFading = false;
+                }
+
+                if (currentPower < -0.15f)
+                {
+                    currentPower = -0.15f;
+                    Debug.Log("help");
+                    _SetShader = 2;
+                }
+
+            }
+            if (currentPower < -0.15f)
+            {
+                if (currentPower < -0.15)
+                {
+                    _SetShader = 0;
+                    _FadeTransition = false;
+                }
+            }
+        }
+
+        else if (currentPower < max) {
+            currentPower = max;
             _SetShader = 0;
         }
     }
