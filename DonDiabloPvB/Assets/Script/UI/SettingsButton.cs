@@ -15,4 +15,14 @@ public class SettingsButton : MonoBehaviour {
     {
         settingHandler.Settings();
     }
+
+    public void Retry()
+    {
+        settingHandler.Retry();
+    }
+
+    public void Resume()
+    {
+        settingHandler.Resume();
+    }
 }

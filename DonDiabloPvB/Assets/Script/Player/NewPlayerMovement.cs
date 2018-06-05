@@ -26,6 +26,8 @@ public class NewPlayerMovement : MonoBehaviour {
     private Vector3 startingPos;
     [HideInInspector]
     private Rigidbody rb;
+    private Vector3 velocity = new Vector3();
+    private bool update = true;
     private PlayerInput pInput;
     private float tapFrames = 1f;
     [SerializeField][Tooltip("The amount of time each frame that is taken from the remaining frames. Higher number means shorter tap window")]
@@ -56,6 +58,7 @@ public class NewPlayerMovement : MonoBehaviour {
     }
 
     private void FixedUpdate(){
+        if (update == true)
         rb.AddForce(transform.forward * (speedMultiplier * Time.deltaTime));
         float lateralSpeed = new Vector2(rb.velocity.x, rb.velocity.z).magnitude;
         rb.velocity = new Vector3(transform.forward.x * lateralSpeed, 0, transform.forward.z * lateralSpeed);
@@ -111,6 +114,25 @@ public class NewPlayerMovement : MonoBehaviour {
             tappedShield = false;
             Debug.Log("TapShield state FINISHED");
             tapFrames = 1f;
+        }
+    }
+
+    public void Velocity(string On_Off)
+    {
+        if (On_Off == "On")
+        {
+            update = true;
+            rb.velocity = new Vector3(velocity.x,velocity.y,velocity.z);
+        }
+        else if (On_Off == "Off")
+        {
+            update = false;
+            velocity = new Vector3(rb.velocity.x, rb.velocity.y, rb.velocity.z);
+            rb.velocity = Vector3.zero;
+        }
+        else
+        {
+            Debug.LogError("Can Only be 'On' or 'Off'");
         }
     }
 

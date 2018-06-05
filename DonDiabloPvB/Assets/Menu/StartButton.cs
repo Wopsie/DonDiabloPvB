@@ -5,19 +5,18 @@ using UnityEngine.UI;
 
 public class StartButton : MonoBehaviour
 {
-
     [SerializeField] private GameObject _menuUI;
     private AudioSource _audioSource;
     private LevelManager loader;
-
     [SerializeField] private ShaderController _shaderController;
-
     private int _level;
-
+    public int _Level
+    {
+        get { return _level; }
+        set { _level = value; }
+    }
     private Image _imageRenderer;
-
     [SerializeField] private List<Sprite> _levelSelectScreens = new List<Sprite>();
-
 
     void Awake()
     {
