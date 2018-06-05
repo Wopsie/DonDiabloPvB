@@ -13,10 +13,15 @@ public class LevelStarter : MonoBehaviour {
         player = GameObject.FindWithTag(Tags.PlayerTag);
         managers.GetComponent<ObstacleHelper>().enabled = true;
         movement = player.GetComponent<NewPlayerMovement>();
-        Debug.Log(movement);
         movement.enabled = true;
         //player.transform.position = movement.waypoints[0].transform.position;
         //enable the obstacle helper and player movement
         //set the position of the player on the right place
     }
+
+    private void OnDestroy(){
+        movement.enabled = false;
+        managers.GetComponent<ObstacleHelper>().enabled = false;
+    }
+
 }
