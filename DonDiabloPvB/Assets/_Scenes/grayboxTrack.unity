@@ -1728,6 +1728,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 114121195449624456, guid: 59329dbd9c65f4249a6e8551748d68ff,
+        type: 2}
+      propertyPath: obj.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4055200102563312, guid: 59329dbd9c65f4249a6e8551748d68ff, type: 2}
       propertyPath: m_LocalPosition.x
       value: 127.5
@@ -1773,6 +1778,11 @@ Prefab:
     - target: {fileID: 4745027791999084, guid: 59329dbd9c65f4249a6e8551748d68ff, type: 2}
       propertyPath: m_RootOrder
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114121195449624456, guid: 59329dbd9c65f4249a6e8551748d68ff,
+        type: 2}
+      propertyPath: AmountChilds
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 59329dbd9c65f4249a6e8551748d68ff, type: 2}
@@ -2517,6 +2527,18 @@ Prefab:
       propertyPath: _menuUI
       value: 
       objectReference: {fileID: 1241228557}
+    - target: {fileID: 1900220856092110, guid: 7c8a6c1e2e9acba40a0a8c2b8dd99b27, type: 2}
+      propertyPath: m_TagString
+      value: Menu
+      objectReference: {fileID: 0}
+    - target: {fileID: 1421730203550750, guid: 7c8a6c1e2e9acba40a0a8c2b8dd99b27, type: 2}
+      propertyPath: m_TagString
+      value: UI
+      objectReference: {fileID: 0}
+    - target: {fileID: 1938001570218868, guid: 7c8a6c1e2e9acba40a0a8c2b8dd99b27, type: 2}
+      propertyPath: m_TagString
+      value: UI
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7c8a6c1e2e9acba40a0a8c2b8dd99b27, type: 2}
   m_IsPrefabParent: 0

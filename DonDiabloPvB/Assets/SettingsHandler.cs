@@ -6,6 +6,15 @@ public class SettingsHandler : MonoBehaviour {
     [SerializeField]
     public List<GameObject> obj = new List<GameObject>();
 
+    private void Awake()
+    {
+        GameObject[] x = GameObject.FindGameObjectsWithTag("UI");
+        for (int i = 0; i < x.Length; i++)
+        {
+            obj.Add(x[i]);
+        }
+    }
+
     public void Settings()
     {
         SetActiveObjects();
