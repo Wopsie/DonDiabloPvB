@@ -15,25 +15,7 @@ public class TapObstclRecurring : Obstacle {
 
     private void Update(){
         base.CheckPlayerDistances();
-
-        //Debug.Log("RECURRING REQUIRED STATE IS: " + reqShieldState);
     }
-
-    /*
-    protected override void OnPlayerCollision(){
-        if(helper.player.currShieldState == reqShieldState || helper.player.tappedShield == true)
-        {
-            //player passes with success
-            helper.AddScore(scoreToAward);
-            Debug.Log("<color=green>VERRY G00D</color>");
-        }else{
-            //played dies
-            //reset player to the start of the track for the demo
-            helper.player.Reset();
-            Debug.Log("<color=red>SUKKEL</color>");
-        }
-    }
-    */
 
     private void OnTriggerEnter(Collider coll){
         if(waypointPositionIndex == 0)

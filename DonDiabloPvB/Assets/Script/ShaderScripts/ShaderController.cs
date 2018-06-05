@@ -1,12 +1,26 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class ShaderController : MonoBehaviour
 {
+    public static ShaderController Instance { get { return GetInstance(); } }
+
+    #region Singleton
+    private static ShaderController instance;
+
+    private static ShaderController GetInstance()
+    {
+        if (instance == null)
+        {
+            instance = FindObjectOfType<ShaderController>();
+        }
+
+        return instance;
+    }
+    #endregion
+
     [SerializeField] Material mat;
     [SerializeField] private float speed, max;
     [SerializeField] private float currentPower, startPower;
-    [SerializeField] private StartButton _startButton;
 
     private bool _StartFading = true;
     private bool _FadeTransition = false;
@@ -64,7 +78,7 @@ public class ShaderController : MonoBehaviour
                 if (currentPower > 0.1f)
                 {
                     currentPower = 0.2f;
-                    _startButton.ToChangeLevel();
+                    StartButton.Instance.ToChangeLevel();
                     _SetShader = 1;
                     _StartFading = false;
                 }

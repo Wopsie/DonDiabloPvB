@@ -1,37 +1,40 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class StartButton : MonoBehaviour
 {
 
-    [SerializeField] private GameObject _menuUI;
-    private AudioSource _audioSource;
-    private LevelManager loader;
+    public static StartButton Instance { get { return GetInstance(); } }
 
-    [SerializeField] private ShaderController _shaderController;
+    #region Singleton
+    private static StartButton instance;
 
-    private int _level;
+    private static StartButton GetInstance()
+    {
+        if(instance == null)
+        {
+            instance = FindObjectOfType<StartButton>();
+        }
 
-    private Image _imageRenderer;
+        return instance;
+    }
+    #endregion
 
     [SerializeField] private List<Sprite> _levelSelectScreens = new List<Sprite>();
+    [SerializeField] private GameObject _menuUI;
 
-
-    void Awake()
-    {
-        _audioSource = Camera.main.GetComponent<AudioSource>();
-        _imageRenderer = this.gameObject.GetComponent<Image>();
-        loader = FindObjectOfType < LevelManager>();
-    }
+    private AudioSource _audioSource;
+    private LevelManager loader;
+    private int _level;
+    private Image _imageRenderer;
 
     public void ButtonSelect()
     {
         //loader.PlaceLevel("LevelFour");
         Debug.Log(_level);
         _audioSource.Play();
-        _shaderController.TriggerEffect(1);
+        ShaderController.Instance.TriggerEffect(1);
         _menuUI.SetActive(false);
     }
 
@@ -40,14 +43,20 @@ public class StartButton : MonoBehaviour
         _level = levelNumber;
     }
 
+    public void ToChangeLevel()
+    {
+        ChangeLevelScreen();
+    }
+
+    private void Awake()
+    {
+        _audioSource = Camera.main.GetComponent<AudioSource>();
+        _imageRenderer = this.gameObject.GetComponent<Image>();
+        loader = FindObjectOfType<LevelManager>();
+    }
 
     private void ChangeLevelScreen()
     {
         _imageRenderer.sprite = _levelSelectScreens[_level];
-    }
-
-    public void ToChangeLevel()
-    {
-        ChangeLevelScreen();
     }
 }
