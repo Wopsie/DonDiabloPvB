@@ -13,6 +13,7 @@ TagManager:
   - Managers
   - Menu
   - UI
+  - SelectLevel
   layers:
   - Default
   - TransparentFX
