@@ -19,6 +19,6 @@ public class SelectButton : MonoBehaviour
         _audioSource.clip = _audioClip;
         //_audioSource.Play();
         ShaderController.Instance.TriggerEffect(3);
-        StartButton.Instance.LevelNumber(_levelNumber);
+        StartButton.Instance.PassLevelNumber(_levelNumber);
     }
 }

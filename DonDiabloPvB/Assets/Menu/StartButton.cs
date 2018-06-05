@@ -23,6 +23,7 @@ public class StartButton : MonoBehaviour
 
     [SerializeField] private List<Sprite> _levelSelectScreens = new List<Sprite>();
     [SerializeField] private GameObject _menuUI;
+    [SerializeField] private Text levelNumberText;
 
     private AudioSource _audioSource;
     private LevelManager loader;
@@ -31,16 +32,25 @@ public class StartButton : MonoBehaviour
 
     public void ButtonSelect()
     {
-        //loader.PlaceLevel("LevelFour");
+        string levelName = "Level" + _level.ToString();
+        loader.PlaceLevel(levelName);
         Debug.Log(_level);
         _audioSource.Play();
         ShaderController.Instance.TriggerEffect(1);
         _menuUI.SetActive(false);
     }
 
-    public void LevelNumber(int levelNumber)
+    public void PassLevelNumber(int levelNumber)
     {
         _level = levelNumber;
+
+        if (_level >= 0){
+            Debug.Log("Passed valid number");
+            levelNumberText.text = levelNumber.ToString();
+        }else{
+            Debug.Log("Passed invalid number");
+            levelNumberText.text = "No level selected";
+        }
     }
 
     public void ToChangeLevel()

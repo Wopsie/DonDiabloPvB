@@ -7,10 +7,8 @@ public class ShaderController : MonoBehaviour
     #region Singleton
     private static ShaderController instance;
 
-    private static ShaderController GetInstance()
-    {
-        if (instance == null)
-        {
+    private static ShaderController GetInstance(){
+        if (instance == null){
             instance = FindObjectOfType<ShaderController>();
         }
 

@@ -64,14 +64,14 @@ public class Obstacle : MonoBehaviour {
         SetObstacleInactive();
         if (helper.player.currShieldState == reqShieldState){
             //success
-            particleParent.SetActive(true);
             helper.AddScore(scoreToAward);
             Debug.Log("<color=green>VERRY G00D</color>");
+            particleParent.SetActive(true);
         }else{
             //failure
             //helper.player.Reset();
-            particleParent.SetActive(true);
             Debug.Log("<color=red>SUKKEL</color>");
+            particleParent.SetActive(true);
 
             //check for remaining health
 
@@ -132,11 +132,9 @@ public class Obstacle : MonoBehaviour {
         }
     }
 
-    protected virtual void PlayerInRange()
-    {
+    protected virtual void PlayerInRange(){
         Debug.Log("PLAYER IN RANGE");
         obstacleModel.SetActive(true);
-
     }
 
     public void ReceiveHelper(ObstacleHelper obstacleHelper) {

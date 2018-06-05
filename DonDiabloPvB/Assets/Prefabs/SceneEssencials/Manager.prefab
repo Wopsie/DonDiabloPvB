@@ -21,8 +21,8 @@ GameObject:
   - component: {fileID: 4608042554368648}
   - component: {fileID: 114685735014565774}
   - component: {fileID: 114469504431512828}
-  - component: {fileID: 114765258062382220}
   - component: {fileID: 114643827378465216}
+  - component: {fileID: 114627461373862360}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Managers
@@ -54,6 +54,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac10abe32e7224b41922a7b2c1f1c676, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114627461373862360
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1196174664913712}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ba3ceb27aa198e409e33cfa54d8548e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mat: {fileID: 2100000, guid: 8d9ddd12b0fb31b4c93a11154a927f03, type: 2}
+  speed: 0.5
+  max: -1.5
+  currentPower: 0.1
+  startPower: 0
 --- !u!114 &114643827378465216
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -78,16 +94,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   playerPassIndex: 0
---- !u!114 &114765258062382220
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1196174664913712}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02b8491d1dd95814f8b90c349cb50e27, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  objs: []
-  instances: 10000

@@ -17,8 +17,8 @@ public class ObstacleHelper : MonoBehaviour {
     public float CurrentScore { get { return currentScore; } }
     private Text scoreText;
 
-    private void Awake(){
-        Debug.Log("AWAKE HELPER");
+    private void OnEnable(){
+        Debug.Log("ENABLE HELPER");
         StartLevel();
     }
 
@@ -45,8 +45,7 @@ public class ObstacleHelper : MonoBehaviour {
         scoreText.text = currentScore.ToString();
     }
 
-    public Obstacle[] GetAllObstacles()
-    {
+    public Obstacle[] GetAllObstacles(){
         return obstacleColl;
     }
 
