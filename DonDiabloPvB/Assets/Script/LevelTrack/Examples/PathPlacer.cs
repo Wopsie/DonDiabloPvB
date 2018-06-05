@@ -1,5 +1,4 @@
-﻿#if (UNITY_EDITOR) 
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using SplineEditor;
@@ -11,15 +10,20 @@ public class PathPlacer : MonoBehaviour {
     [Tooltip("Frequency of building spawning. More is less")][Range(2, 20)]
     public int buildingFrequency = 5;
     [Range(10, 50)]
+    private int TunnelLength = 15;
     public float buildingDistance = 50;
     public GameObject trackProp1;
     [SerializeField]
     private GameObject tunnelGo;
+    [SerializeField]
+    private GameObject TunnelDoor;
+    [SerializeField]
+    private GameObject[] completeTunnel;
     [Tooltip("The object that the player will use to navigate the track")]
     public GameObject playerTrackPoint;
     public GameObject[] buildingClusters;
     private GameObject[] trackedObjs;
-
+   
     public void GenerateRoadProperties(Vector2[] points, Vector3[] dstToMeshEdgePerPoint, float meshWidth, bool placeProps, bool placePoints, bool placeBuildings, bool makeStatic){
         DestroyTrackedObjects();
 
@@ -38,6 +42,8 @@ public class PathPlacer : MonoBehaviour {
         }
 
         trackedObjs = new GameObject[points.Length];
+        completeTunnel = new GameObject[TunnelLength + 1];
+        
 
         for (int i = 0; i < points.Length; i++){
             trackedObjs[i] = Instantiate(playerTrackPoint, transform);
@@ -52,9 +58,9 @@ public class PathPlacer : MonoBehaviour {
                 GameObjectUtility.SetStaticEditorFlags(trackedObjs[i], StaticEditorFlags.OccluderStatic);
             }
 
-            if (i <= 5)
+            if (i <= (TunnelLength ))
             {
-                PlaceTunnel(points,i, dstToMeshEdgePerPoint, meshWidth);
+            //    PlaceTunnel(points,i, dstToMeshEdgePerPoint, meshWidth, trackedObjs[i]);
 
             }
             else
@@ -82,7 +88,20 @@ public class PathPlacer : MonoBehaviour {
                 }
             }
         }
-        // placeTunnelParts(trackedObjs, 5);
+        for (int i = 0; i <= TunnelLength; i++)
+        {
+
+            PlaceTunnel(points, i, dstToMeshEdgePerPoint, meshWidth, false);
+            if (i == TunnelLength)
+            {
+                // use this function to spawn the door
+                /*
+                PlaceTunnel(points, i, dstToMeshEdgePerPoint, meshWidth, false);
+                print("spawn the door");
+                */
+            }
+        }
+      
         //new Vector3(points[i].x, 0, points[i].y);
     }
 
@@ -140,26 +159,40 @@ public class PathPlacer : MonoBehaviour {
         }
     }
 
-    void PlaceTunnel(Vector2[] trackedObjs, int i, Vector3[] dstToMeshEdgePerPoint, float meshWidth)
+    void PlaceTunnel(Vector2[] trackedObjs, int i, Vector3[] dstToMeshEdgePerPoint, float meshWidth, bool lastpiece)
     {
+
         GameObject g = tunnelGo;
-
+     
+     
         Vector3 shinVec = new Vector3(trackedObjs[i].x, 0, trackedObjs[i].y);
-        g = Instantiate(tunnelGo, shinVec + new Vector3(dstToMeshEdgePerPoint[i].x, 0, dstToMeshEdgePerPoint[i].y)  * meshWidth * 0f, Quaternion.identity);
+        
+       
+        completeTunnel[i] = Instantiate(g, shinVec + new Vector3(dstToMeshEdgePerPoint[i].x, 0, dstToMeshEdgePerPoint[i].y) * meshWidth * 0f, Quaternion.identity);
         Vector3 neoVec = new Vector3(trackedObjs[i + 1].x, 0, trackedObjs[i + 1].y);
-        Vector3 v = neoVec - g.transform.position;
-        g.transform.localRotation = Quaternion.LookRotation(v);
-       // g.transform.LookAt(trackedObjs[i + 1].transform);
+        Vector3 v = neoVec - completeTunnel[i].transform.position;
 
+        completeTunnel[i].transform.localRotation = Quaternion.LookRotation(v);
+        completeTunnel[i].transform.Rotate(new Vector3(0, 90, 0));
+        completeTunnel[i].transform.localScale = new Vector3(6.6f, 12f, 12f);
+        
+       
 
     }
-        
+
     void DestroyTrackedObjects(){
         if (trackedObjs != null){
             for (int i = 0; i < trackedObjs.Length; i++){
                 DestroyImmediate(trackedObjs[i]);
+               
+            }
+        }
+        if (completeTunnel != null)
+        {
+            for (int i = 0; i < completeTunnel.Length; i++)
+            {
+                DestroyImmediate(completeTunnel[i]);
             }
         }
     }
 }
-#endif
