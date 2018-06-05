@@ -83,13 +83,20 @@ public class Obstacle : MonoBehaviour {
         //Debug.Log((waypointPositionIndex - obstacleDrawDistance) + " DRAW TRIGGER" + helper.playerPassIndex);
         //Debug.Log((waypointPositionIndex - obstacleAnimationTriggerDist) + " ANIMATION TRIGGER" + helper.playerPassIndex);
         if ((waypointPositionIndex - obstacleDrawDistance) <= helper.playerPassIndex){
-            obstacleModel.SetActive(true);
             Debug.Log("REVEAL OBSTACLE");
+            PlayerInRange();
         }
         if ((waypointPositionIndex - obstacleAnimationTriggerDist) == helper.playerPassIndex){
             Debug.Log("START ANIMATION");
             anim.SetBool("PlayerInRange", true);
         }
+    }
+
+    protected virtual void PlayerInRange()
+    {
+        Debug.Log("PLAYER IN RANGE");
+        obstacleModel.SetActive(true);
+
     }
 
     public void ReceiveHelper(ObstacleHelper obstacleHelper) {
