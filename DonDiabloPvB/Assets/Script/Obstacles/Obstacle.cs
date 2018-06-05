@@ -30,6 +30,8 @@ public class Obstacle : MonoBehaviour {
     protected Animator anim;
     [SerializeField]
     protected ShieldState reqShieldState = ShieldState.NoShield;
+    [SerializeField]
+    protected GameObject particleParent;
 
     private void Awake() {
         SetInduvidualData();
@@ -55,8 +57,34 @@ public class Obstacle : MonoBehaviour {
             OnPlayerCollision();
     }
 
-    protected virtual void OnPlayerCollision() { }
+    /// <summary>
+    /// Behaviour for when player collides with obstacle
+    /// </summary>
+    protected virtual void OnPlayerCollision() {
+        SetObstacleInactive();
+        if (helper.player.currShieldState == reqShieldState){
+            //success
+            particleParent.SetActive(true);
+            helper.AddScore(scoreToAward);
+            Debug.Log("<color=green>VERRY G00D</color>");
+        }else{
+            //failure
+            //helper.player.Reset();
+            particleParent.SetActive(true);
+            Debug.Log("<color=red>SUKKEL</color>");
+
+            //check for remaining health
+
+            //if health is not zero, display hitscreen & glitch effects
+
+            //else
+                //crash and display death screen while shader closes the windscreen
+        }
+    }
     
+    /// <summary>
+    /// Set all the data necessary for functional generic obstacle
+    /// </summary>
     protected virtual void SetInduvidualData(){
         collider = gameObject.AddComponent<SphereCollider>();
         collider.radius = 5;
@@ -66,6 +94,20 @@ public class Obstacle : MonoBehaviour {
         obstacleModel.SetActive(false);
     }
 
+    /// <summary>
+    /// empty all the containers to avoid unexpected things after player has collideded
+    /// </summary>
+    protected virtual void SetObstacleInactive(){
+        collider.enabled = false;
+        collider = null;
+        obstacleModel.SetActive(false);
+        anim = null;
+    }
+
+    /// <summary>
+    /// Snap the obstacle to the closest tracking point to ensure it sits on the track properly
+    /// </summary>
+    /// <param name="coll"></param>
     protected void SnapToClosestTrackPoint(Collider coll){
         if (coll.gameObject.tag == Tags.WaypointTag && waypointPositionIndex == 0){
             //Snap position
@@ -80,16 +122,21 @@ public class Obstacle : MonoBehaviour {
     /// Draw and/or animate obstacle depending on player distance
     /// </summary>
     protected void CheckPlayerDistances(){
-        //Debug.Log((waypointPositionIndex - obstacleDrawDistance) + " DRAW TRIGGER" + helper.playerPassIndex);
-        //Debug.Log((waypointPositionIndex - obstacleAnimationTriggerDist) + " ANIMATION TRIGGER" + helper.playerPassIndex);
         if ((waypointPositionIndex - obstacleDrawDistance) <= helper.playerPassIndex){
-            obstacleModel.SetActive(true);
             Debug.Log("REVEAL OBSTACLE");
+            PlayerInRange();
         }
         if ((waypointPositionIndex - obstacleAnimationTriggerDist) == helper.playerPassIndex){
             Debug.Log("START ANIMATION");
             anim.SetBool("PlayerInRange", true);
         }
+    }
+
+    protected virtual void PlayerInRange()
+    {
+        Debug.Log("PLAYER IN RANGE");
+        obstacleModel.SetActive(true);
+
     }
 
     public void ReceiveHelper(ObstacleHelper obstacleHelper) {

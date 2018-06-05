@@ -19,6 +19,7 @@ public class TapObstclRecurring : Obstacle {
         //Debug.Log("RECURRING REQUIRED STATE IS: " + reqShieldState);
     }
 
+    /*
     protected override void OnPlayerCollision(){
         if(helper.player.currShieldState == reqShieldState || helper.player.tappedShield == true)
         {
@@ -32,6 +33,7 @@ public class TapObstclRecurring : Obstacle {
             Debug.Log("<color=red>SUKKEL</color>");
         }
     }
+    */
 
     private void OnTriggerEnter(Collider coll){
         if(waypointPositionIndex == 0)
