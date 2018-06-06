@@ -4,14 +4,28 @@ using UnityEngine;
 
 public class Tunnel : Obstacle {
 
-    private int obstacleDrawDistance = 100;
+    //private int obstacleDrawDistance = 10;
     private Animator animator;
 
-    private void Start()
+   
+
+    protected override void CheckPlayerDistances()
     {
-        animator = gameObject.GetComponent<Animator>();
+        print(waypointPositionIndex + " waypointpostionindex");
+        print(helper + " helper");
+        if ((waypointPositionIndex - 10) <= helper.playerPassIndex)
+        {
+            Debug.Log("Play Tunnel animation");
+
+        }
     }
 
+    protected override void SetInduvidualData()
+    {
+        animator = gameObject.GetComponent<Animator>();
+
+
+    }
     protected override void PlayerInRange()
     {
         Debug.Log("OPEN DEUR OFZO");

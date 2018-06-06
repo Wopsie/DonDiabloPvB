@@ -51,6 +51,8 @@ public class Obstacle : MonoBehaviour {
     }
 
     private void OnTriggerEnter(Collider coll) {
+        Debug.Log("OnTriggerEnter");
+        print(coll + " collider");
         SnapToClosestTrackPoint(coll);
 
         if (coll.gameObject.tag == Tags.PlayerTag)
@@ -109,6 +111,7 @@ public class Obstacle : MonoBehaviour {
     /// </summary>
     /// <param name="coll"></param>
     protected void SnapToClosestTrackPoint(Collider coll){
+
         if (coll.gameObject.tag == Tags.WaypointTag && waypointPositionIndex == 0){
             //Snap position
             transform.position = new Vector3(coll.gameObject.transform.position.x, transform.position.y, coll.gameObject.transform.position.z);
@@ -121,7 +124,7 @@ public class Obstacle : MonoBehaviour {
     /// <summary>
     /// Draw and/or animate obstacle depending on player distance
     /// </summary>
-    protected void CheckPlayerDistances(){
+    protected virtual void CheckPlayerDistances(){
         if ((waypointPositionIndex - obstacleDrawDistance) <= helper.playerPassIndex){
             Debug.Log("REVEAL OBSTACLE");
             PlayerInRange();
