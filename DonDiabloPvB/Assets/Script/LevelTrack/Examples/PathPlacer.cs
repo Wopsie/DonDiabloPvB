@@ -58,7 +58,7 @@ public class PathPlacer : MonoBehaviour {
                 GameObjectUtility.SetStaticEditorFlags(trackedObjs[i], StaticEditorFlags.OccluderStatic);
             }
 
-            if (i <= (TunnelLength ))
+            if (i <= (TunnelLength))
             {
             //    PlaceTunnel(points,i, dstToMeshEdgePerPoint, meshWidth, trackedObjs[i]);
 
@@ -88,19 +88,29 @@ public class PathPlacer : MonoBehaviour {
                 }
             }
         }
+        //spawn the start tunnel
         for (int i = 0; i <= TunnelLength; i++)
         {
 
             PlaceTunnel(points, i, dstToMeshEdgePerPoint, meshWidth, false);
             if (i == TunnelLength)
             {
-                // use this function to spawn the door
-                /*
-                PlaceTunnel(points, i, dstToMeshEdgePerPoint, meshWidth, false);
+                
+                // change the boolean to spawn the door
+                PlaceTunnel(points, i, dstToMeshEdgePerPoint, meshWidth, true);
                 print("spawn the door");
-                */
             }
         }
+        //spawn the end tunnel
+        for (int i = TunnelLength; i <= TunnelLength; i--)
+        {
+            if (i == TunnelLength)
+            {
+                PlaceTunnel(points, i, dstToMeshEdgePerPoint, meshWidth, true);
+            }
+            PlaceTunnel(points, i, dstToMeshEdgePerPoint, meshWidth, false);
+        }
+
       
         //new Vector3(points[i].x, 0, points[i].y);
     }
@@ -159,12 +169,17 @@ public class PathPlacer : MonoBehaviour {
         }
     }
 
-    void PlaceTunnel(Vector2[] trackedObjs, int i, Vector3[] dstToMeshEdgePerPoint, float meshWidth, bool lastpiece)
+    void PlaceTunnel(Vector2[] trackedObjs, int i, Vector3[] dstToMeshEdgePerPoint, float meshWidth, bool doorPiece)
     {
-
+        bool startTunnel = false;
+      
         GameObject g = tunnelGo;
-     
-     
+        if (doorPiece)
+        {
+            g = TunnelDoor;
+        }
+
+        print(g.name);
         Vector3 shinVec = new Vector3(trackedObjs[i].x, 0, trackedObjs[i].y);
         
        
@@ -178,6 +193,7 @@ public class PathPlacer : MonoBehaviour {
         
        
     }
+  
 
     void DestroyTrackedObjects(){
         if (trackedObjs != null){
