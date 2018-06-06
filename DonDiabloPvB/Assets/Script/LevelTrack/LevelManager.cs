@@ -6,6 +6,7 @@ public class LevelManager : MonoBehaviour {
     string replayLevelName;
 
     public void PlaceLevel(string levelName){
+        Debug.Log(levelName);
         LevelData level = Resources.Load<LevelData>(levelName);
         g = Instantiate(level.levelObject);
         replayLevelName = levelName;

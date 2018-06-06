@@ -750,13 +750,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a7777af3851ded40ace2571448632ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _menuUI: {fileID: 822516295}
-  _shaderController: {fileID: 0}
   _levelSelectScreens:
   - {fileID: 21300000, guid: 8ae0f4ae19fdf594aa28e0947f6bc0ee, type: 3}
   - {fileID: 21300000, guid: 8ae0f4ae19fdf594aa28e0947f6bc0ee, type: 3}
   - {fileID: 21300000, guid: 8ae0f4ae19fdf594aa28e0947f6bc0ee, type: 3}
   - {fileID: 21300000, guid: 8ae0f4ae19fdf594aa28e0947f6bc0ee, type: 3}
+  _menuUI: {fileID: 822516295}
+  levelNumberText: {fileID: 0}
 --- !u!65 &626325946
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1355,8 +1355,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _audioClip: {fileID: 8300000, guid: d0d39e8a8ae021e4da1038b43a593f97, type: 3}
   _IsSelectButton: 1
-  _shaderController: {fileID: 857899896}
-  _startButton: {fileID: 626325945}
   _levelNumber: 2
 --- !u!65 &742797604
 BoxCollider:
@@ -1601,7 +1599,6 @@ MonoBehaviour:
   max: -0.64
   currentPower: 0
   startPower: 0
-  _startButton: {fileID: 626325945}
 --- !u!1 &1010614542
 GameObject:
   m_ObjectHideFlags: 0
@@ -1750,8 +1747,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _audioClip: {fileID: 8300000, guid: 3fa6816cd3b63f94babf509562b6fdd7, type: 3}
   _IsSelectButton: 1
-  _shaderController: {fileID: 857899896}
-  _startButton: {fileID: 626325945}
   _levelNumber: 1
 --- !u!65 &1018835527
 BoxCollider:
@@ -2719,8 +2714,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _audioClip: {fileID: 8300000, guid: 911ea8f6470305148af6dfbbb92532b3, type: 3}
   _IsSelectButton: 1
-  _shaderController: {fileID: 857899896}
-  _startButton: {fileID: 626325945}
   _levelNumber: 0
 --- !u!65 &1693121094
 BoxCollider:
@@ -2873,8 +2866,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _audioClip: {fileID: 8300000, guid: 7225300acea7257408b7d8540684aa92, type: 3}
   _IsSelectButton: 1
-  _shaderController: {fileID: 857899896}
-  _startButton: {fileID: 626325945}
   _levelNumber: 3
 --- !u!65 &1746380255
 BoxCollider:
