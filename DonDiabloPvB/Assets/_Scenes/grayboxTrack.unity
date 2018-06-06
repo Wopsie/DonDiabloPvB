@@ -2125,6 +2125,34 @@ Prefab:
       propertyPath: _startButton
       value: 
       objectReference: {fileID: 792898709}
+    - target: {fileID: 1779024508897000, guid: 354f6eb0b4c433e4e86f358f37b910f8, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 23336329736050820, guid: 354f6eb0b4c433e4e86f358f37b910f8,
+        type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 3aa9cdaa9e5c0ea46adb9a4f9735b161, type: 2}
+    - target: {fileID: 114164143546896676, guid: 354f6eb0b4c433e4e86f358f37b910f8,
+        type: 2}
+      propertyPath: mat
+      value: 
+      objectReference: {fileID: 2100000, guid: 3aa9cdaa9e5c0ea46adb9a4f9735b161, type: 2}
+    - target: {fileID: 23547883641346946, guid: 354f6eb0b4c433e4e86f358f37b910f8,
+        type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1345055846650216, guid: 354f6eb0b4c433e4e86f358f37b910f8, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 23547883641346946, guid: 354f6eb0b4c433e4e86f358f37b910f8,
+        type: 2}
+      propertyPath: m_DynamicOccludee
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 354f6eb0b4c433e4e86f358f37b910f8, type: 2}
   m_IsPrefabParent: 0

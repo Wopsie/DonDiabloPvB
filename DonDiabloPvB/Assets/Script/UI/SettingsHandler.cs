@@ -3,12 +3,28 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class SettingsHandler : MonoBehaviour {
+
+    public static SettingsHandler Instance { get { return GetInstance(); } }
+
+    #region Singleton
+    private static SettingsHandler instance;
+
+    private static SettingsHandler GetInstance()
+    {
+        if (instance == null)
+        {
+            instance = FindObjectOfType<SettingsHandler>();
+        }
+
+        return instance;
+    }
+    #endregion
+
     [SerializeField]
     public List<GameObject> obj = new List<GameObject>();
     private NewPlayerMovement PlayerMove;
     private AudioSource audioSource;
     private LevelManager levelManager;
-    private StartButton startButton;
 
     private void Awake()
     {
@@ -16,7 +32,6 @@ public class SettingsHandler : MonoBehaviour {
         GameObject[] x = GameObject.FindGameObjectsWithTag("UI");
         audioSource = Camera.main.GetComponent<AudioSource>();
         levelManager = GameObject.Find("LevelLoader").GetComponent<LevelManager>();
-        startButton = GameObject.FindGameObjectWithTag("SelectLevel").GetComponent<StartButton>();
 
         for (int i = 0; i < x.Length; i++)
         {
