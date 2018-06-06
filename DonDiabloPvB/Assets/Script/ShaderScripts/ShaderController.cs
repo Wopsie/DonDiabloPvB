@@ -76,7 +76,7 @@ public class ShaderController : MonoBehaviour
                 if (currentPower > 0.1f)
                 {
                     currentPower = 0.2f;
-                    StartButton.Instance.ToChangeLevel();
+                    //StartButton.Instance.ToChangeLevel();
                     _SetShader = 1;
                     _StartFading = false;
                 }

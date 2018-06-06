@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SettingsHandler : MonoBehaviour {
+public class SettingsHandler : MonoBehaviour
+{
 
     public static SettingsHandler Instance { get { return GetInstance(); } }
 
@@ -19,7 +20,6 @@ public class SettingsHandler : MonoBehaviour {
         return instance;
     }
     #endregion
-
     [SerializeField]
     public List<GameObject> obj = new List<GameObject>();
     private NewPlayerMovement PlayerMove;
@@ -36,7 +36,7 @@ public class SettingsHandler : MonoBehaviour {
         for (int i = 0; i < x.Length; i++)
         {
             obj.Add(x[i]);
-            if (x[i].name == "Settings")
+            if (x[i].tag == "UI")
             {
                 x[i].SetActive(false);
             }
