@@ -1721,6 +1721,22 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 114162816957510758, guid: 967dd633f6580cf44a976400d349b842,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 57a3196611ef4ef4c843d0fb02cc16e3,
+        type: 3}
+    - target: {fileID: 224874140788219412, guid: 967dd633f6580cf44a976400d349b842,
+        type: 2}
+      propertyPath: m_LocalScale.x
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 224279862331852688, guid: 967dd633f6580cf44a976400d349b842,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.46
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 967dd633f6580cf44a976400d349b842, type: 2}
   m_IsPrefabParent: 0
