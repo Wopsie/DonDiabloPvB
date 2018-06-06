@@ -19,6 +19,8 @@ public class RoadCreator : MonoBehaviour {
     public float tiling = 1;
     [HideInInspector]
     public Vector2[] points;
+    public Vector3[] buildingPositions;
+    public PropData[] propDataArray;
 
     public MeshFilter filter;
     public new MeshRenderer renderer;
@@ -70,8 +72,11 @@ public class RoadCreator : MonoBehaviour {
         vertexOffsetVectors = generator.vertexOffsetVectors;
         int textureRepeat = Mathf.RoundToInt(tiling * points.Length * spacing * 0.05f);
         renderer.sharedMaterial.mainTextureScale = new Vector2(1, textureRepeat);
-        GetComponent<PathPlacer>().CleanScene();
-        GetComponent<PathPlacer>().GenerateRoadProperties(points, vertexOffsetVectors, roadWidth, true, true, true, true);
+        PathPlacer placer = GetComponent<PathPlacer>();
+        placer.CleanScene();
+        placer.GenerateRoadProperties(points, vertexOffsetVectors, roadWidth, true, true, true, true);
+        buildingPositions = placer.buildingPosColl;
+        propDataArray = placer.propPosRotData;
     }
 
     public void CleanScene(){

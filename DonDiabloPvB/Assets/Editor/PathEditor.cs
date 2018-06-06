@@ -16,8 +16,7 @@ namespace SplineEditor
         const float segmentSelectDistanceThres = .1f;
         int selectedSegmentIndex = -1;
 
-        public override void OnInspectorGUI()
-        {
+        public override void OnInspectorGUI(){
             base.OnInspectorGUI();
 
             EditorGUI.BeginChangeCheck();
@@ -57,8 +56,7 @@ namespace SplineEditor
             creator.gameObject.name = s;
         }
 
-        void PathInput()
-        {
+        void PathInput(){
             Event guiEvent = Event.current;
             Vector2 mousePos = HandleUtility.GUIPointToWorldRay(guiEvent.mousePosition).origin;
 
@@ -113,13 +111,10 @@ namespace SplineEditor
         }
 
         void Draw(){
-            if (creator.displayPoints)
-            {
-                for (int i = 0; i < Path.NumSegments; i++)
-                {
+            if (creator.displayPoints){
+                for (int i = 0; i < Path.NumSegments; i++){
                     Vector2[] points = Path.GetPointsInSegment(i);
-                    if (creator.displayCntrlPoints)
-                    {
+                    if (creator.displayCntrlPoints){
                         Handles.color = Color.black;
                         Handles.DrawLine(points[1], points[0]);
                         Handles.DrawLine(points[2], points[3]);
@@ -128,10 +123,8 @@ namespace SplineEditor
                     Handles.DrawBezier(points[0], points[3], points[1], points[2], segmentColor, null, 2);
                 }
 
-                for (int i = 0; i < Path.NumPoints; i++)
-                {
-                    if (i % 3 == 0 || creator.displayCntrlPoints)
-                    {
+                for (int i = 0; i < Path.NumPoints; i++){
+                    if (i % 3 == 0 || creator.displayCntrlPoints){
                         Handles.color = (i % 3 == 0) ? creator.anchorCol : creator.controlColor;
                         float handleSize = (i % 3 == 0) ? creator.anchorDia : creator.controlDia;
                         Vector2 newPos = Handles.FreeMoveHandle(Path[i], Quaternion.identity, handleSize, Vector2.zero, Handles.CylinderHandleCap);
