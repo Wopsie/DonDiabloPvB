@@ -3,26 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class SettingsButton : MonoBehaviour {
-    private GameObject settings;
-    private SettingsHandler settingHandler;
-
-    void Start()
-    {
-        settingHandler = GameObject.FindGameObjectWithTag("SettingHandler").GetComponent<SettingsHandler>();
-    }
 
     public void SettingButton()
     {
-        settingHandler.Settings();
+        SettingsHandler.Instance.Settings();
     }
 
     public void Retry()
     {
-        settingHandler.Retry();
+        SettingsHandler.Instance.Retry();
     }
 
     public void Resume()
     {
-        settingHandler.Resume();
+        SettingsHandler.Instance.Resume();
     }
 }

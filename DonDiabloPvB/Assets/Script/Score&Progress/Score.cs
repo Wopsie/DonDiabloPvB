@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class Score : MonoBehaviour {
     private string songName;
     private int score;
-   // public int CurrentScore { get { return currentScore; } set { currentScore = value; } }
     [SerializeField]
     private Text text;
 	// Use this for initialization
