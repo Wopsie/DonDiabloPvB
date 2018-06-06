@@ -36,6 +36,7 @@ public class NewPlayerMovement : MonoBehaviour {
     public GameObject[] waypoints;
 
     private void OnEnable(){
+        SetPlayerPosition(transform.position);
         pInput = GetComponent<PlayerInput>();
         pInput.OnPressButton += SetShieldState;
         pInput.OnHoldButton += SetShieldState;
@@ -43,7 +44,6 @@ public class NewPlayerMovement : MonoBehaviour {
 
         rb = GetComponent<Rigidbody>();
 
-        startingPos = transform.position;
 
         GameObject[] points = GameObject.FindGameObjectsWithTag(Tags.WaypointTag);
         Debug.Log("Look For Waypoints");
@@ -53,6 +53,8 @@ public class NewPlayerMovement : MonoBehaviour {
             g.transform.position = new Vector3(g.transform.position.x, 0, g.transform.position.z);
             waypoints[p.PointIndex] = g;
         }
+
+        transform.position = startingPos;
     }
 
     private void FixedUpdate(){
@@ -86,7 +88,7 @@ public class NewPlayerMovement : MonoBehaviour {
 
         float dist = Vector3.Distance(transform.position, new Vector3(waypoints[currWaypointIndex].transform.position.x, 0.75f, waypoints[currWaypointIndex].transform.position.z));
         //if the player is within a certain range of the waypoint go to the next one
-        if (dist <= movementBias) {
+        if ((dist * Time.deltaTime ) * 10 <= (movementBias * Time.deltaTime) * 10) {
             currWaypointIndex++;
             passingDistance = dist;
         }
@@ -132,6 +134,11 @@ public class NewPlayerMovement : MonoBehaviour {
         {
             Debug.LogError("Can Only be 'On' or 'Off'");
         }
+    }
+
+    public void SetPlayerPosition(Vector3 vec){
+        startingPos = vec;
+        transform.position = startingPos;
     }
 
     public void Reset(){

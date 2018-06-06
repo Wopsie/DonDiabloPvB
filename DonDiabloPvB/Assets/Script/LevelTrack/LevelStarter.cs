@@ -14,7 +14,7 @@ public class LevelStarter : MonoBehaviour {
         managers.GetComponent<ObstacleHelper>().enabled = true;
         movement = player.GetComponent<NewPlayerMovement>();
         movement.enabled = true;
-        //player.transform.position = movement.waypoints[0].transform.position;
+        movement.SetPlayerPosition(new Vector3(movement.waypoints[0].transform.position.x, 0.75f, movement.waypoints[0].transform.position.z));
         //enable the obstacle helper and player movement
         //set the position of the player on the right place
     }
