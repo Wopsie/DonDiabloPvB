@@ -51,6 +51,8 @@ public class RoadEditor : Editor{
             level.roadWidth = creator.roadWidth;
             level.textureTiling = creator.tiling;
             level.pointSpacing = creator.spacing;
+            level.buildingsPositions = creator.buildingPositions;
+            level.propData = creator.propDataArray;
 
             //remove unnecessary components in preperation of prefab creation
             DestroyImmediate(g.GetComponent<RoadCreator>());
