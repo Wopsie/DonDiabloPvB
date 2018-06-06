@@ -34,7 +34,12 @@ public class PathPlacer : MonoBehaviour {
             Debug.LogWarning("Props cannot be placed if points are not placed");
 
         if (!placePoints)
+        {
+            print("pathplacer return?");
+
             return;
+        }
+          
 
         if (!playerTrackPoint){
             Debug.LogWarning("The path placer has no player tracking point obj assigned");
@@ -63,7 +68,7 @@ public class PathPlacer : MonoBehaviour {
                 GameObjectUtility.SetStaticEditorFlags(trackedObjs[i], StaticEditorFlags.OccluderStatic);
             }
 
-            if (i <= (TunnelLength )){
+            if (i <= (TunnelLength))
                 //PlaceTunnel(points,i, dstToMeshEdgePerPoint, meshWidth, trackedObjs[i]);
             }else{
                 //place props along track edges
@@ -87,17 +92,21 @@ public class PathPlacer : MonoBehaviour {
                 }
             }
         }
-        for (int i = 0; i <= TunnelLength; i++){
-
+        //spawn the start tunnel
+        for (int i = 0; i <= TunnelLength - 1; i++)
+        {
+            
             PlaceTunnel(points, i, dstToMeshEdgePerPoint, meshWidth, false);
-            if (i == TunnelLength){
+            if (i == TunnelLength - 1)
+            {
                 // use this function to spawn the door
                 /*
                 PlaceTunnel(points, i, dstToMeshEdgePerPoint, meshWidth, false);
                 print("spawn the door");
-                */
             }
         }
+     
+
       
         //new Vector3(points[i].x, 0, points[i].y);
     }
@@ -190,26 +199,33 @@ public class PathPlacer : MonoBehaviour {
         }
     }
 
-    void PlaceTunnel(Vector2[] trackedObjs, int i, Vector3[] dstToMeshEdgePerPoint, float meshWidth, bool lastpiece)
+    void PlaceTunnel(Vector2[] Pointvec, int i, Vector3[] dstToMeshEdgePerPoint, float meshWidth, bool doorPiece)
     {
-
+      
         GameObject g = tunnelGo;
-     
-     
-        Vector3 shinVec = new Vector3(trackedObjs[i].x, 0, trackedObjs[i].y);
+        if (doorPiece)
+        {
+            g = TunnelDoor;
+        }
+
+        print(g.name);
+        Vector3 shinVec = new Vector3(Pointvec[i].x, 0, Pointvec[i].y);
         
        
-        completeTunnel[i] = Instantiate(g, shinVec + new Vector3(dstToMeshEdgePerPoint[i].x, 0, dstToMeshEdgePerPoint[i].y) * meshWidth * 0f, Quaternion.identity);
-        Vector3 neoVec = new Vector3(trackedObjs[i + 1].x, 0, trackedObjs[i + 1].y);
+        completeTunnel[i] = Instantiate(g, shinVec + new Vector3(dstToMeshEdgePerPoint[i].x, 0, dstToMeshEdgePerPoint[i].y) * meshWidth * 0f, Quaternion.identity,trackedObjs[i].transform);
+        Vector3 neoVec = new Vector3(Pointvec[i + 1].x, 0, Pointvec[i + 1].y);
         Vector3 v = neoVec - completeTunnel[i].transform.position;
 
         completeTunnel[i].transform.localRotation = Quaternion.LookRotation(v);
-        completeTunnel[i].transform.Rotate(new Vector3(0, 90, 0));
-        completeTunnel[i].transform.localScale = new Vector3(6.6f, 12f, 12f);
-        
-       
-    }
+        if (!doorPiece)
+        {
+            completeTunnel[i].transform.Rotate(new Vector3(0, 90, 0));
+            completeTunnel[i].transform.localScale = new Vector3(13.2f, 24f, 24f);
+        }
 
+
+    }
+  
     /// <summary>
     /// destroy the tracked playerpoints & tunnel pieces in the scene
     /// </summary>
@@ -222,6 +238,10 @@ public class PathPlacer : MonoBehaviour {
         }
         if (completeTunnel != null){
             for (int i = 0; i < completeTunnel.Length; i++){
+
+            for (int i = 0; i < completeTunnel.Length; i++)
+            {
+                print("do you destroy");
                 DestroyImmediate(completeTunnel[i]);
             }
         }
