@@ -17,6 +17,20 @@ public class LevelStarter : MonoBehaviour {
         movement.SetPlayerPosition(new Vector3(movement.waypoints[0].transform.position.x, 0.75f, movement.waypoints[0].transform.position.z));
         //enable the obstacle helper and player movement
         //set the position of the player on the right place
+
+        //add all of the buildings and props to the GPUInstancer
+        for (int i = 0; i < LevelManager.Instance.level.buildingsPositions.Length; i++){
+            //for every building position that you have, randomly select a building to place there
+            GPUInstancing.Instance.AddObj(LevelManager.Instance.level.backgroundObjsColl[Random.Range(1, 3)], LevelManager.Instance.level.buildingsPositions[i], Vector3.one, Quaternion.Euler(0, (int)Random.Range(0, 360), 0),this.transform, false);
+        }
+        
+        /*
+        //add props to GPUInstancer
+        //PROPDATA IS NULL, FIGURE OUT WHY
+        for (int i = 0; i < LevelManager.Instance.level.propData.Length; i++){
+            GPUInstancing.Instance.AddObj(LevelManager.Instance.level.backgroundObjsColl[LevelManager.Instance.level.backgroundObjsColl.Count], LevelManager.Instance.level.propData[i].position, Vector3.one, LevelManager.Instance.level.propData[i].rotation, this.transform, false);
+        }
+        */
     }
 
     private void OnDestroy(){

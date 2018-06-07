@@ -59,27 +59,25 @@ public class GPUInstancing : MonoBehaviour{
         }
     }
 
-    public ObjData AddObj(Transform _transform, Transform _parentTransform = null){
-        ObjData _objData = new ObjData(_transform.position, _transform.localScale, _transform.rotation, _parentTransform);
-
-        if (batchesByName.ContainsKey(_transform.name)){
-            batchesByName[_transform.name].ObjDatas.Add(_objData);
-        }else{
-            Batch _batch = new Batch{
-                ObjDatas = new List<ObjData>{
-                    _objData,
-                },
-                objMesh = _transform.GetComponent<MeshFilter>().sharedMesh,
-                objMat = _transform.gameObject.GetComponent<MeshRenderer>().sharedMaterial,
-            };
-            _batch.ObjDatas.Add(_objData);
-
-            batchesByName.Add(_transform.name, _batch);
+    public ObjData AddObj(Transform trans, Vector3 pos, Vector3 scale, Quaternion rot, Transform parentTrans = null, bool useTrans = true){
+        //Create new ObjData with the passed data. Then check what to do with batching
+        ObjData addedObjData = (useTrans) ? new ObjData(trans.position, trans.localScale, trans.rotation, parentTrans) : new ObjData(pos, scale, rot, parentTrans);
+        
+        //check if this object has already been batched or if relevant batch is full
+        if (batchesByName.ContainsKey(trans.name)){
+            //object batch already exists. Check if it is not overflowing
+            if(batchesByName[trans.name].ObjDatas.Count < 1000){
+                batchesByName[trans.name].ObjDatas.Add(addedObjData);
+            }else{
+                CreateNewBatch(addedObjData, trans);
+            }
+        }else{//create new batch for the object
+            CreateNewBatch(addedObjData, trans);
         }
-        return _objData;
+        return addedObjData;
     }
 
-    public void RemoveObjByParent(Transform _parentTransform){
+    public void RemoveObjByParent(Transform parentTrans){
         List<string> _keysToRemove = new List<string>();
 
         foreach (KeyValuePair<string, Batch> _batchByStringPair in batchesByName){
@@ -87,7 +85,7 @@ public class GPUInstancing : MonoBehaviour{
 
             for (int i = _objectDatas.Count - 1; i >= 0; i--){
                 ObjData _objData = _objectDatas[i];
-                if (_objData.parent != _parentTransform) { continue; }
+                if (_objData.parent != parentTrans) { continue; }
                 _objectDatas.RemoveAt(i);
             }
 
@@ -99,6 +97,27 @@ public class GPUInstancing : MonoBehaviour{
         foreach (string _key in _keysToRemove){
             batchesByName.Remove(_key);
         }
+    }
+
+    /// <summary>
+    /// Create a new batch with the given object data & transform
+    /// </summary>
+    /// <param name="initObj"></param>
+    /// <param name="initTrans"></param>
+    private void CreateNewBatch(ObjData initObj, Transform initTrans){
+        //create the new batch with passed values
+        Batch batch = new Batch{
+            ObjDatas = new List<ObjData>
+            {
+                initObj,
+            },
+            objMesh = initTrans.GetComponent<MeshFilter>().sharedMesh,
+            objMat = initTrans.gameObject.GetComponent<MeshRenderer>().sharedMaterial,
+        };
+        //not sure if this creates a duplicate
+        batch.ObjDatas.Add(initObj);
+        //add new batch the list of batches
+        batchesByName.Add(initTrans.name, batch);
     }
 
     private void RenderBatches(){

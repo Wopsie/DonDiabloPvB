@@ -11,7 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd34497cf4547451db812bd83f9d69a7, type: 3}
   m_Name: DoorTest2339
   m_EditorClassIdentifier: 
-  levelObject: {fileID: 1905866475423420, guid: 4a8a2f225dae32445b6ea4fdda45cfe5,
+  levelObject: {fileID: 1905866475423420, guid: 3b3dfa88d0f08114baca6152b50db893,
     type: 2}
   roadWidth: 2
   points:
@@ -51,5 +51,6 @@ MonoBehaviour:
   - {x: -40.699764, y: 58.13456}
   - {x: -42.11393, y: 59.54882}
   - {x: -43.528137, y: 60.963043}
+  buildingsPositions: []
   pointSpacing: 2
   textureTiling: 1

@@ -55,43 +55,53 @@ public class PathPlacer : MonoBehaviour {
             buildingPosColl = new Vector3[dstToMeshEdgePerPoint.Length * 2];
         }
 
-        for (int i = 0; i < points.Length; i++){
+        for (int i = 0; i < points.Length; i++)
+        {
             trackedObjs[i] = Instantiate(playerTrackPoint, transform);
             trackedObjs[i].tag = Tags.WaypointTag;
             trackedObjs[i].transform.position = new Vector3(points[i].x, 0, points[i].y);
             trackedObjs[i].transform.localScale = Vector3.one * 0.5f;
             trackedObjs[i].GetComponent<PlayerTrackingPoint>().PointIndex = i;
 
-            if (finalize){
+            if (finalize)
+            {
                 GameObjectUtility.SetStaticEditorFlags(trackedObjs[i], StaticEditorFlags.BatchingStatic);
                 GameObjectUtility.SetStaticEditorFlags(trackedObjs[i], StaticEditorFlags.OccludeeStatic);
                 GameObjectUtility.SetStaticEditorFlags(trackedObjs[i], StaticEditorFlags.OccluderStatic);
             }
 
             if (i <= (TunnelLength))
+            {
                 //PlaceTunnel(points,i, dstToMeshEdgePerPoint, meshWidth, trackedObjs[i]);
-            }else{
+            }
+            else
+            {
                 //place props along track edges
-                if (placeProps){
+                if (placeProps)
+                {
                     PlaceRoadProps(trackedObjs[i], dstToMeshEdgePerPoint, meshWidth, finalize, i);
                     PlaceRoadProps(trackedObjs[i], dstToMeshEdgePerPoint, meshWidth, finalize, i);
                 }
             }
 
             //place buildings set distance from track with certain margin
-            if (placeBuildings){
+            if (placeBuildings)
+            {
 
-                if(buildingClusters == null){
+                if (buildingClusters == null)
+                {
                     Debug.LogError("No building cluster prefabs selected");
                     return;
                 }
 
-                if (i % (buildingClusters.Length * buildingFrequency) == 0){
+                if (i % (buildingClusters.Length * buildingFrequency) == 0)
+                {
                     PlaceBuildings(1, trackedObjs[i], dstToMeshEdgePerPoint, finalize, i);
                     PlaceBuildings(1, trackedObjs[i], dstToMeshEdgePerPoint, finalize, i);
                 }
             }
         }
+        
         //spawn the start tunnel
         for (int i = 0; i <= TunnelLength - 1; i++)
         {
@@ -103,6 +113,7 @@ public class PathPlacer : MonoBehaviour {
                 /*
                 PlaceTunnel(points, i, dstToMeshEdgePerPoint, meshWidth, false);
                 print("spawn the door");
+                */
             }
         }
      
@@ -237,8 +248,6 @@ public class PathPlacer : MonoBehaviour {
             }
         }
         if (completeTunnel != null){
-            for (int i = 0; i < completeTunnel.Length; i++){
-
             for (int i = 0; i < completeTunnel.Length; i++)
             {
                 print("do you destroy");

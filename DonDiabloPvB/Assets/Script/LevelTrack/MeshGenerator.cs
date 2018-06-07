@@ -13,10 +13,10 @@ public class MeshGenerator : MonoBehaviour{
     
     private void Start(){
         //Get the name of the parent object as it matches the LevelData object name
-        string dataName = this.transform.parent.gameObject.name;
-        dataName = dataName.Replace("Prefab(Clone)", "");
+        //string dataName = this.transform.parent.gameObject.name;
+        //dataName = dataName.Replace("Prefab(Clone)", "");
         //Load Leveldata for rendering the mesh
-        LevelData level = Resources.Load<LevelData>(dataName);
+        //LevelData level = Resources.Load<LevelData>(dataName);
 
         if (!filter || !rend){
             filter = GetComponent<MeshFilter>();
@@ -24,10 +24,10 @@ public class MeshGenerator : MonoBehaviour{
         }
 
         //copy over values from level data for mesh generation
-        Vector2[] pointsArr = level.points;
-        float meshWidth = level.roadWidth;
-        float texTiling = level.textureTiling;
-        float pointSpacing = level.pointSpacing;
+        Vector2[] pointsArr = LevelManager.Instance.level.points;
+        float meshWidth = LevelManager.Instance.level.roadWidth;
+        float texTiling = LevelManager.Instance.level.textureTiling;
+        float pointSpacing = LevelManager.Instance.level.pointSpacing;
 
         //Set mesh filter mesh to generated mesh & texture it
         filter.mesh = CreateRoadMesh(pointsArr, false, meshWidth);

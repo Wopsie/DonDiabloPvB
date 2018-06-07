@@ -53,6 +53,11 @@ public class RoadEditor : Editor{
             level.pointSpacing = creator.spacing;
             level.buildingsPositions = creator.buildingPositions;
             level.propData = creator.propDataArray;
+            //Store the meshes and materials of the buildings for GPUInstancing
+            foreach (GameObject obj in creator.backgroundObjs){
+                level.backgroundObjsColl.Add(obj.transform);
+                //level.backgroundObjsColl.Add(obj.GetComponent<MeshRenderer>().sharedMaterial, obj.GetComponent<MeshFilter>().sharedMesh);
+            }
 
             //remove unnecessary components in preperation of prefab creation
             DestroyImmediate(g.GetComponent<RoadCreator>());

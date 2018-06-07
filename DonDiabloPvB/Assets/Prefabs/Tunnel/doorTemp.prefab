@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 23889257319015986}
   - component: {fileID: 95154082873225902}
   m_Layer: 0
-  m_Name: Hold Obstacle
+  m_Name: doorTemp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
