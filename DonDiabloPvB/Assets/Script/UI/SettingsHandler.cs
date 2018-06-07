@@ -21,7 +21,7 @@ public class SettingsHandler : MonoBehaviour
     }
     #endregion
     [SerializeField]
-    public List<GameObject> obj = new List<GameObject>();
+    public List<GameObject> SettingObjects = new List<GameObject>();
     private NewPlayerMovement PlayerMove;
     private AudioSource audioSource;
     private LevelManager levelManager;
@@ -29,45 +29,30 @@ public class SettingsHandler : MonoBehaviour
     private void Awake()
     {
         PlayerMove = GameObject.FindGameObjectWithTag("Player").GetComponent<NewPlayerMovement>();
-        GameObject[] x = GameObject.FindGameObjectsWithTag("UI");
+        SettingObjects.AddRange(GameObject.FindGameObjectsWithTag("SettingUI"));
+        SettingObjects.AddRange(GameObject.FindGameObjectsWithTag("SettingButton"));
         audioSource = Camera.main.GetComponent<AudioSource>();
         levelManager = GameObject.Find("LevelLoader").GetComponent<LevelManager>();
-
-        for (int i = 0; i < x.Length; i++)
+        for (int i = 0; i < SettingObjects.Count; i++)
         {
-            obj.Add(x[i]);
-            if (x[i].tag == "UI")
-            {
-                x[i].SetActive(false);
-            }
+            SettingObjects[i].SetActive(false);
         }
     }
 
     public void Settings()
     {
-        SetActiveObjects();
-        audioSource.Pause();
-        //shader.TriggerEffect(0);//Is Broken will be fixed 
-    }
-
-    public void SetActiveObjects()
-    {
+        SetButtonActive(false);
         PlayerMove.Velocity("Off");
-        for (int i = 0; i < obj.Count; i++)
-        {
-            if (obj[i].name == "Settings")
-            {
-                obj[i].SetActive(true);
-            }
-        }
+        audioSource.Pause();
+        SettingUI(true);
+        ShaderController.Instance.TriggerEffect(0); 
     }
 
     public void Resume()
     {
-        for (int i = 0; i < obj.Count; i++)
-        {
-            obj[i].SetActive(false);
-        }
+        Debug.Log("Hi");
+        SettingUI(false);
+        SetButtonActive(true);
         StartCoroutine(WaitTillBegin());
     }
 
@@ -77,9 +62,32 @@ public class SettingsHandler : MonoBehaviour
         //levelManager.PlaceLevel("Level" + startButton._Level);
     }
 
+    public void SetButtonActive(bool a)
+    {
+        for (int i = 0; i < SettingObjects.Count; i++)
+        {
+            if (SettingObjects[i].tag == "SettingButton")
+            {
+                SettingObjects[i].SetActive(a);
+            }
+        }
+    }
+
+    public void SettingUI(bool a)
+    {
+        for (int i = 0; i < SettingObjects.Count; i++)
+        {
+            if (SettingObjects[i].tag == "SettingUI")
+            {
+                SettingObjects[i].SetActive(a);
+            }
+        }
+    }
+
     IEnumerator WaitTillBegin()
     {
         yield return new WaitForSeconds(2);
+        SetButtonActive(true);
         audioSource.Play();
         PlayerMove.Velocity("On");
     }

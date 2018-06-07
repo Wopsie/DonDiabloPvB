@@ -21,21 +21,25 @@ public class StartButton : MonoBehaviour
     }
     #endregion
 
-    [SerializeField] private GameObject _menuUI;
+    [SerializeField] private GameObject _parent;
     [SerializeField] private Text levelNumberText;
 
     private AudioSource _audioSource;
     private LevelManager loader;
     private int _level;
 
+    void Awake()
+    {
+        _audioSource = Camera.main.GetComponent<AudioSource>();
+        loader = FindObjectOfType<LevelManager>();
+    }
+
     public void ButtonSelect()
     {
-        //string levelName = "Level" + _level.ToString();
-        //loader.PlaceLevel(levelName);
-        Debug.Log(_level);
         _audioSource.Play();
         ShaderController.Instance.TriggerEffect(1);
-        _menuUI.SetActive(false);
+        SettingsHandler.Instance.SetButtonActive(true);
+        _parent.SetActive(false);
     }
 
     public void PassLevelNumber(int levelNumber)
@@ -48,13 +52,7 @@ public class StartButton : MonoBehaviour
         ChangeLevelScreen();
     }
 
-    private void Awake()
-    {
-        _audioSource = Camera.main.GetComponent<AudioSource>();
-        loader = FindObjectOfType<LevelManager>();
-    }
-
-    private void ChangeLevelScreen()
+    void ChangeLevelScreen()
     {
         PassLevelNumber(_level);
 
