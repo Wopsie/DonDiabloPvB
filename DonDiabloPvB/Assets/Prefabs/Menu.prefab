@@ -582,7 +582,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a7777af3851ded40ace2571448632ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _menuUI: {fileID: 1283756058240972}
+  _menuUI: []
   levelNumberText: {fileID: 114893438887723802}
 --- !u!114 &114266142653587774
 MonoBehaviour:
