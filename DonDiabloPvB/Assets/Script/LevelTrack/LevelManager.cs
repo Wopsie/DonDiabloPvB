@@ -1,13 +1,24 @@
 ﻿using UnityEngine;
 
 public class LevelManager : MonoBehaviour {
+    public static LevelManager Instance { get { return GetInstance(); } }
+    #region singleton
+    private static LevelManager instance;
+    private static LevelManager GetInstance(){
+        if(instance == null){
+            instance = FindObjectOfType<LevelManager>();
+        }
+        return instance;
+    }
+    #endregion
 
-    GameObject g;
-    string replayLevelName;
+    public LevelData level;
+    private GameObject g;
+    private string replayLevelName;
 
     public void PlaceLevel(string levelName){
         Debug.Log(levelName);
-        LevelData level = Resources.Load<LevelData>(levelName);
+        level = Resources.Load<LevelData>(levelName);
         g = Instantiate(level.levelObject);
         replayLevelName = levelName;
     }

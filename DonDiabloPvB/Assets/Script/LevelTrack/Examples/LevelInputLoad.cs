@@ -10,9 +10,9 @@ public class LevelInputLoad : MonoBehaviour {
 
     private void Update(){
         if (Input.GetKeyDown(KeyCode.Alpha0)){
-            loader.PlaceLevel("TestLevel");
+            loader.PlaceLevel("DoorTest2339");
         }else if (Input.GetKeyDown(KeyCode.Alpha1)){
-            loader.PlaceLevel("LevelOne");
+            loader.PlaceLevel("GPULevel");
         }else if (Input.GetKeyDown(KeyCode.Alpha2)){
             loader.PlaceLevel("LevelTwo");
         }else if (Input.GetKeyDown(KeyCode.Alpha3)){

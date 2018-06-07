@@ -16,7 +16,7 @@ public class Spawner : MonoBehaviour {
     private void Update(){
         if (Input.GetKeyDown(KeyCode.Mouse0)){
             for (int i = 0; i < instances; i++){
-               //instancing.AddObject(objs[0], new Vector3(Random.Range(-maxPos.x, maxPos.x), Random.Range(-maxPos.y, maxPos.y), Random.Range(-maxPos.z, maxPos.z)));
+                //GPUInstancing.Instance.AddObj(objs[0]);
             }
         }else if (Input.GetKeyDown(KeyCode.Mouse1)){
             for (int i = 0; i < instances; i++){
