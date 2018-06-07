@@ -1,6 +1,11 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:DonDiabloPvB/Assets/Prefabs/Tunnel/tunnelNewpf.prefab.meta
 guid: a9a147f851c10d44a9c7fe2cffdc532d
 timeCreated: 1528361330
+=======
+guid: b61fcb4af9acdda4da401c80f5fecbcd
+timeCreated: 1528360457
+>>>>>>> 474f4357eef74fa82494c5edae248e560b345322:DonDiabloPvB/Assets/Prefabs/Tunnel/tunnelNewpf.prefab.meta
 licenseType: Free
 NativeFormatImporter:
   externalObjects: {}
