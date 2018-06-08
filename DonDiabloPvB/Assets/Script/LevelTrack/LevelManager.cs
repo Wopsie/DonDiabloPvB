@@ -12,6 +12,7 @@ public class LevelManager : MonoBehaviour {
     }
     #endregion
 
+    [HideInInspector]
     public LevelData level;
     private GameObject g;
     private string replayLevelName;

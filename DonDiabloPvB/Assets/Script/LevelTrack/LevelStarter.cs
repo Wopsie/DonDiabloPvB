@@ -19,11 +19,12 @@ public class LevelStarter : MonoBehaviour {
         //set the position of the player on the right place
 
         //add all of the buildings and props to the GPUInstancer
-        for (int i = 0; i < LevelManager.Instance.level.buildingsPositions.Length; i++){
+        for (int i = 0; i < LevelManager.Instance.level.buildingsPositions.Count; i++){
             //for every building position that you have, randomly select a building to place there
-            GPUInstancing.Instance.AddObj(LevelManager.Instance.level.backgroundObjsColl[Random.Range(1, 3)], LevelManager.Instance.level.buildingsPositions[i], Vector3.one, Quaternion.Euler(0, (int)Random.Range(0, 360), 0),this.transform, false);
+            GPUInstancing.Instance.AddObjTrans(LevelManager.Instance.level.backgroundObjsColl[Random.Range(0, 3)], this.transform);
+            //GPUInstancing.Instance.AddObjTrans(LevelManager.Instance.level.backgroundObjsColl[Random.Range(0, 3)], LevelManager.Instance.level.buildingsPositions[i], this.transform);
         }
-        
+
         /*
         //add props to GPUInstancer
         //PROPDATA IS NULL, FIGURE OUT WHY
