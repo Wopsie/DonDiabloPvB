@@ -33,7 +33,7 @@ public class ObstacleHelper : MonoBehaviour {
     private Text scoreText;
 
     private void OnEnable(){
-        Debug.Log("ENABLE HELPER");
+        //Debug.Log("ENABLE HELPER");
         StartLevel();
     }
 
@@ -54,7 +54,7 @@ public class ObstacleHelper : MonoBehaviour {
             maxScore += obstacleColl[i].scoreToAward;
         }
 
-        Debug.Log(obstacleColl.Length);
+        Debug.Log(maxScore);
     }
 
     public void AddScore(float score){

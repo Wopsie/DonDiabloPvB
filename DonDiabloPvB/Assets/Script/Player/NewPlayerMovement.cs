@@ -59,7 +59,7 @@ public class NewPlayerMovement : MonoBehaviour {
 
         rb = GetComponent<Rigidbody>();
         GameObject[] points = GameObject.FindGameObjectsWithTag(Tags.WaypointTag);
-        Debug.Log("Look For Waypoints");
+        //Debug.Log("Look For Waypoints");
         waypoints = new GameObject[points.Length];
         foreach (GameObject g in points){
             PlayerTrackingPoint p = g.GetComponent<PlayerTrackingPoint>();
