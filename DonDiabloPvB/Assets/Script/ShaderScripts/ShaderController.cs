@@ -84,7 +84,6 @@ public class ShaderController : MonoBehaviour
                 if (currentPower < -0.15f)
                 {
                     currentPower = -0.15f;
-                    Debug.Log("help");
                     _SetShader = 2;
                 }
 
@@ -100,8 +99,9 @@ public class ShaderController : MonoBehaviour
         }
 
         else if (currentPower < max) {
-            currentPower = max;
             _SetShader = 0;
+            currentPower = max;
+           
         }
     }
 }

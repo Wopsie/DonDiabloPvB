@@ -4,13 +4,13 @@ public class SelectButton : MonoBehaviour
 {
     private AudioSource _audioSource;
     [SerializeField] private AudioClip _audioClip;
-    [SerializeField] private bool _IsSelectButton = false;
     [SerializeField] private int _levelNumber;
     [SerializeField] private GameObject ReadyButton;
 
     private void Awake()
     {
         _audioSource = Camera.main.GetComponent<AudioSource>();
+        ReadyButton.SetActive(false);
     }
 
     public void ButtonSelect()
