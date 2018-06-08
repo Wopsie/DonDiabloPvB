@@ -5,9 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class SettingsHandler : MonoBehaviour
 {
-
-    public static SettingsHandler Instance { get { return GetInstance(); } }
-
     #region Singleton
     private static SettingsHandler instance;
 
@@ -21,15 +18,14 @@ public class SettingsHandler : MonoBehaviour
         return instance;
     }
     #endregion
+    public static SettingsHandler Instance { get { return GetInstance(); } }
     [SerializeField]
     public List<GameObject> SettingObjects = new List<GameObject>();
-    private NewPlayerMovement PlayerMove;
     private AudioSource audioSource;
     private LevelManager levelManager;
 
     private void Awake()
     {
-        PlayerMove = GameObject.FindGameObjectWithTag("Player").GetComponent<NewPlayerMovement>();
         SettingObjects.AddRange(GameObject.FindGameObjectsWithTag("SettingUI"));
         SettingObjects.AddRange(GameObject.FindGameObjectsWithTag("SettingButton"));
         audioSource = Camera.main.GetComponent<AudioSource>();
@@ -43,7 +39,7 @@ public class SettingsHandler : MonoBehaviour
     public void Settings()
     {
         SetButtonActive(false);
-        PlayerMove.Velocity("Off");
+        NewPlayerMovement.Instance.Velocity("Off");
         audioSource.Pause();
         SettingUI(true);
         ShaderController.Instance.TriggerEffect(2); 
