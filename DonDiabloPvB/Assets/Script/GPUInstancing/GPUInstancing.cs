@@ -9,7 +9,7 @@ public class ObjData{
     public Quaternion rot;
 
     public Matrix4x4 matrix{
-        get {return Matrix4x4.TRS(GetPos, rot, scale);}
+        get { return Matrix4x4.TRS(GetPos, rot, scale); }
     }
 
     public ObjData(Vector3 localPosition, Vector3 scale, Quaternion rot, Transform parent = null){
@@ -51,6 +51,7 @@ public class GPUInstancing : MonoBehaviour{
     }
     #endregion
 
+    [SerializeField]
     private Dictionary<string, Batch> batchesByName = new Dictionary<string, Batch>();
 
     void Update(){
@@ -67,7 +68,7 @@ public class GPUInstancing : MonoBehaviour{
         //check if this object has already been batched or if relevant batch is full
         if (batchesByName.ContainsKey(trans.name)){
             //object batch already exists. Check if it is not overflowing
-            if(batchesByName[trans.name].ObjDatas.Count < 1000){
+            if (batchesByName[trans.name].ObjDatas.Count < 1000){
                 batchesByName[trans.name].ObjDatas.Add(addedObjData);
             }else{
                 CreateNewBatch(addedObjData, trans);
@@ -108,8 +109,7 @@ public class GPUInstancing : MonoBehaviour{
     private void CreateNewBatch(ObjData initObj, Transform initTrans){
         //create the new batch with passed values
         Batch batch = new Batch{
-            ObjDatas = new List<ObjData>
-            {
+            ObjDatas = new List<ObjData>{
                 initObj,
             },
             objMesh = initTrans.GetComponent<MeshFilter>().sharedMesh,

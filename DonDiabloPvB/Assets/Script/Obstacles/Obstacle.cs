@@ -5,8 +5,7 @@ using UnityEngine;
 /// <summary>
 /// obstacle base class
 /// </summary>
-public class Obstacle : MonoBehaviour {
-
+public class Obstacle : MonoBehaviour{
     //obstacles share certain properties, this class allows us to set defaults for every obstacle if we are not sure about certain unique details
     //every obstacle has a type
     //every obstacle has access to ObstacleHelper (still thinking about optimal way to do this)
@@ -15,7 +14,7 @@ public class Obstacle : MonoBehaviour {
     //every obstacle has particle/animation for "initiation"
     //every obstacle has colour shift as player get closer (?)
 
-    protected enum ObstacleType {
+    protected enum ObstacleType{
         Tap,
         Hold,
     };
@@ -33,11 +32,11 @@ public class Obstacle : MonoBehaviour {
     [SerializeField]
     protected GameObject particleParent;
 
-    private void Awake() {
+    private void Awake(){
         SetInduvidualData();
     }
 
-    private void Update() {
+    private void Update(){
         CheckPlayerDistances();
 
         //add gameplay functionality
@@ -50,7 +49,7 @@ public class Obstacle : MonoBehaviour {
         //Reset player "die"
     }
 
-    private void OnTriggerEnter(Collider coll) {
+    private void OnTriggerEnter(Collider coll){
         Debug.Log("OnTriggerEnter");
         print(coll + " collider");
         SnapToClosestTrackPoint(coll);
@@ -62,9 +61,11 @@ public class Obstacle : MonoBehaviour {
     /// <summary>
     /// Behaviour for when player collides with obstacle
     /// </summary>
-    protected virtual void OnPlayerCollision() {
+    protected virtual void OnPlayerCollision(){
         SetObstacleInactive();
-        if (helper.player.currShieldState == reqShieldState){
+
+        //if (helper.player.currShieldState == reqShieldState){
+        if(helper.player.currShieldState == reqShieldState) { 
             //success
             helper.AddScore(scoreToAward);
             Debug.Log("<color=green>VERRY G00D</color>");
@@ -80,14 +81,15 @@ public class Obstacle : MonoBehaviour {
             //if health is not zero, display hitscreen & glitch effects
 
             //else
-                //crash and display death screen while shader closes the windscreen
+            //crash and display death screen while shader closes the windscreen
         }
     }
-    
+
     /// <summary>
     /// Set all the data necessary for functional generic obstacle
     /// </summary>
     protected virtual void SetInduvidualData(){
+        Debug.Log(gameObject.name + " Setting induvidual data");
         collider = gameObject.AddComponent<SphereCollider>();
         collider.radius = 5;
         collider.isTrigger = true;
@@ -111,7 +113,6 @@ public class Obstacle : MonoBehaviour {
     /// </summary>
     /// <param name="coll"></param>
     protected void SnapToClosestTrackPoint(Collider coll){
-
         if (coll.gameObject.tag == Tags.WaypointTag && waypointPositionIndex == 0){
             //Snap position
             transform.position = new Vector3(coll.gameObject.transform.position.x, transform.position.y, coll.gameObject.transform.position.z);
@@ -119,6 +120,8 @@ public class Obstacle : MonoBehaviour {
             //rotate
             transform.LookAt(helper.player.waypoints[waypointPositionIndex + 1].transform.position);
         }
+
+        Debug.Log("Snapping " + gameObject.name + " To point " + waypointPositionIndex);
     }
 
     /// <summary>
@@ -140,7 +143,7 @@ public class Obstacle : MonoBehaviour {
         obstacleModel.SetActive(true);
     }
 
-    public void ReceiveHelper(ObstacleHelper obstacleHelper) {
-        helper = obstacleHelper;
+    public void ReceiveHelper(){
+        helper = ObstacleHelper.Instance;
     }
 }

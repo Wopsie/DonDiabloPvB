@@ -2,11 +2,11 @@
 using SplineEditor;
 using UnityEngine;
 using System;
+using System.Collections.Generic;
 
 [RequireComponent(typeof(PathCreator))]
 [RequireComponent(typeof(PathPlacer))]
-public class RoadCreator : MonoBehaviour {
-
+public class RoadCreator : MonoBehaviour{
     [Range(0.5f, 2.5f)]
     public float spacing = 1;
     public float roadWidth = 1;
@@ -20,7 +20,7 @@ public class RoadCreator : MonoBehaviour {
     [HideInInspector]
     public Vector2[] points;
     [HideInInspector]
-    public Vector3[] buildingPositions;
+    public List<Transform> buildingPositions;
     [HideInInspector]
     public PropData[] propDataArray;
     [HideInInspector]
@@ -36,7 +36,7 @@ public class RoadCreator : MonoBehaviour {
 
 
     public void UpdateRoad(){
-        if(!renderer || !filter){
+        if (!renderer || !filter){
             Debug.LogWarning("No target mesh components selected; Automatic detection");
             renderer = GameObject.FindWithTag(Tags.targetRoadMeshTag).GetComponent<MeshRenderer>();
             filter = GameObject.FindWithTag(Tags.targetRoadMeshTag).GetComponent<MeshFilter>();
@@ -82,7 +82,8 @@ public class RoadCreator : MonoBehaviour {
         PathPlacer placer = GetComponent<PathPlacer>();
         placer.CleanScene();
         placer.GenerateRoadProperties(points, vertexOffsetVectors, roadWidth, true, true, true, true);
-        buildingPositions = placer.buildingPosColl;
+        buildingPositions = placer.buildingPosList;
+
         Debug.Log(placer.propPosRotData + " " + placer.propPosRotData.Length);
         propDataArray = placer.propPosRotData;
 
@@ -105,63 +106,5 @@ public class RoadCreator : MonoBehaviour {
         points = path.CalculateEvenSpacePoints(spacing);
         return generator.CreateRoadMesh(points, false, roadWidth);
     }
-
-
-    /*
-	Mesh CreateRoadMesh(Vector2[] points, bool isClosed){
-        Vector3[] verts = new Vector3[points.Length * 2];
-        Vector2[] uvs = new Vector2[verts.Length];
-        vertexOffsetVectors = new Vector3[points.Length];
-        int numTris = 2 * (points.Length - 1) + ((isClosed) ? 2 : 0);
-        int[] tris = new int[numTris * 3];
-        int vertIndex = 0;
-        int trisIndex = 0;
-
-        for (int i = 0; i < points.Length; i++) {
-            Vector2 forward = Vector2.zero;
-            if (i < points.Length - 1 || isClosed) {
-                forward += points[(i + 1)%points.Length] - points[i];
-            }
-            if (i > 0 || isClosed) {
-                forward += points[i] - points[(i - 1 + points.Length)%points.Length];
-            }
-
-            forward.Normalize();
-            Vector2 left = new Vector2(-forward.y, forward.x);
-            //store the left vector to calculate the edges of the mesh later
-            vertexOffsetVectors[i] = left;
-            verts[vertIndex] = points[i] + left * roadWidth * 0.5f;
-            verts[vertIndex + 1] = points[i] - left * roadWidth * 0.5f;
-
-            //verts[vertIndex] = new Vector3(points[i].x, 0, points[i].y) + left * roadWidth * 0.5f;
-            //verts[vertIndex + 1] = new Vector3(points[i].x, 0, points[i].y) + left * roadWidth * 0.5f;
-
-
-            float completionPercent = i / (float)(points.Length - 1);
-            float v = 1 - Mathf.Abs(2 * completionPercent - 1);
-            uvs[vertIndex] = new Vector2(0, v);
-            uvs[vertIndex + 1] = new Vector2(1, v);
-
-            if (i < points.Length - 1 || isClosed){
-                tris[trisIndex] = vertIndex;
-                tris[trisIndex + 1] = (vertIndex + 2) % verts.Length;
-                tris[trisIndex + 2] = vertIndex + 1;
-
-                tris[trisIndex + 3] = vertIndex + 1;
-                tris[trisIndex + 4] = (vertIndex + 2) % verts.Length;
-                tris[trisIndex + 5] = (vertIndex + 3) % verts.Length;
-            }
-
-            vertIndex += 2;
-            trisIndex += 6;
-        }
-
-        Mesh mesh = new Mesh();
-        mesh.vertices = verts;
-        mesh.triangles = tris;
-        mesh.uv = uvs;
-        return mesh;
-    }
-    */
 }
 #endif

@@ -6,6 +6,21 @@ using UnityEngine.UI;
 /// </summary>
 public class ObstacleHelper : MonoBehaviour {
 
+    public static ObstacleHelper Instance { get { return GetInstance(); } }
+
+    #region singleton
+    private static ObstacleHelper instance;
+
+    private static ObstacleHelper GetInstance()
+    {
+        if (instance == null)
+        {
+            instance = FindObjectOfType<ObstacleHelper>();
+        }
+        return instance;
+    }
+    #endregion
+
     private Obstacle[] obstacleColl = null;
     [HideInInspector]
     public NewPlayerMovement player = null;
@@ -35,9 +50,11 @@ public class ObstacleHelper : MonoBehaviour {
         obstacleColl = FindObjectsOfType<Obstacle>();
         //loop to pass helper reference to obstacles
         for (int i = 0; i < obstacleColl.Length; i++){
-            obstacleColl[i].ReceiveHelper(this);
+            obstacleColl[i].ReceiveHelper();
             maxScore += obstacleColl[i].scoreToAward;
         }
+
+        Debug.Log(obstacleColl.Length);
     }
 
     public void AddScore(float score){
