@@ -22,12 +22,14 @@ public class SettingsHandler : MonoBehaviour
     [SerializeField]
     public List<GameObject> SettingObjects = new List<GameObject>();
     private AudioSource audioSource;
+    private LevelManager levelManager;
 
     private void Awake()
     {
         SettingObjects.AddRange(GameObject.FindGameObjectsWithTag("SettingUI"));
         SettingObjects.AddRange(GameObject.FindGameObjectsWithTag("SettingButton"));
         audioSource = Camera.main.GetComponent<AudioSource>();
+        levelManager = GameObject.Find("LevelLoader").GetComponent<LevelManager>();
         for (int i = 0; i < SettingObjects.Count; i++)
         {
             SettingObjects[i].SetActive(false);
@@ -53,10 +55,6 @@ public class SettingsHandler : MonoBehaviour
     public void BackToMenu()
     {
         LevelManager.Instance.RemoveLevel();
-        //Player to origin
-        //Menu UI on
-        //Playermovement off
-        //Score to 0
     }
 
     public void SetButtonActive(bool a)
