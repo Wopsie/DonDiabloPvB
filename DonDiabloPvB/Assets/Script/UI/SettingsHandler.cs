@@ -54,7 +54,7 @@ public class SettingsHandler : MonoBehaviour
 
     public void BackToMenu()
     {
-
+        LevelManager.Instance.RemoveLevel();
     }
 
     public void SetButtonActive(bool a)
@@ -85,6 +85,6 @@ public class SettingsHandler : MonoBehaviour
         yield return new WaitForSeconds(2);
         SetButtonActive(true);
         audioSource.Play();
-        PlayerMove.Velocity("On");
+        NewPlayerMovement.Instance.Velocity("On");
     }
 }
