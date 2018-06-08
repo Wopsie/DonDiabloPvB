@@ -9,6 +9,21 @@ public enum ShieldState{
 
 [RequireComponent(typeof(Rigidbody))]
 public class NewPlayerMovement : MonoBehaviour {
+
+    #region Singleton
+    private static NewPlayerMovement instance;
+
+    private static NewPlayerMovement GetInstance()
+    {
+        if (instance == null)
+        {
+            instance = FindObjectOfType<NewPlayerMovement>();
+        }
+
+        return instance;
+    }
+    #endregion
+    public static NewPlayerMovement Instance { get { return GetInstance(); } }
     private int currWaypointIndex = 1;
     public int CurrWaypointIndex { get { return currWaypointIndex; } }
     [SerializeField][Range(0,50f)]
@@ -43,8 +58,6 @@ public class NewPlayerMovement : MonoBehaviour {
         pInput.OnReleaseButton += SetShieldState;
 
         rb = GetComponent<Rigidbody>();
-
-
         GameObject[] points = GameObject.FindGameObjectsWithTag(Tags.WaypointTag);
         Debug.Log("Look For Waypoints");
         waypoints = new GameObject[points.Length];
