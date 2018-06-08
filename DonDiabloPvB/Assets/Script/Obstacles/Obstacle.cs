@@ -50,8 +50,6 @@ public class Obstacle : MonoBehaviour{
     }
 
     private void OnTriggerEnter(Collider coll){
-        Debug.Log("OnTriggerEnter");
-        print(coll + " collider");
         SnapToClosestTrackPoint(coll);
 
         if (coll.gameObject.tag == Tags.PlayerTag)
@@ -62,8 +60,6 @@ public class Obstacle : MonoBehaviour{
     /// Behaviour for when player collides with obstacle
     /// </summary>
     protected virtual void OnPlayerCollision(){
-        SetObstacleInactive();
-
         //if (helper.player.currShieldState == reqShieldState){
         if(helper.player.currShieldState == reqShieldState) { 
             //success
@@ -83,13 +79,13 @@ public class Obstacle : MonoBehaviour{
             //else
             //crash and display death screen while shader closes the windscreen
         }
+        SetObstacleInactive();
     }
 
     /// <summary>
     /// Set all the data necessary for functional generic obstacle
     /// </summary>
     protected virtual void SetInduvidualData(){
-        Debug.Log(gameObject.name + " Setting induvidual data");
         collider = gameObject.AddComponent<SphereCollider>();
         collider.radius = 5;
         collider.isTrigger = true;
@@ -120,8 +116,6 @@ public class Obstacle : MonoBehaviour{
             //rotate
             transform.LookAt(helper.player.waypoints[waypointPositionIndex + 1].transform.position);
         }
-
-        Debug.Log("Snapping " + gameObject.name + " To point " + waypointPositionIndex);
     }
 
     /// <summary>
@@ -136,6 +130,13 @@ public class Obstacle : MonoBehaviour{
             //Debug.Log("START ANIMATION");
             anim.SetBool("PlayerInRange", true);
         }
+
+        /*//UNCOMMENT THIS IF PROBLEMS ARE ENCOUNTERED AS RESULT OF THE PLAYER'S COLLIDER
+        if(helper.playerPassIndex == waypointPositionIndex)
+        {
+            OnPlayerCollision();
+        }
+        */
     }
 
     protected virtual void PlayerInRange(){

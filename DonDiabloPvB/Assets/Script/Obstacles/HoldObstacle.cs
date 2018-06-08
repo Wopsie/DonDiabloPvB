@@ -6,7 +6,7 @@ public class HoldObstacle : Obstacle {
 
     [SerializeField]
     private ObstacleType type;
-    private ShieldState reqShieldState = ShieldState.HoldShield;
+    private new ShieldState reqShieldState = ShieldState.HoldShield;
 
     private void Awake(){
         SetInduvidualData();
