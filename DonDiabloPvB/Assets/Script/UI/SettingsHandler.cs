@@ -38,7 +38,7 @@ public class SettingsHandler : MonoBehaviour
     public void Settings()
     {
         SetButtonActive(false);
-        NewPlayerMovement.Instance.Velocity("Off");
+        //NewPlayerMovement.Instance.Velocity("Off");}
         audioSource.Pause();
         SettingUI(true);
         ShaderController.Instance.TriggerEffect(2); 

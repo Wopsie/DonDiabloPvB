@@ -135,7 +135,7 @@ public class NewPlayerMovement : MonoBehaviour {
         if (On_Off == "On")
         {
             update = true;
-            rb.velocity = new Vector3(velocity.x,velocity.y,velocity.z);
+            rb.velocity = new Vector3(velocity.x, velocity.y, velocity.z);
         }
         else if (On_Off == "Off")
         {

@@ -1,26 +1,17 @@
 ﻿using UnityEngine;
 
-public class SelectButton : MonoBehaviour
-{
-    private AudioSource _audioSource;
-    [SerializeField] private AudioClip _audioClip;
-    [SerializeField] private int _levelNumber;
-    [SerializeField] private GameObject ReadyButton;
-
-    private void Awake()
-    {
-        _audioSource = Camera.main.GetComponent<AudioSource>();
-        ReadyButton.SetActive(false);
-    }
+public class SelectButton : MonoBehaviour { 
+    [SerializeField] private AudioClip AudioClip;
+    [SerializeField] private int LevelNumber;
 
     public void ButtonSelect()
     {
         //Changes the music that you hear in the menu.
-        _audioSource.Stop();
-        _audioSource.clip = _audioClip;
-        //_audioSource.Play();
+        MainMenuHandler.Instance.SetAudioClip(AudioClip);
+        MainMenuHandler.Instance.AudioSource.Play();
         ShaderController.Instance.TriggerEffect(3);
-        //StartButton.Instance.PassLevelNumber(_levelNumber);
-        ReadyButton.SetActive(true);
+        MainMenuHandler.Instance.SetLevelNumber(LevelNumber);
+        //
+        MainMenuHandler.Instance.UIStartButton.SetActive(true);
     }
 }
