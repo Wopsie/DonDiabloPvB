@@ -6,7 +6,6 @@ public class SelectButton : MonoBehaviour
     [SerializeField] private AudioClip _audioClip;
     [SerializeField] private int _levelNumber;
     [SerializeField] private GameObject ReadyButton;
-    [SerializeField] private GameObject _menuUI;
 
     private void Awake()
     {
@@ -23,6 +22,5 @@ public class SelectButton : MonoBehaviour
         ShaderController.Instance.TriggerEffect(3);
         //StartButton.Instance.PassLevelNumber(_levelNumber);
         ReadyButton.SetActive(true);
-        _menuUI.SetActive(false);
     }
 }

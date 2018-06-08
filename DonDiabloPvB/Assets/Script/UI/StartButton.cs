@@ -23,6 +23,7 @@ public class StartButton : MonoBehaviour
 
     [SerializeField] private GameObject _parent;
     [SerializeField] private Text levelNumberText;
+    [SerializeField] private GameObject _menuUI;
 
     private AudioSource _audioSource;
     private LevelManager loader;
@@ -39,7 +40,9 @@ public class StartButton : MonoBehaviour
         _audioSource.Play();
         ShaderController.Instance.TriggerEffect(1);
         SettingsHandler.Instance.SetButtonActive(true);
+        _menuUI.SetActive(false);
         _parent.SetActive(false);
+        
     }
 
     public void PassLevelNumber(int levelNumber)
