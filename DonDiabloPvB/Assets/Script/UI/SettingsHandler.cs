@@ -29,7 +29,6 @@ public class SettingsHandler : MonoBehaviour
         SettingObjects.AddRange(GameObject.FindGameObjectsWithTag("SettingUI"));
         SettingObjects.AddRange(GameObject.FindGameObjectsWithTag("SettingButton"));
         audioSource = Camera.main.GetComponent<AudioSource>();
-        levelManager = GameObject.Find("LevelLoader").GetComponent<LevelManager>();
         for (int i = 0; i < SettingObjects.Count; i++)
         {
             SettingObjects[i].SetActive(false);
