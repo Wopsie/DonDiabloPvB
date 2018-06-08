@@ -9,9 +9,9 @@ public class SettingsButton : MonoBehaviour {
         SettingsHandler.Instance.Settings();
     }
 
-    public void Retry()
+    public void BackToMenu()
     {
-        SettingsHandler.Instance.Retry();
+        SettingsHandler.Instance.BackToMenu();
     }
 
     public void Resume()

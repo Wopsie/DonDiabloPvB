@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SettingsHandler : MonoBehaviour
 {
@@ -45,21 +46,19 @@ public class SettingsHandler : MonoBehaviour
         PlayerMove.Velocity("Off");
         audioSource.Pause();
         SettingUI(true);
-        ShaderController.Instance.TriggerEffect(0); 
+        ShaderController.Instance.TriggerEffect(2); 
     }
 
     public void Resume()
     {
-        Debug.Log("Hi");
         SettingUI(false);
         SetButtonActive(true);
         StartCoroutine(WaitTillBegin());
     }
 
-    public void Retry()
+    public void BackToMenu()
     {
-        levelManager.RemoveLevel();
-        //levelManager.PlaceLevel("Level" + startButton._Level);
+
     }
 
     public void SetButtonActive(bool a)
@@ -86,6 +85,7 @@ public class SettingsHandler : MonoBehaviour
 
     IEnumerator WaitTillBegin()
     {
+        ShaderController.Instance.TriggerEffect(1);
         yield return new WaitForSeconds(2);
         SetButtonActive(true);
         audioSource.Play();
