@@ -13,9 +13,7 @@ public class PathPlacer : MonoBehaviour {
     private int TunnelLength = 15;
     public float buildingDistance = 50;
     public GameObject trackProp1;
-    [HideInInspector]
-    public List<Transform> buildingPosList;
-    [HideInInspector]
+    public Vector3[] buildingPosColl;
     public PropData[] propPosRotData;
     [SerializeField]
     private GameObject tunnelGo;
@@ -36,7 +34,12 @@ public class PathPlacer : MonoBehaviour {
             Debug.LogWarning("Props cannot be placed if points are not placed");
 
         if (!placePoints)
+        {
+            print("pathplacer return?");
+
             return;
+        }
+          
 
         if (!playerTrackPoint){
             Debug.LogWarning("The path placer has no player tracking point obj assigned");
@@ -49,12 +52,7 @@ public class PathPlacer : MonoBehaviour {
         completeTunnel = new GameObject[TunnelLength + 1];
         if (finalize){//only set these arrays if path is being finalized, as else they are unnecessary
             propPosRotData = new PropData[dstToMeshEdgePerPoint.Length * 2];
-            //buildings array need only be as long as the amount of building positions that are created
-
-            //convert buildingPos array to list
-            //add the building position to it when it is determined
-            buildingPosList = new List<Transform>();
-            //buildingPosColl = new Vector3[dstToMeshEdgePerPoint.Length * 2];
+            buildingPosColl = new Vector3[dstToMeshEdgePerPoint.Length * 2];
         }
 
         for (int i = 0; i < points.Length; i++)
@@ -87,15 +85,19 @@ public class PathPlacer : MonoBehaviour {
             }
 
             //place buildings set distance from track with certain margin
-            if (placeBuildings){
-                if (buildingClusters == null){
+            if (placeBuildings)
+            {
+
+                if (buildingClusters == null)
+                {
                     Debug.LogError("No building cluster prefabs selected");
                     return;
                 }
 
-                if (i % (buildingClusters.Length * buildingFrequency) == 0){
-                    PlaceBuildings(trackedObjs[i], dstToMeshEdgePerPoint, finalize, i);
-                    PlaceBuildings(trackedObjs[i], dstToMeshEdgePerPoint, finalize, i);
+                if (i % (buildingClusters.Length * buildingFrequency) == 0)
+                {
+                    PlaceBuildings(1, trackedObjs[i], dstToMeshEdgePerPoint, finalize, i);
+                    PlaceBuildings(1, trackedObjs[i], dstToMeshEdgePerPoint, finalize, i);
                 }
             }
         }
@@ -128,7 +130,7 @@ public class PathPlacer : MonoBehaviour {
     /// <param name="dstToMeshEdgePerPoint"></param>
     /// <param name="finalizeBuildings"></param>
     /// <param name="index"></param>
-    void PlaceBuildings(GameObject trackedObj, Vector3[] dstToMeshEdgePerPoint, bool finalizeBuildings, int index){
+    void PlaceBuildings(int layer, GameObject trackedObj, Vector3[] dstToMeshEdgePerPoint, bool finalizeBuildings, int index){
         int i = Random.Range(0, buildingClusters.Length);
         //only render a preview of the buildings if the level is not being finalized
         if (!finalizeBuildings){
@@ -142,7 +144,7 @@ public class PathPlacer : MonoBehaviour {
                     g = Instantiate(buildingClusters[i], (trackedObj.transform.position - new Vector3(dstToMeshEdgePerPoint[index].x, 0.25f, dstToMeshEdgePerPoint[index].y) * buildingDistance), Quaternion.identity, trackedObj.transform);
 
                 //multiply scale * 100
-                //g.transform.localScale *= 100;
+                g.transform.localScale *= 100;
                 //Set random rotation
                 int dir = Random.Range(0, 360);
                 g.transform.rotation = Quaternion.Euler(0, dir, 0);
@@ -150,27 +152,8 @@ public class PathPlacer : MonoBehaviour {
 
         }else{
             //Store the positions at which the buildings must be placed at runtime
-            //buildingPosList.Add((trackedObj.transform.position + new Vector3(dstToMeshEdgePerPoint[index].x, -0.25f, dstToMeshEdgePerPoint[index].y) * buildingDistance));
-            //buildingPosList.Add((trackedObj.transform.position - new Vector3(dstToMeshEdgePerPoint[index].x, -0.25f, dstToMeshEdgePerPoint[index].y) * buildingDistance));
-
-            //instantiate temporary gameobjects for the buildings to store the values because idk how to deal with transforms & i dont have internet
-            for (int j = 0; j < 2; j++){
-                GameObject g;
-                if (j == 1)
-                    g = Instantiate(buildingClusters[i], (trackedObj.transform.position + new Vector3(dstToMeshEdgePerPoint[index].x, -0.25f, dstToMeshEdgePerPoint[index].y) * buildingDistance), Quaternion.identity, trackedObj.transform);
-                else
-                    g = Instantiate(buildingClusters[i], (trackedObj.transform.position - new Vector3(dstToMeshEdgePerPoint[index].x, 0.25f, dstToMeshEdgePerPoint[index].y) * buildingDistance), Quaternion.identity, trackedObj.transform);
-
-                //Set random rotation
-                int dir = Random.Range(0, 360);
-                g.transform.rotation = Quaternion.Euler(0, dir, 0);
-
-                buildingPosList.Add(g.transform);
-                //DestroyImmediate(g);
-            }
-
-            //buildingPosColl[index] = (trackedObjs[index].transform.position + new Vector3(dstToMeshEdgePerPoint[index].x, -0.25f, dstToMeshEdgePerPoint[index].y) * buildingDistance);
-            //buildingPosColl[index+1] = (trackedObjs[index].transform.position + new Vector3(dstToMeshEdgePerPoint[index].x, -0.25f, dstToMeshEdgePerPoint[index].y) * buildingDistance);
+            buildingPosColl[index] = (trackedObjs[index].transform.position + new Vector3(dstToMeshEdgePerPoint[index].x, -0.25f, dstToMeshEdgePerPoint[index].y) * buildingDistance);
+            buildingPosColl[index+1] = (trackedObjs[index].transform.position + new Vector3(dstToMeshEdgePerPoint[index].x, -0.25f, dstToMeshEdgePerPoint[index].y) * buildingDistance);
 
             //unsure whenever to use GPU Instancing to render buildings or just Objectpool
         }

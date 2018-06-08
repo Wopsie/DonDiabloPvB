@@ -2,7 +2,6 @@
 using SplineEditor;
 using UnityEngine;
 using System;
-using System.Collections.Generic;
 
 [RequireComponent(typeof(PathCreator))]
 [RequireComponent(typeof(PathPlacer))]
@@ -21,7 +20,7 @@ public class RoadCreator : MonoBehaviour {
     [HideInInspector]
     public Vector2[] points;
     [HideInInspector]
-    public List<Transform> buildingPositions;
+    public Vector3[] buildingPositions;
     [HideInInspector]
     public PropData[] propDataArray;
     [HideInInspector]
@@ -83,8 +82,7 @@ public class RoadCreator : MonoBehaviour {
         PathPlacer placer = GetComponent<PathPlacer>();
         placer.CleanScene();
         placer.GenerateRoadProperties(points, vertexOffsetVectors, roadWidth, true, true, true, true);
-        buildingPositions = placer.buildingPosList;
-
+        buildingPositions = placer.buildingPosColl;
         Debug.Log(placer.propPosRotData + " " + placer.propPosRotData.Length);
         propDataArray = placer.propPosRotData;
 

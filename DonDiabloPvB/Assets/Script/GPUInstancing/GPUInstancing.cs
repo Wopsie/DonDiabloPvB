@@ -51,7 +51,6 @@ public class GPUInstancing : MonoBehaviour{
     }
     #endregion
 
-    [SerializeField]
     private Dictionary<string, Batch> batchesByName = new Dictionary<string, Batch>();
 
     void Update(){

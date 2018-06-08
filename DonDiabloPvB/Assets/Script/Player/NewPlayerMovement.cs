@@ -59,6 +59,7 @@ public class NewPlayerMovement : MonoBehaviour {
 
         rb = GetComponent<Rigidbody>();
         GameObject[] points = GameObject.FindGameObjectsWithTag(Tags.WaypointTag);
+        Debug.Log("Look For Waypoints");
         waypoints = new GameObject[points.Length];
         foreach (GameObject g in points){
             PlayerTrackingPoint p = g.GetComponent<PlayerTrackingPoint>();
@@ -119,12 +120,12 @@ public class NewPlayerMovement : MonoBehaviour {
     void TimeShieldTapState(){
         if(tapFrames >= 0 && tappedShield){
             //tapshield is still active
-            //Debug.Log("TapShield state LINGERING");
+            Debug.Log("TapShield state LINGERING");
             tapFrames -= (tapCountdownPerFrame * Time.deltaTime);
         }else{
             //when this is reached it means the timer at which the TapShield state should be active has run out
             tappedShield = false;
-            //Debug.Log("TapShield state FINISHED");
+            Debug.Log("TapShield state FINISHED");
             tapFrames = 1f;
         }
     }

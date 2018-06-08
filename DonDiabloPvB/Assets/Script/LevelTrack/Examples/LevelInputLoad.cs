@@ -14,9 +14,9 @@ public class LevelInputLoad : MonoBehaviour {
         }else if (Input.GetKeyDown(KeyCode.Alpha1)){
             loader.PlaceLevel("GPULevel");
         }else if (Input.GetKeyDown(KeyCode.Alpha2)){
-            loader.PlaceLevel("Level1");
+            loader.PlaceLevel("LevelTwo");
         }else if (Input.GetKeyDown(KeyCode.Alpha3)){
-            loader.PlaceLevel("GPUTest2");
+            loader.PlaceLevel("LevelThree");
         }else if (Input.GetKeyDown(KeyCode.Alpha4)){
             loader.PlaceLevel("ObstacleTestTrack");
         }else if (Input.GetKeyDown(KeyCode.Alpha5)){

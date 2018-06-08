@@ -28,7 +28,7 @@ public class LevelStarter : MonoBehaviour {
             //GPUInstancing.Instance.AddObjTrans(LevelManager.Instance.level.backgroundObjsColl[rand], this.transform);
             //GPUInstancing.Instance.AddObjTrans(LevelManager.Instance.level.backgroundObjsColl[Random.Range(0, 3)], LevelManager.Instance.level.buildingsPositions[i], this.transform);
         }
-
+        
         /*
         //add props to GPUInstancer
         //PROPDATA IS NULL, FIGURE OUT WHY
