@@ -126,17 +126,17 @@ public class Obstacle : MonoBehaviour {
     /// </summary>
     protected virtual void CheckPlayerDistances(){
         if ((waypointPositionIndex - obstacleDrawDistance) <= helper.playerPassIndex){
-            Debug.Log("REVEAL OBSTACLE");
+            //Debug.Log("REVEAL OBSTACLE");
             PlayerInRange();
         }
         if ((waypointPositionIndex - obstacleAnimationTriggerDist) == helper.playerPassIndex){
-            Debug.Log("START ANIMATION");
+            //Debug.Log("START ANIMATION");
             anim.SetBool("PlayerInRange", true);
         }
     }
 
     protected virtual void PlayerInRange(){
-        Debug.Log("PLAYER IN RANGE");
+        //Debug.Log("PLAYER IN RANGE");
         obstacleModel.SetActive(true);
     }
 

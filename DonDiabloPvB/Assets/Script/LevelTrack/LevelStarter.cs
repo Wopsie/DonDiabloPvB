@@ -6,7 +6,7 @@ public class LevelStarter : MonoBehaviour {
 
     private NewPlayerMovement movement;
     private GameObject player;
-    private GameObject managers; 
+    private GameObject managers;
 
     private void Start(){
         managers = GameObject.FindWithTag(Tags.ManagersTag);
@@ -21,7 +21,11 @@ public class LevelStarter : MonoBehaviour {
         //add all of the buildings and props to the GPUInstancer
         for (int i = 0; i < LevelManager.Instance.level.buildingsPositions.Count; i++){
             //for every building position that you have, randomly select a building to place there
-            GPUInstancing.Instance.AddObjTrans(LevelManager.Instance.level.backgroundObjsColl[Random.Range(0, 3)], this.transform);
+            //LevelManager.Instance.level.backgroundObjsColl[Random.Range(0, 3)]
+            //int rand = Random.Range(0, 3);
+            //Instantiate(LevelManager.Instance.level.backgroundObjsColl[rand].gameObject, LevelManager.Instance.level.backgroundObjsColl[rand].position, Quaternion.identity);
+            //Debug.Log(LevelManager.Instance.level.backgroundObjsColl[rand].position);
+            //GPUInstancing.Instance.AddObjTrans(LevelManager.Instance.level.backgroundObjsColl[rand], this.transform);
             //GPUInstancing.Instance.AddObjTrans(LevelManager.Instance.level.backgroundObjsColl[Random.Range(0, 3)], LevelManager.Instance.level.buildingsPositions[i], this.transform);
         }
 
