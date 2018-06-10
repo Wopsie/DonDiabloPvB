@@ -160,6 +160,9 @@ MonoBehaviour:
   placeProps: 0
   tiling: 1
   points: []
+  buildingPositions: []
+  backgroundObjs: []
+  prop: {fileID: 0}
   filter: {fileID: 0}
   renderer: {fileID: 0}
 --- !u!114 &114873302475500900
@@ -174,10 +177,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vertexOffsetVectors: []
-  meshPoints: []
-  meshWidth: 0
-  texTiling: 0
-  pointsSpacing: 0
 --- !u!114 &114953692482473200
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -189,11 +188,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10f74553aecc3504c92eaf38eada8020, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spacing: 1
-  propSpacing: 1
   buildingFrequency: 5
   buildingDistance: 50
   trackProp1: {fileID: 1055669284977536, guid: 26664baae8aed9540b0e1b38ce0ebd85, type: 2}
+  buildingPosList: []
+  tunnelGo: {fileID: 100010, guid: a9b0e5ea2e457e74ea2af5d2c55a8c46, type: 3}
+  TunnelDoor: {fileID: 100010, guid: a9b0e5ea2e457e74ea2af5d2c55a8c46, type: 3}
+  completeTunnel: []
   playerTrackPoint: {fileID: 1171681852992168, guid: dfe63bb262c8bae4baabd300bde42666,
     type: 2}
   buildingClusters:

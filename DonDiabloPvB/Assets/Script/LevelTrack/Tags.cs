@@ -8,4 +8,5 @@ public class Tags{
     public static string ScoreTextTag = "ScoreText";
     public static string targetRoadMeshTag = "TargetRoadMesh";
     public static string ManagersTag = "Managers";
+    public static string MeshHolderTag = "BackgroundMeshes";
 }

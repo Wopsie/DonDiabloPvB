@@ -12,9 +12,6 @@ public class MeshGenerator : MonoBehaviour{
     public Vector3[] vertexOffsetVectors;
     
     private void Start(){
-        //Get the name of the parent object as it matches the LevelData object name
-        //string dataName = this.transform.parent.gameObject.name;
-        //dataName = dataName.Replace("Prefab(Clone)", "");
         //Load Leveldata for rendering the mesh
         //LevelData level = Resources.Load<LevelData>(dataName);
 
@@ -41,7 +38,6 @@ public class MeshGenerator : MonoBehaviour{
         Vector2[] uvs = new Vector2[verts.Length];
         vertexOffsetVectors = new Vector3[points.Length];
         int numTris = 2 * (points.Length - 1) + ((isClosed) ? 2 : 0);
-        //Debug.Log(numTris * 3 + " Number of tris");
         int[] tris = new int[numTris * 3];
         int vertIndex = 0;
         int trisIndex = 0;

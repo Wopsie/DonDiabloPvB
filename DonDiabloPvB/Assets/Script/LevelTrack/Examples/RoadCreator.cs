@@ -20,22 +20,24 @@ public class RoadCreator : MonoBehaviour{
     [HideInInspector]
     public Vector2[] points;
     [HideInInspector]
-    public List<Transform> buildingPositions;
+    public List<Matrix4x4> buildingPositions;
     [HideInInspector]
-    public PropData[] propDataArray;
-    [HideInInspector]
-    public GameObject[] backgroundObjs;
+    public GameObject[] buildingModelsArr;
     [HideInInspector]
     public GameObject prop;
+    [HideInInspector]
+    public float buildingDistance;
 
     public MeshFilter filter;
     public new MeshRenderer renderer;
 
     private Vector3[] vertexOffsetVectors;
     private MeshGenerator generator;
-
+    [HideInInspector]
+    public GameObject backgroundElementsGo;
 
     public void UpdateRoad(){
+        //clean this up
         if (!renderer || !filter){
             Debug.LogWarning("No target mesh components selected; Automatic detection");
             renderer = GameObject.FindWithTag(Tags.targetRoadMeshTag).GetComponent<MeshRenderer>();
@@ -49,13 +51,15 @@ public class RoadCreator : MonoBehaviour{
 
         Path path = GetComponent<PathCreator>().path;
         points = path.CalculateEvenSpacePoints(spacing);
-        //filter.mesh = CreateRoadMesh(points, path.IsClosed);
         filter.mesh = GetRoad();
         vertexOffsetVectors = generator.vertexOffsetVectors;
         int textureRepeat = Mathf.RoundToInt(tiling * points.Length * spacing * 0.05f);
         renderer.sharedMaterial.mainTextureScale = new Vector2(1, textureRepeat);
         //method to place waypoints & props along track
-        GetComponent<PathPlacer>().GenerateRoadProperties(points, vertexOffsetVectors, roadWidth, placeProps, placePoints, false, false);
+        PathPlacer placer = GetComponent<PathPlacer>();
+        placer.GenerateRoadProperties(points, vertexOffsetVectors, roadWidth, placeProps, placePoints, false, false);
+        StorePrefabs(placer);
+        buildingDistance = placer.buildingDistance;
     }
 
     public void PlaceBuildings(){
@@ -72,7 +76,7 @@ public class RoadCreator : MonoBehaviour{
             renderer = GameObject.FindWithTag(Tags.targetRoadMeshTag).GetComponent<MeshRenderer>();
             filter = GameObject.FindWithTag(Tags.targetRoadMeshTag).GetComponent<MeshFilter>();
         }
-
+        autoUpdate = false;
         Path path = GetComponent<PathCreator>().path;
         points = path.CalculateEvenSpacePoints(spacing);
         filter.mesh = GetRoad();
@@ -80,20 +84,21 @@ public class RoadCreator : MonoBehaviour{
         int textureRepeat = Mathf.RoundToInt(tiling * points.Length * spacing * 0.05f);
         renderer.sharedMaterial.mainTextureScale = new Vector2(1, textureRepeat);
         PathPlacer placer = GetComponent<PathPlacer>();
+        StorePrefabs(placer);
         placer.CleanScene();
         placer.GenerateRoadProperties(points, vertexOffsetVectors, roadWidth, true, true, true, true);
         buildingPositions = placer.buildingPosList;
+        buildingDistance = placer.buildingDistance;
+        backgroundElementsGo = placer.backgroundHolder;
+        //Do the same for props later
+    }
 
-        Debug.Log(placer.propPosRotData + " " + placer.propPosRotData.Length);
-        propDataArray = placer.propPosRotData;
-
-        //fill the backgroundobject prefabs array with the buildings and prop
-        backgroundObjs = new GameObject[placer.buildingClusters.Length + 1];
-        for (int i = 0; i < backgroundObjs.Length; i++){
-            if (i < backgroundObjs.Length - 1)
-                backgroundObjs[i] = placer.buildingClusters[i];
-            else //insert prop object last into the array
-                backgroundObjs[i] = placer.trackProp1;
+    void StorePrefabs(PathPlacer placer){
+        //Store the building prefabs for the leveldata
+        buildingModelsArr = new GameObject[placer.buildingClusters.Length];
+        for (int i = 0; i < buildingModelsArr.Length; i++)
+        {
+            buildingModelsArr[i] = placer.buildingClusters[i];
         }
     }
 

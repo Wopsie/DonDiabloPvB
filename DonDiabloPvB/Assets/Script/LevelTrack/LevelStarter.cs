@@ -1,11 +1,15 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
+//using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Looks for all managers and relevant components in scene to start gameplay
+/// </summary>
 public class LevelStarter : MonoBehaviour{
     private NewPlayerMovement movement;
     private GameObject player;
     private GameObject managers;
+    private GameObject backgroundHolder;
 
     private void Start(){
         managers = GameObject.FindWithTag(Tags.ManagersTag);
@@ -14,32 +18,21 @@ public class LevelStarter : MonoBehaviour{
         movement = player.GetComponent<NewPlayerMovement>();
         movement.enabled = true;
         movement.SetPlayerPosition(new Vector3(movement.waypoints[0].transform.position.x, 0.75f, movement.waypoints[0].transform.position.z));
-        //enable the obstacle helper and player movement
-        //set the position of the player on the right place
 
-        //add all of the buildings and props to the GPUInstancer
-        for (int i = 0; i < LevelManager.Instance.level.buildingsPositions.Count; i++){
-            //for every building position that you have, randomly select a building to place there
-            //LevelManager.Instance.level.backgroundObjsColl[Random.Range(0, 3)]
-            //int rand = Random.Range(0, 3);
-            //Instantiate(LevelManager.Instance.level.backgroundObjsColl[rand].gameObject, LevelManager.Instance.level.backgroundObjsColl[rand].position, Quaternion.identity);
-            //Debug.Log(LevelManager.Instance.level.backgroundObjsColl[rand].position);
-            //GPUInstancing.Instance.AddObjTrans(LevelManager.Instance.level.backgroundObjsColl[rand], this.transform);
-            //GPUInstancing.Instance.AddObjTrans(LevelManager.Instance.level.backgroundObjsColl[Random.Range(0, 3)], LevelManager.Instance.level.buildingsPositions[i], this.transform);
-        }
+        //create the parent object for the background elements
+        backgroundHolder = new GameObject();
+        backgroundHolder.name = "MeshHolder";
+        backgroundHolder.tag = Tags.MeshHolderTag;
 
-        /*
-        //add props to GPUInstancer
-        //PROPDATA IS NULL, FIGURE OUT WHY
-        for (int i = 0; i < LevelManager.Instance.level.propData.Length; i++){
-            GPUInstancing.Instance.AddObj(LevelManager.Instance.level.backgroundObjsColl[LevelManager.Instance.level.backgroundObjsColl.Count], LevelManager.Instance.level.propData[i].position, Vector3.one, LevelManager.Instance.level.propData[i].rotation, this.transform, false);
+        //loop through all of the children
+        foreach (Transform child in LevelManager.Instance.level.levelBackgroundObj.transform){
+            GPUInstancing.Instance.AddObjTrans(child, backgroundHolder.transform);
         }
-        */
     }
 
     private void OnDestroy(){
         movement.enabled = false;
         managers.GetComponent<ObstacleHelper>().enabled = false;
+        Destroy(backgroundHolder);
     }
-
 }

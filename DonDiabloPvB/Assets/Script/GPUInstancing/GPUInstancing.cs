@@ -64,7 +64,7 @@ public class GPUInstancing : MonoBehaviour{
         //Create new ObjData with the passed data. Then check what to do with batching
         //ObjData addedObjData = (useTrans == true) ? new ObjData(trans.position, trans.localScale, trans.rotation, parentTrans) : new ObjData(pos, scale, rot, parentTrans);
         ObjData addedObjData = new ObjData(trans.position, trans.localScale, trans.rotation, (parentTrans != null) ? parentTrans : trans);
-
+        Debug.Log(trans.name);
         //check if this object has already been batched or if relevant batch is full
         if (batchesByName.ContainsKey(trans.name)){
             //object batch already exists. Check if it is not overflowing
@@ -123,7 +123,7 @@ public class GPUInstancing : MonoBehaviour{
 
     private void RenderBatches(){
         foreach (KeyValuePair<string, Batch> batch in batchesByName){
-            //Debug.Log("Drawing batch: " + batch.Value.ObjDatas);
+            Debug.Log("Drawing batch: " + batch.Value.ObjDatas);
             Graphics.DrawMeshInstanced(batch.Value.objMesh, 0, batch.Value.objMat, batch.Value.ObjDatas.Select(a => a.matrix).ToList());
         }
     }

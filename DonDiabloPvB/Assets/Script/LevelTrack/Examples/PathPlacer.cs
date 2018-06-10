@@ -15,10 +15,12 @@ public class PathPlacer : MonoBehaviour{
     private int TunnelLength = 15;
     public float buildingDistance = 50;
     public GameObject trackProp1;
+    //trash
     [HideInInspector]
-    public List<Transform> buildingPosList;
+    public List<Matrix4x4> buildingPosList;
     [HideInInspector]
     public PropData[] propPosRotData;
+    //endtrash
     [SerializeField]
     private GameObject tunnelGo;
     [SerializeField]
@@ -29,6 +31,8 @@ public class PathPlacer : MonoBehaviour{
     public GameObject playerTrackPoint;
     public GameObject[] buildingClusters;
     private GameObject[] trackedObjs;
+    [HideInInspector]//the gameobject that holds all of the visual, non-interactable elements on the track
+    public GameObject backgroundHolder;
 
     public void GenerateRoadProperties(Vector2[] points, Vector3[] dstToMeshEdgePerPoint, float meshWidth, bool placeProps, bool placePoints, bool placeBuildings, bool finalize){
         DestroyTrackedObjects();
@@ -47,6 +51,9 @@ public class PathPlacer : MonoBehaviour{
             trackedObjs = new GameObject[0];
         }
 
+        backgroundHolder = new GameObject();
+        backgroundHolder.transform.name = "MeshHolder";
+        backgroundHolder.tag = Tags.MeshHolderTag;
         trackedObjs = new GameObject[points.Length];
         completeTunnel = new GameObject[TunnelLength + 1];
         if (finalize){//only set these arrays if path is being finalized, as else they are unnecessary
@@ -55,8 +62,7 @@ public class PathPlacer : MonoBehaviour{
 
             //convert buildingPos array to list
             //add the building position to it when it is determined
-            buildingPosList = new List<Transform>();
-            //buildingPosColl = new Vector3[dstToMeshEdgePerPoint.Length * 2];
+            buildingPosList = new List<Matrix4x4>();
         }
 
         for (int i = 0; i < points.Length; i++){
@@ -78,7 +84,7 @@ public class PathPlacer : MonoBehaviour{
                 //place props along track edges
                 if (placeProps){
                     PlaceRoadProps(trackedObjs[i], dstToMeshEdgePerPoint, meshWidth, finalize, i);
-                    PlaceRoadProps(trackedObjs[i], dstToMeshEdgePerPoint, meshWidth, finalize, i);
+                    //PlaceRoadProps(trackedObjs[i], dstToMeshEdgePerPoint, meshWidth, finalize, i);
                 }
             }
 
@@ -88,9 +94,8 @@ public class PathPlacer : MonoBehaviour{
                     Debug.LogError("No building cluster prefabs selected");
                     return;
                 }
-
+                //place the buildings every so many points
                 if (i % (buildingClusters.Length * buildingFrequency) == 0){
-                    PlaceBuildings(trackedObjs[i], dstToMeshEdgePerPoint, finalize, i);
                     PlaceBuildings(trackedObjs[i], dstToMeshEdgePerPoint, finalize, i);
                 }
             }
@@ -107,8 +112,6 @@ public class PathPlacer : MonoBehaviour{
                 */
             }
         }
-
-        //new Vector3(points[i].x, 0, points[i].y);
     }
 
     /// <summary>
@@ -122,47 +125,18 @@ public class PathPlacer : MonoBehaviour{
     void PlaceBuildings(GameObject trackedObj, Vector3[] dstToMeshEdgePerPoint, bool finalizeBuildings, int index){
         int i = Random.Range(0, buildingClusters.Length);
         //only render a preview of the buildings if the level is not being finalized
-        if (!finalizeBuildings){
-            GameObject g;
-
-            //place preview buildings on the currently received gameobject trackedObj
-            for (int j = 0; j < 2; j++){
-                if (j == 1)
-                    g = Instantiate(buildingClusters[i], (trackedObj.transform.position + new Vector3(dstToMeshEdgePerPoint[index].x, -0.25f, dstToMeshEdgePerPoint[index].y) * buildingDistance), Quaternion.identity, trackedObj.transform);
-                else
-                    g = Instantiate(buildingClusters[i], (trackedObj.transform.position - new Vector3(dstToMeshEdgePerPoint[index].x, 0.25f, dstToMeshEdgePerPoint[index].y) * buildingDistance), Quaternion.identity, trackedObj.transform);
-
-                //multiply scale * 100
-                //g.transform.localScale *= 100;
-                //Set random rotation
-                int dir = Random.Range(0, 360);
-                g.transform.rotation = Quaternion.Euler(0, dir, 0);
-            }
-        }else{
-            //Store the positions at which the buildings must be placed at runtime
-            //buildingPosList.Add((trackedObj.transform.position + new Vector3(dstToMeshEdgePerPoint[index].x, -0.25f, dstToMeshEdgePerPoint[index].y) * buildingDistance));
-            //buildingPosList.Add((trackedObj.transform.position - new Vector3(dstToMeshEdgePerPoint[index].x, -0.25f, dstToMeshEdgePerPoint[index].y) * buildingDistance));
-
-            //instantiate temporary gameobjects for the buildings to store the values because idk how to deal with transforms & i dont have internet
-            for (int j = 0; j < 2; j++){
-                GameObject g;
-                if (j == 1)
-                    g = Instantiate(buildingClusters[i], (trackedObj.transform.position + new Vector3(dstToMeshEdgePerPoint[index].x, -0.25f, dstToMeshEdgePerPoint[index].y) * buildingDistance), Quaternion.identity, trackedObj.transform);
-                else
-                    g = Instantiate(buildingClusters[i], (trackedObj.transform.position - new Vector3(dstToMeshEdgePerPoint[index].x, 0.25f, dstToMeshEdgePerPoint[index].y) * buildingDistance), Quaternion.identity, trackedObj.transform);
-
-                //Set random rotation
-                int dir = Random.Range(0, 360);
-                g.transform.rotation = Quaternion.Euler(0, dir, 0);
-
-                buildingPosList.Add(g.transform);
-                //DestroyImmediate(g);
-            }
-
-            //buildingPosColl[index] = (trackedObjs[index].transform.position + new Vector3(dstToMeshEdgePerPoint[index].x, -0.25f, dstToMeshEdgePerPoint[index].y) * buildingDistance);
-            //buildingPosColl[index+1] = (trackedObjs[index].transform.position + new Vector3(dstToMeshEdgePerPoint[index].x, -0.25f, dstToMeshEdgePerPoint[index].y) * buildingDistance);
-
-            //unsure whenever to use GPU Instancing to render buildings or just Objectpool
+        GameObject g;
+        //place preview buildings on the currently received gameobject trackedObj
+        for (int j = 0; j < 2; j++){
+            if (j == 1)
+                g = Instantiate(buildingClusters[i], (trackedObj.transform.position + new Vector3(dstToMeshEdgePerPoint[index].x, -0.25f, dstToMeshEdgePerPoint[index].y) * buildingDistance), Quaternion.identity, trackedObj.transform);
+            else
+                g = Instantiate(buildingClusters[i], (trackedObj.transform.position - new Vector3(dstToMeshEdgePerPoint[index].x, 0.25f, dstToMeshEdgePerPoint[index].y) * buildingDistance), Quaternion.identity, trackedObj.transform);
+            //set parent transform of building to the meshholder 
+            g.transform.SetParent(backgroundHolder.transform);
+            //Randomize rotation
+            int dir = Random.Range(0, 360);
+            g.transform.rotation = Quaternion.Euler(0, dir, 0);
         }
     }
 
@@ -170,50 +144,25 @@ public class PathPlacer : MonoBehaviour{
     /// method places props along road mesh
     /// </summary>
     /// <param name="left"></param>
-    /// <param name="trackedObjs"></param>
+    /// <param name="trackedObj"></param>
     /// <param name="dstToMeshEdgePerPoint"></param>
     /// <param name="meshWidth"></param>
     /// <param name="finalizeProps"></param>
     /// <param name="index"></param>
-    void PlaceRoadProps(GameObject trackedObjs, Vector3[] dstToMeshEdgePerPoint, float meshWidth, bool finalizeProps, int index){
+    void PlaceRoadProps(GameObject trackedObj, Vector3[] dstToMeshEdgePerPoint, float meshWidth, bool finalizeProps, int index){
         //place object at position depending on position of the trackedObj center point in the mesh
-        if (!finalizeProps){
-            GameObject g;
+        GameObject g;
+        for (int i = 0; i < 2; i++){
+            if (i == 1)
+                g = Instantiate(trackProp1, trackedObj.transform.position + new Vector3(dstToMeshEdgePerPoint[index].x, 0, dstToMeshEdgePerPoint[index].y) * meshWidth * 0.5f, Quaternion.identity, trackedObj.transform);
+            else
+                g = Instantiate(trackProp1, trackedObj.transform.position - new Vector3(dstToMeshEdgePerPoint[index].x, 0, dstToMeshEdgePerPoint[index].y) * meshWidth * 0.5f, Quaternion.identity, trackedObj.transform);
 
-            for (int i = 0; i < 2; i++){
-                if (i == 1)
-                    g = Instantiate(trackProp1, trackedObjs.transform.position + new Vector3(dstToMeshEdgePerPoint[index].x, 0, dstToMeshEdgePerPoint[index].y) * meshWidth * 0.5f, Quaternion.identity, trackedObjs.transform);
-                else
-                    g = Instantiate(trackProp1, trackedObjs.transform.position - new Vector3(dstToMeshEdgePerPoint[index].x, 0, dstToMeshEdgePerPoint[index].y) * meshWidth * 0.5f, Quaternion.identity, trackedObjs.transform);
-
-                //work out rotation direction that object should take 
-                Vector3 v = trackedObjs.transform.position - g.transform.position;
-                g.transform.localRotation = Quaternion.LookRotation(v);
-                g.transform.rotation *= Quaternion.Euler(0, -90, 0);
-            }
-        }else{
-            //store the positions for the props on both sides of the track
-            for (int i = 0; i < 2; i++){
-                Vector3 pos;
-                Vector3 v;
-                Quaternion rot;
-
-                if (i == 1){
-                    pos = trackedObjs.transform.position + new Vector3(dstToMeshEdgePerPoint[index].x, 0, dstToMeshEdgePerPoint[index].y) * meshWidth * 0.5f;
-                    v = trackedObjs.transform.position - pos;
-                    rot = Quaternion.LookRotation(v);
-                    rot *= Quaternion.Euler(0, -90, 0);
-                    PropData prop = new PropData(pos, rot);
-                    propPosRotData[index] = prop;
-                }else{
-                    pos = trackedObjs.transform.position - new Vector3(dstToMeshEdgePerPoint[index].x, 0, dstToMeshEdgePerPoint[index].y) * meshWidth * 0.5f;
-                    v = trackedObjs.transform.position - pos;
-                    rot = Quaternion.LookRotation(v);
-                    rot *= Quaternion.Euler(0, -90, 0);
-                    PropData prop = new PropData(pos, rot);
-                    propPosRotData[index + 1] = prop;
-                }
-            }
+            g.transform.SetParent(backgroundHolder.transform);
+            //work out rotation direction that object should take 
+            Vector3 v = trackedObj.transform.position - g.transform.position;
+            g.transform.localRotation = Quaternion.LookRotation(v);
+            g.transform.rotation *= Quaternion.Euler(0, -90, 0);
         }
     }
 
@@ -248,9 +197,11 @@ public class PathPlacer : MonoBehaviour{
         }
         if (completeTunnel != null){
             for (int i = 0; i < completeTunnel.Length; i++){
-                print("do you destroy");
                 DestroyImmediate(completeTunnel[i]);
             }
+        }
+        if(backgroundHolder != null){
+            DestroyImmediate(backgroundHolder);
         }
     }
 
@@ -258,6 +209,7 @@ public class PathPlacer : MonoBehaviour{
     /// remove all playerpoints present in the scene, tracked or not
     /// </summary>
     public void CleanScene(){
+        DestroyTrackedObjects();
         GameObject[] g = GameObject.FindGameObjectsWithTag(Tags.WaypointTag);
         for (int i = 0; i < g.Length; i++){
             DestroyImmediate(g[i]);

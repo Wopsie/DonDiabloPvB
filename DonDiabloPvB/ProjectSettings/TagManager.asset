@@ -17,6 +17,10 @@ TagManager:
   - Start
   - SettingButton
   - SettingUI
+  - StartButton
+  - UIStartButton
+  - ButtonsMenu
+  - BackgroundMeshes
   layers:
   - Default
   - TransparentFX

@@ -51,14 +51,7 @@ public class RoadEditor : Editor{
             level.roadWidth = creator.roadWidth;
             level.textureTiling = creator.tiling;
             level.pointSpacing = creator.spacing;
-            level.buildingsPositions = creator.buildingPositions;
-            level.propData = creator.propDataArray;
-            //Store the meshes and materials of the buildings for GPUInstancing
-            foreach (GameObject obj in creator.backgroundObjs){
-                level.backgroundObjsColl.Add(obj.transform);
-                //level.backgroundObjsColl.Add(obj.GetComponent<MeshRenderer>().sharedMaterial, obj.GetComponent<MeshFilter>().sharedMesh);
-            }
-
+            
             //remove unnecessary components in preperation of prefab creation
             DestroyImmediate(g.GetComponent<RoadCreator>());
             DestroyImmediate(g.GetComponent<PathCreator>());
@@ -68,10 +61,14 @@ public class RoadEditor : Editor{
             //when the prefab is then loaded in, it will position the player on the right position & start the game
             g.AddComponent<LevelStarter>();
 
-            //create prefab & set last leveldata property
+            //create prefab of the level track
             GameObject t = PrefabUtility.CreatePrefab("Assets/Resources/" + g.name + "Prefab.prefab", g);
-            level.levelObject = t;
-            
+            level.levelTrackObj = t;
+
+            //create prefab of the background elements
+            t = PrefabUtility.CreatePrefab("Assets/Resources/" + g.name + "Background" + "Prefab.prefab", creator.backgroundElementsGo);
+            level.levelBackgroundObj = t;
+
             AssetDatabase.SaveAssets();
             AssetDatabase.Refresh();
 

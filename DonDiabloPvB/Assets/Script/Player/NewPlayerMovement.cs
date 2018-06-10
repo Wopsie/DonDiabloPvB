@@ -67,6 +67,8 @@ public class NewPlayerMovement : MonoBehaviour {
             waypoints[p.PointIndex] = g;
         }
 
+        SetPlayerPosition(new Vector3(waypoints[0].transform.position.x, 0.75f, waypoints[0].transform.position.z));
+
         transform.position = startingPos;
     }
 

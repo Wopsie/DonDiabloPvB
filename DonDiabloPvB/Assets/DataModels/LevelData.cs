@@ -4,14 +4,13 @@ using System;
 
 [CreateAssetMenu]
 public class LevelData : ScriptableObject{
-    public GameObject levelObject;
+    public GameObject levelTrackObj;
+    public GameObject levelBackgroundObj;
     public float roadWidth;
     public Vector2[] points;
-    public PropData[] propData;
     public float pointSpacing;
     public float textureTiling;
-    public List<Transform> buildingsPositions;
-    public List<Transform> backgroundObjsColl;
+    public List<Transform> buildingsModelColl; //contains references to the building prefabs that are to be used for this level
 }
 
 /// <summary>

@@ -19,13 +19,13 @@ public class LevelManager : MonoBehaviour {
     public void PlaceLevel(string levelName){
         Debug.Log(levelName);
         level = Resources.Load<LevelData>(levelName);
-        g = Instantiate(level.levelObject);
+        g = Instantiate(level.levelTrackObj, Vector3.zero, Quaternion.identity);
         replayLevelName = levelName;
     }
 
     public void ReloadLevel(){
         LevelData level = (replayLevelName != "") ? Resources.Load<LevelData>(replayLevelName) : Resources.Load<LevelData>("Level");
-        g = Instantiate(level.levelObject);
+        g = Instantiate(level.levelTrackObj);
     }
 
     /// <summary>
