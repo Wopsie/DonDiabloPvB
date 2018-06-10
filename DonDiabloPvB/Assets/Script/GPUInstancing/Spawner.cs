@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour {
 
-    private GPUInstancing instancing;
+    private GPUInstancer instancing;
     public Transform[] objs;
     public int instances = 100;
     private Vector3 maxPos = new Vector3(10, 10, 10);
 
     private void Start(){
-        instancing = FindObjectOfType<GPUInstancing>();
+        instancing = FindObjectOfType<GPUInstancer>();
     }
 
     private void Update(){

@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-//using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
@@ -26,7 +25,7 @@ public class LevelStarter : MonoBehaviour{
 
         //loop through all of the children
         foreach (Transform child in LevelManager.Instance.level.levelBackgroundObj.transform){
-            GPUInstancing.Instance.AddObjTrans(child, backgroundHolder.transform);
+            GPUInstancer.Instance.AddObjTrans(child, backgroundHolder.transform);
         }
     }
 

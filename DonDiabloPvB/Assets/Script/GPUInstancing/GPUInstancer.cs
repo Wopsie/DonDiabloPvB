@@ -2,7 +2,7 @@
 using UnityEngine;
 using System.Linq;
 
-public class ObjData{
+public class RenderObj{
     public Transform parent;
     public Vector3 localPosition;
     public Vector3 scale;
@@ -12,7 +12,7 @@ public class ObjData{
         get { return Matrix4x4.TRS(GetPos, rot, scale); }
     }
 
-    public ObjData(Vector3 localPosition, Vector3 scale, Quaternion rot, Transform parent = null){
+    public RenderObj(Vector3 localPosition, Vector3 scale, Quaternion rot, Transform parent = null){
         this.localPosition = localPosition;
         this.scale = scale;
         this.rot = rot;
@@ -33,37 +33,35 @@ public class ObjData{
 public class Batch{
     public Mesh objMesh;
     public Material objMat;
-
-    public List<ObjData> ObjDatas;
+    public List<RenderObj> ObjDatas;
 }
 
-public class GPUInstancing : MonoBehaviour{
-    public static GPUInstancing Instance { get { return GetInstance(); } }
+public class GPUInstancer : MonoBehaviour{
+    public static GPUInstancer Instance { get { return GetInstance(); } }
 
     #region Singleton
-    private static GPUInstancing instance;
+    private static GPUInstancer instance;
 
-    private static GPUInstancing GetInstance(){
+    private static GPUInstancer GetInstance(){
         if (instance == null){
-            instance = FindObjectOfType<GPUInstancing>();
+            instance = FindObjectOfType<GPUInstancer>();
         }
         return instance;
     }
     #endregion
 
-    [SerializeField]
+    [SerializeField,HideInInspector]
     private Dictionary<string, Batch> batchesByName = new Dictionary<string, Batch>();
 
     void Update(){
         if (batchesByName.Count > 0){
-            RenderBatches();
+            RenderAllBatches();
         }
     }
 
-    public ObjData AddObjTrans(Transform trans, Transform parentTrans = null){
+    public RenderObj AddObjTrans(Transform trans, Transform parentTrans = null){
         //Create new ObjData with the passed data. Then check what to do with batching
-        //ObjData addedObjData = (useTrans == true) ? new ObjData(trans.position, trans.localScale, trans.rotation, parentTrans) : new ObjData(pos, scale, rot, parentTrans);
-        ObjData addedObjData = new ObjData(trans.position, trans.localScale, trans.rotation, (parentTrans != null) ? parentTrans : trans);
+        RenderObj addedObjData = new RenderObj(trans.position, trans.localScale, trans.rotation, (parentTrans != null) ? parentTrans : trans);
         Debug.Log(trans.name);
         //check if this object has already been batched or if relevant batch is full
         if (batchesByName.ContainsKey(trans.name)){
@@ -79,51 +77,27 @@ public class GPUInstancing : MonoBehaviour{
         return addedObjData;
     }
 
-    public void RemoveObjByParent(Transform parentTrans){
-        List<string> _keysToRemove = new List<string>();
-
-        foreach (KeyValuePair<string, Batch> _batchByStringPair in batchesByName){
-            List<ObjData> _objectDatas = _batchByStringPair.Value.ObjDatas;
-
-            for (int i = _objectDatas.Count - 1; i >= 0; i--){
-                ObjData _objData = _objectDatas[i];
-                if (_objData.parent != parentTrans) { continue; }
-                _objectDatas.RemoveAt(i);
-            }
-
-            if (_objectDatas.Count <= 0){
-                _keysToRemove.Add(_batchByStringPair.Key);
-            }
-        }
-
-        foreach (string _key in _keysToRemove){
-            batchesByName.Remove(_key);
-        }
-    }
-
     /// <summary>
     /// Create a new batch with the given object data & transform
     /// </summary>
     /// <param name="initObj"></param>
     /// <param name="initTrans"></param>
-    private void CreateNewBatch(ObjData initObj, Transform initTrans){
-        //create the new batch with passed values
+    private void CreateNewBatch(RenderObj initObj, Transform initTrans){
+        //create the new batch with passed initial values
         Batch batch = new Batch{
-            ObjDatas = new List<ObjData>{
+            ObjDatas = new List<RenderObj>{
                 initObj,
             },
             objMesh = initTrans.GetComponent<MeshFilter>().sharedMesh,
             objMat = initTrans.gameObject.GetComponent<MeshRenderer>().sharedMaterial,
         };
-        //not sure if this creates a duplicate
-        batch.ObjDatas.Add(initObj);
         //add new batch the list of batches
+        batch.ObjDatas.Add(initObj);
         batchesByName.Add(initTrans.name, batch);
     }
 
-    private void RenderBatches(){
+    private void RenderAllBatches(){
         foreach (KeyValuePair<string, Batch> batch in batchesByName){
-            Debug.Log("Drawing batch: " + batch.Value.ObjDatas);
             Graphics.DrawMeshInstanced(batch.Value.objMesh, 0, batch.Value.objMat, batch.Value.ObjDatas.Select(a => a.matrix).ToList());
         }
     }

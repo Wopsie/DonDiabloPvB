@@ -1,7 +1,7 @@
-﻿using UnityEngine;
+﻿#if (UNITY_EDITOR) 
+using UnityEngine;
 
 public class LevelInputLoad : MonoBehaviour{
-
     private LevelManager loader;
 
     private void Awake(){
@@ -24,3 +24,4 @@ public class LevelInputLoad : MonoBehaviour{
         }
     }
 }
+#endif

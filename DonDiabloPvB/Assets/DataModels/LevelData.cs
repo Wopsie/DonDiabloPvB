@@ -10,22 +10,4 @@ public class LevelData : ScriptableObject{
     public Vector2[] points;
     public float pointSpacing;
     public float textureTiling;
-    public List<Transform> buildingsModelColl; //contains references to the building prefabs that are to be used for this level
-}
-
-/// <summary>
-/// class for storing the position and rotation of a prop
-/// </summary>
-public class PropData{
-    public Vector3 position;
-    public Quaternion rotation;
-
-    public Matrix4x4 matrix{
-        get { return Matrix4x4.TRS(position, rotation, Vector3.one); }
-    }
-
-    public PropData(Vector3 pos, Quaternion rot){
-        this.position = pos;
-        this.rotation = rot;
-    }
 }

@@ -6,8 +6,6 @@ using SplineEditor;
 using UnityEditor;
 
 public class PathPlacer : MonoBehaviour{
-    //public float spacing = 1f;
-    //public int propSpacing = 1;
     [Tooltip("Frequency of building spawning. More is less")]
     [Range(2, 20)]
     public int buildingFrequency = 5;
@@ -15,12 +13,6 @@ public class PathPlacer : MonoBehaviour{
     private int TunnelLength = 15;
     public float buildingDistance = 50;
     public GameObject trackProp1;
-    //trash
-    [HideInInspector]
-    public List<Matrix4x4> buildingPosList;
-    [HideInInspector]
-    public PropData[] propPosRotData;
-    //endtrash
     [SerializeField]
     private GameObject tunnelGo;
     [SerializeField]
@@ -56,14 +48,6 @@ public class PathPlacer : MonoBehaviour{
         backgroundHolder.tag = Tags.MeshHolderTag;
         trackedObjs = new GameObject[points.Length];
         completeTunnel = new GameObject[TunnelLength + 1];
-        if (finalize){//only set these arrays if path is being finalized, as else they are unnecessary
-            propPosRotData = new PropData[dstToMeshEdgePerPoint.Length * 2];
-            //buildings array need only be as long as the amount of building positions that are created
-
-            //convert buildingPos array to list
-            //add the building position to it when it is determined
-            buildingPosList = new List<Matrix4x4>();
-        }
 
         for (int i = 0; i < points.Length; i++){
             trackedObjs[i] = Instantiate(playerTrackPoint, transform);
@@ -84,7 +68,6 @@ public class PathPlacer : MonoBehaviour{
                 //place props along track edges
                 if (placeProps){
                     PlaceRoadProps(trackedObjs[i], dstToMeshEdgePerPoint, meshWidth, finalize, i);
-                    //PlaceRoadProps(trackedObjs[i], dstToMeshEdgePerPoint, meshWidth, finalize, i);
                 }
             }
 
@@ -158,7 +141,7 @@ public class PathPlacer : MonoBehaviour{
             else
                 g = Instantiate(trackProp1, trackedObj.transform.position - new Vector3(dstToMeshEdgePerPoint[index].x, 0, dstToMeshEdgePerPoint[index].y) * meshWidth * 0.5f, Quaternion.identity, trackedObj.transform);
 
-            g.transform.SetParent(backgroundHolder.transform);
+            //g.transform.SetParent(backgroundHolder.transform);
             //work out rotation direction that object should take 
             Vector3 v = trackedObj.transform.position - g.transform.position;
             g.transform.localRotation = Quaternion.LookRotation(v);
@@ -172,7 +155,6 @@ public class PathPlacer : MonoBehaviour{
             g = TunnelDoor;
         }
 
-        print(g.name);
         Vector3 shinVec = new Vector3(Pointvec[i].x, 0, Pointvec[i].y);
 
         completeTunnel[i] = Instantiate(g, shinVec + new Vector3(dstToMeshEdgePerPoint[i].x, 0, dstToMeshEdgePerPoint[i].y) * meshWidth * 0f, Quaternion.identity, trackedObjs[i].transform);
@@ -211,6 +193,11 @@ public class PathPlacer : MonoBehaviour{
     public void CleanScene(){
         DestroyTrackedObjects();
         GameObject[] g = GameObject.FindGameObjectsWithTag(Tags.WaypointTag);
+        for (int i = 0; i < g.Length; i++){
+            DestroyImmediate(g[i]);
+        }
+
+        g = GameObject.FindGameObjectsWithTag(Tags.MeshHolderTag);
         for (int i = 0; i < g.Length; i++){
             DestroyImmediate(g[i]);
         }

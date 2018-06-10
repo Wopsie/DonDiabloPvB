@@ -15,8 +15,7 @@ public class RoadEditor : Editor{
         }
     }
 
-    public override void OnInspectorGUI()
-    {
+    public override void OnInspectorGUI(){
         base.OnInspectorGUI();
 
         if(GUILayout.Button("Place Buildings")){
@@ -57,8 +56,7 @@ public class RoadEditor : Editor{
             DestroyImmediate(g.GetComponent<PathCreator>());
             DestroyImmediate(g.GetComponent<PathPlacer>());
 
-            //Add a script that upon instantiation searches for obstacle helper & player movement.
-            //when the prefab is then loaded in, it will position the player on the right position & start the game
+            //Add a script that upon instantiation searches for obstacle helper & player movement upon instantiation
             g.AddComponent<LevelStarter>();
 
             //create prefab of the level track
