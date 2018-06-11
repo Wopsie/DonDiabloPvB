@@ -4,12 +4,12 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class Score : MonoBehaviour {
-    private string songName;
+    private int songNumber;
     private int score;
-    [SerializeField]
     private Text text;
 	// Use this for initialization
 	void Start () {
+        text = GetComponent<Text>();
         StartCoroutine(wait());
         score = 0;
 	}
@@ -26,7 +26,7 @@ public class Score : MonoBehaviour {
     {
         yield return new WaitForSeconds(1);
         AddScore();
-        Progress.SetProgress(songName, score);
+        Progress.SetProgress(songNumber.ToString(), score);
         StartCoroutine(wait());
     }
 }
