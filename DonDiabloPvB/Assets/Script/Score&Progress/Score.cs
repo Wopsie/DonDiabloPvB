@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// Handles score and saves it to Playerprefs by number of song.
+/// </summary>
 public class Score : MonoBehaviour {
     private int songNumber;
     private int score;
@@ -10,23 +13,15 @@ public class Score : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         text = GetComponent<Text>();
-        StartCoroutine(wait());
         score = 0;
 	}
-
-    //Adds score with given amount
+    /// <summary>
+    /// Adds score with given amount to text.
+    /// </summary>
     void AddScore(int amountGain = 1)
     {
         score += amountGain;
         text.text = score.ToString();
     }
 
-    //Only for testing score it adds 1 to score each second
-    IEnumerator wait()
-    {
-        yield return new WaitForSeconds(1);
-        AddScore();
-        Progress.SetProgress(songNumber.ToString(), score);
-        StartCoroutine(wait());
-    }
 }
