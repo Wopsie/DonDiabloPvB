@@ -22,25 +22,27 @@ public class ShaderController : MonoBehaviour
 
     private bool _StartFading = true;
     private bool _FadeTransition = false;
-    private float _SetShader = 0;
+    [SerializeField]private float _SetShader;
 
-    private void Start()
+    void Start()
     {
         currentPower = 0.2f;
         mat.SetFloat("_DisolveCount", currentPower);
     }
 
-    private void Update()
+    void Update()
     {
         CallTransition(_SetShader);
     }
 
     public void TriggerEffect(float ShaderValue)
     {
+        Debug.Log(ShaderValue);
         _SetShader = ShaderValue;
+        Debug.Log(_SetShader);
     }
 
-    private void CallTransition(float Set)
+    void CallTransition(float Set)
     {
         //this value will open the shader.
         if (Set == 1)
@@ -67,13 +69,13 @@ public class ShaderController : MonoBehaviour
         }
     }
 
-    private void ButtonTransition()
+    void ButtonTransition()
     {
         if (_FadeTransition)
         {
             if (_StartFading)
             {
-                if (currentPower > 0.1f)
+                if (currentPower > 0f)
                 {
                     currentPower = 0.2f;
                     MainMenuHandler.Instance.ChangeLevelScreen();
@@ -98,8 +100,8 @@ public class ShaderController : MonoBehaviour
             }
         }
 
-        else if (currentPower < max) {
-            _SetShader = 0;
+       else if (currentPower < max) {
+           // _SetShader = 0;
             currentPower = max;
            
         }

@@ -22,7 +22,6 @@ public class SettingsHandler : MonoBehaviour
     [SerializeField]
     public List<GameObject> SettingObjects = new List<GameObject>();
     private AudioSource audioSource;
-    private LevelManager levelManager;
 
     private void Awake()
     {
@@ -53,7 +52,12 @@ public class SettingsHandler : MonoBehaviour
 
     public void BackToMenu()
     {
+        SettingUI(false);
+        SetButtonActive(true);
+        MainMenuHandler.Instance.SelectButtons.SetActive(true);
+        NewPlayerMovement.Instance.Reset();
         LevelManager.Instance.RemoveLevel();
+        ObstacleHelper.Instance.CurrentScore = 0;
     }
 
     public void SetButtonActive(bool a)

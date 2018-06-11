@@ -4,14 +4,7 @@ using UnityEngine.UI;
 
 public class StartButton : MonoBehaviour
 {
-    [SerializeField] private GameObject _parent; 
-    private LevelManager loader;
     private int _level;
-
-    void Awake()
-    {
-        loader = FindObjectOfType<LevelManager>();
-    }
 
     public void ButtonSelect()
     {

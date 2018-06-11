@@ -29,8 +29,8 @@ public class ObstacleHelper : MonoBehaviour {
     private float maxScore;
     public float MaxScore { get { return maxScore; } }
     private float currentScore;
-    public float CurrentScore { get { return currentScore; } }
-    private Text scoreText;
+    public float CurrentScore { get { return currentScore; } set { currentScore = value; } }
+    [SerializeField]private Text scoreText;
 
     private void OnEnable(){
         //Debug.Log("ENABLE HELPER");

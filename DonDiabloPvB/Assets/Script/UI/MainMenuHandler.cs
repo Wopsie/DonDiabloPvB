@@ -23,7 +23,6 @@ public class MainMenuHandler : MonoBehaviour {
     public GameObject UIStartButton;
     public GameObject startButton;
     public GameObject SelectButtons;
-    public GameObject MenuUI;
     public int LevelNumber;    
     private Text LevelNumberText;
 
