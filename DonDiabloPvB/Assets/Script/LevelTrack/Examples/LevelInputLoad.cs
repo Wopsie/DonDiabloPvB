@@ -12,7 +12,7 @@ public class LevelInputLoad : MonoBehaviour{
         if (Input.GetKeyDown(KeyCode.Alpha0)){
             loader.PlaceLevel("DoorTest2339");
         }else if (Input.GetKeyDown(KeyCode.Alpha1)){
-            loader.PlaceLevel("GPULevel");
+            loader.PlaceLevel("Level1");
         }else if (Input.GetKeyDown(KeyCode.Alpha2)){
             loader.PlaceLevel("Level1");
         }else if (Input.GetKeyDown(KeyCode.Alpha3)){

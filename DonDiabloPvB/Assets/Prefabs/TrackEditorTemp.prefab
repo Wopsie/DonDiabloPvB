@@ -128,12 +128,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   path:
     points:
-    - {x: -1, y: 0}
-    - {x: -10, y: 10}
-    - {x: -30, y: 30}
-    - {x: -50, y: 50}
+    - {x: -22.77246, y: 22.216797}
+    - {x: -22.775452, y: 22.219849}
+    - {x: -22.779938, y: 22.224426}
+    - {x: -22.784424, y: 22.229004}
     isClosed: 0
-    autoSetControlPoints: 0
+    autoSetControlPoints: 1
   anchorCol: {r: 1, g: 0, b: 0, a: 1}
   controlColor: {r: 1, g: 1, b: 1, a: 1}
   segmentCol: {r: 0, g: 1, b: 0, a: 1}
@@ -155,16 +155,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spacing: 2
   roadWidth: 2
-  autoUpdate: 0
-  placePoints: 0
-  placeProps: 0
+  autoUpdate: 1
+  placePoints: 1
+  placeProps: 1
   tiling: 1
-  points: []
-  buildingPositions: []
-  backgroundObjs: []
-  prop: {fileID: 0}
+  points:
+  - {x: -22.4375, y: 21.875}
+  buildingModelsArr: []
   filter: {fileID: 0}
   renderer: {fileID: 0}
+  backgroundElementsGo: {fileID: 0}
 --- !u!114 &114873302475500900
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -188,10 +188,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10f74553aecc3504c92eaf38eada8020, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buildingFrequency: 5
-  buildingDistance: 50
-  trackProp1: {fileID: 1055669284977536, guid: 26664baae8aed9540b0e1b38ce0ebd85, type: 2}
-  buildingPosList: []
+  buildingFrequency: 2
+  buildingDistance: 16
+  trackProps:
+  - {fileID: 1739296333189858, guid: 9233c698360bff04aabd4328ff2d31af, type: 2}
+  - {fileID: 1850582145820774, guid: f3f241792a419334d9905dc82cc19d79, type: 2}
+  - {fileID: 1751332277745716, guid: bc8b2b83b6f740a43a6115251e18d657, type: 2}
   tunnelGo: {fileID: 100010, guid: a9b0e5ea2e457e74ea2af5d2c55a8c46, type: 3}
   TunnelDoor: {fileID: 100010, guid: a9b0e5ea2e457e74ea2af5d2c55a8c46, type: 3}
   completeTunnel: []
@@ -201,3 +203,4 @@ MonoBehaviour:
   - {fileID: 1793857825868620, guid: 2b21cb217ec533b40bc9b1bed64b408d, type: 2}
   - {fileID: 1430864437112848, guid: f97a9c7cc7903e544a9019ecd4cbf283, type: 2}
   - {fileID: 1765967508736088, guid: eac190f0484e88748b046f10ddfde5fd, type: 2}
+  backgroundHolder: {fileID: 0}

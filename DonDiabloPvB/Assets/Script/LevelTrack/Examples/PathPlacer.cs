@@ -12,7 +12,8 @@ public class PathPlacer : MonoBehaviour{
     [Range(10, 50)]
     private int TunnelLength = 15;
     public float buildingDistance = 50;
-    public GameObject trackProp1;
+    [Tooltip("First enter the clamp, then enter the holder, then enter the arrow")]
+    public GameObject[] trackProps;
     [SerializeField]
     private GameObject tunnelGo;
     [SerializeField]
@@ -26,6 +27,16 @@ public class PathPlacer : MonoBehaviour{
     [HideInInspector]//the gameobject that holds all of the visual, non-interactable elements on the track
     public GameObject backgroundHolder;
 
+    /// <summary>
+    /// Generates road properties such as waypoints and visual elements along a given array of points
+    /// </summary>
+    /// <param name="points"></param>
+    /// <param name="dstToMeshEdgePerPoint"></param>
+    /// <param name="meshWidth"></param>
+    /// <param name="placeProps"></param>
+    /// <param name="placePoints"></param>
+    /// <param name="placeBuildings"></param>
+    /// <param name="finalize"></param>
     public void GenerateRoadProperties(Vector2[] points, Vector3[] dstToMeshEdgePerPoint, float meshWidth, bool placeProps, bool placePoints, bool placeBuildings, bool finalize){
         DestroyTrackedObjects();
 
@@ -98,7 +109,7 @@ public class PathPlacer : MonoBehaviour{
     }
 
     /// <summary>
-    /// place buildings preview or store the positions at which the buildings should be placed at runtime
+    /// Place buildings next to the road and as child of MeshHolder gameobject 
     /// </summary>
     /// <param name="layer"></param>
     /// <param name="trackedObj"></param>
@@ -124,7 +135,7 @@ public class PathPlacer : MonoBehaviour{
     }
 
     /// <summary>
-    /// method places props along road mesh
+    /// Place road props along the road and as children of MeshHolder gameobject
     /// </summary>
     /// <param name="left"></param>
     /// <param name="trackedObj"></param>
@@ -135,20 +146,61 @@ public class PathPlacer : MonoBehaviour{
     void PlaceRoadProps(GameObject trackedObj, Vector3[] dstToMeshEdgePerPoint, float meshWidth, bool finalizeProps, int index){
         //place object at position depending on position of the trackedObj center point in the mesh
         GameObject g;
-        for (int i = 0; i < 2; i++){
-            if (i == 1)
-                g = Instantiate(trackProp1, trackedObj.transform.position + new Vector3(dstToMeshEdgePerPoint[index].x, 0, dstToMeshEdgePerPoint[index].y) * meshWidth * 0.5f, Quaternion.identity, trackedObj.transform);
-            else
-                g = Instantiate(trackProp1, trackedObj.transform.position - new Vector3(dstToMeshEdgePerPoint[index].x, 0, dstToMeshEdgePerPoint[index].y) * meshWidth * 0.5f, Quaternion.identity, trackedObj.transform);
+        for (int j = 0; j < trackProps.Length; j++)
+        {
+            for (int i = 0; i < 2; i++){
+                if (i == 1)//left
+                    g = Instantiate(trackProps[j], trackedObj.transform.position + new Vector3(dstToMeshEdgePerPoint[index].x, 0, dstToMeshEdgePerPoint[index].y) * meshWidth * 0.5f, Quaternion.identity, trackedObj.transform);
+                else//right
+                    g = Instantiate(trackProps[j], trackedObj.transform.position - new Vector3(dstToMeshEdgePerPoint[index].x, 0, dstToMeshEdgePerPoint[index].y) * meshWidth * 0.5f, Quaternion.identity, trackedObj.transform);
 
-            //g.transform.SetParent(backgroundHolder.transform);
-            //work out rotation direction that object should take 
-            Vector3 v = trackedObj.transform.position - g.transform.position;
-            g.transform.localRotation = Quaternion.LookRotation(v);
-            g.transform.rotation *= Quaternion.Euler(0, -90, 0);
+                g.transform.SetParent(backgroundHolder.transform);
+                //work out rotation direction that object should take 
+                Vector3 v = trackedObj.transform.position - g.transform.position;
+                g.transform.localRotation = Quaternion.LookRotation(v);
+                g.transform.rotation *= Quaternion.Euler(0, 180, 0);
+
+                //set positions specific for each prop
+                if (j == 1) {
+                    //this is the holder prop
+                    if (index % 3 == 0){ //this statement is to make the prop not spawn on every single tracking point
+                        if(i == 1){//left
+                            g.transform.localPosition -= Vector3.forward * 0.5f;
+                            g.transform.localPosition -= Vector3.left * 1f;
+                        }
+                        else{//right
+                            g.transform.localPosition -= Vector3.forward * 0.5f;
+                            g.transform.localPosition += Vector3.left * 0.5f;
+                        }
+                    }else{
+                        DestroyImmediate(g);
+                    }
+                } else if (j == 2) {
+                    //this is the arrow prop
+                    if(index % 5 == 0){
+                        g.transform.position += (Vector3.up * 0.5f);
+                        if (i == 1){//left
+                            g.transform.position -= Vector3.forward;
+                        }else{//right
+                            g.transform.position += Vector3.forward;
+                            g.transform.localScale = new Vector3(-g.transform.localScale.x, g.transform.localScale.y, g.transform.localScale.z);
+                        }
+                    }else{
+                        DestroyImmediate(g);
+                    }
+                }
+            }
         }
     }
 
+    /// <summary>
+    /// Place tunnel at given length at start of road
+    /// </summary>
+    /// <param name="Pointvec"></param>
+    /// <param name="i"></param>
+    /// <param name="dstToMeshEdgePerPoint"></param>
+    /// <param name="meshWidth"></param>
+    /// <param name="doorPiece"></param>
     void PlaceTunnel(Vector2[] Pointvec, int i, Vector3[] dstToMeshEdgePerPoint, float meshWidth, bool doorPiece){
         GameObject g = tunnelGo;
         if (doorPiece){

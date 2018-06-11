@@ -32,21 +32,20 @@ public class RoadCreator : MonoBehaviour{
 
     public void UpdateRoad(){
         //clean this up
-        if (!renderer || !filter || !generator){
+        if (!renderer || !filter){
             Debug.LogWarning("No target mesh components selected; Automatic detection");
             renderer = GameObject.FindWithTag(Tags.targetRoadMeshTag).GetComponent<MeshRenderer>();
             filter = GameObject.FindWithTag(Tags.targetRoadMeshTag).GetComponent<MeshFilter>();
-            generator = GameObject.FindObjectOfType<MeshGenerator>();
             return;
         }
-        /*
+        
         if (!generator){
             generator = GameObject.FindObjectOfType<MeshGenerator>();
         }
-        */
 
         Path path = GetComponent<PathCreator>().path;
         points = path.CalculateEvenSpacePoints(spacing);
+
         filter.mesh = GetRoad();
         vertexOffsetVectors = generator.vertexOffsetVectors;
         int textureRepeat = Mathf.RoundToInt(tiling * points.Length * spacing * 0.05f);
@@ -82,6 +81,8 @@ public class RoadCreator : MonoBehaviour{
         placer.GenerateRoadProperties(points, vertexOffsetVectors, roadWidth, true, true, true, true);
         backgroundElementsGo = placer.backgroundHolder;
         //Do the same for props later
+
+
     }
 
     public void CleanScene(){
