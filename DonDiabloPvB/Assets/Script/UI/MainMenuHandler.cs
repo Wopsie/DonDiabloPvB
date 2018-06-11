@@ -48,6 +48,7 @@ public class MainMenuHandler : MonoBehaviour {
     {
         LevelNumber = number;
     }
+
     /// <summary>
     /// Sets audioclip called by SelectButton.
     /// </summary>
@@ -56,6 +57,7 @@ public class MainMenuHandler : MonoBehaviour {
     {
         AudioSource.clip = _audioClip;
     }
+
     /// <summary>
     /// When in Main menu and you selected a song shader closes and opens, the level number will set in meantime.
     /// </summary>
