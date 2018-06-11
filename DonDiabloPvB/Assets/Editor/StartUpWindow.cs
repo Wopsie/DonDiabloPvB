@@ -7,12 +7,7 @@ using UnityEngine.Events;
 public class UnityStringEvent : UnityEvent<string> { }
 
 /// <summary>
-/// Gewoon een voorbeeld van een startup window speciaal voor jou omdat je zo cool bent
-/// Het maakt gebruik van scriptableobjects om data te saven en doet op het moment vrij weinig naast de flow beetje zetten
-/// Je kan een dataobject kiezen of maken met een naam, nu aan jou de taak om dit te koppelen aan je editor (als je dat wil ofcourse)
-/// Als je vragen heb weet je me te vinden
-/// 
-/// btw.. let niet teveel op de code dit was ff snel gedaan
+/// The window that opens when the player creates a new level
 /// </summary>
 public class StartUpWindow : EditorWindow
 {
