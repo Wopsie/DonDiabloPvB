@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
+/// <summary>
+/// MainMenuHandler as it say it handles the main menu from choosing song to starting game.
+/// </summary>
 public class MainMenuHandler : MonoBehaviour {
     #region Singleton
     private static MainMenuHandler instance;
@@ -36,16 +40,25 @@ public class MainMenuHandler : MonoBehaviour {
         UIStartButton.SetActive(false);
     }
 
+    /// <summary>
+    /// Sets number of song so other script can read it like score to save score to playerprefs when level is completed.
+    /// </summary>
+    /// <param name="number"></param>
     public void SetLevelNumber(int number)
     {
         LevelNumber = number;
     }
-
+    /// <summary>
+    /// Sets audioclip called by SelectButton.
+    /// </summary>
+    /// <param name="_audioClip"></param>
     public void SetAudioClip(AudioClip _audioClip)
     {
         AudioSource.clip = _audioClip;
     }
-
+    /// <summary>
+    /// When in Main menu and you selected a song shader closes and opens, the level number will set in meantime.
+    /// </summary>
     public void ChangeLevelScreen()
     {
         if (LevelNumber == 0)
