@@ -53,8 +53,6 @@ public class ObstacleHelper : MonoBehaviour {
             obstacleColl[i].ReceiveHelper();
             maxScore += obstacleColl[i].scoreToAward;
         }
-
-        Debug.Log(maxScore);
     }
 
     public void AddScore(float score){

@@ -51,9 +51,7 @@ public class ShaderController : MonoBehaviour
     /// <param name="ShaderValue"></param>
     public void TriggerEffect(float ShaderValue)
     {
-        Debug.Log(ShaderValue);
         _SetShader = ShaderValue;
-        Debug.Log(_SetShader);
     }
 
     /// <summary>
