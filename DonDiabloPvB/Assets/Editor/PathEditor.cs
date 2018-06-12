@@ -5,6 +5,9 @@ using UnityEditor;
 
 namespace SplineEditor
 {
+    /// <summary>
+    /// Class used in Unity Inspector to test and make easily paths.
+    /// </summary>
     [CustomEditor(typeof(PathCreator))]
     public class PathEditor : Editor {
 

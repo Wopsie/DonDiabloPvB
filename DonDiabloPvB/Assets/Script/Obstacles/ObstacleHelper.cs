@@ -33,7 +33,6 @@ public class ObstacleHelper : MonoBehaviour {
     [SerializeField]private Text scoreText;
 
     private void OnEnable(){
-        //Debug.Log("ENABLE HELPER");
         StartLevel();
     }
 
@@ -41,7 +40,9 @@ public class ObstacleHelper : MonoBehaviour {
         if (playerPassIndex != player.CurrWaypointIndex)
             playerPassIndex = player.CurrWaypointIndex;
     }
-
+    /// <summary>
+    /// Starts Level, gets object player and finds obstacles and sets max score based on amount of obstacles.
+    /// </summary>
     public void StartLevel(){
         obstacleColl = null;
 
@@ -54,11 +55,15 @@ public class ObstacleHelper : MonoBehaviour {
             maxScore += obstacleColl[i].scoreToAward;
         }
     }
-
+    /// <summary>
+    /// Fucntion for adding score.
+    /// </summary>
+    /// <param name="score"></param>
     public void AddScore(float score){
         currentScore += score;
         scoreText.text = currentScore.ToString();
     }
+
 
     public Obstacle[] GetAllObstacles(){
         return obstacleColl;

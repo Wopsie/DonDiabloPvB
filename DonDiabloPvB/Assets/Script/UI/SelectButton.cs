@@ -12,7 +12,6 @@ public class SelectButton : MonoBehaviour
     /// <summary>
     /// Takes care when MainMenu button is clicked, sets song, opens partly the windscreen and activate ready button.
     /// </summary>
-
     public void ButtonSelect()
     {
         //Changes the music that you hear in the menu.

@@ -8,7 +8,7 @@ public static class ScriptableObjectsUtility
     private const string ASSET_EXTENSION = ".asset";
 
     /// <summary>
-    //  This makes it easy to create, name and place unique new ScriptableObject asset files.
+    ///  This makes it easy to create, name and place unique new ScriptableObject asset files.
     /// </summary>
     public static void CreateAsset<T>(string name) where T : ScriptableObject
     {

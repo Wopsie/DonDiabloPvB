@@ -36,6 +36,10 @@ public class Batch{
     public List<RenderObj> ObjDatas;
 }
 
+/// <summary>
+/// GPUInstace uses GPU on mobile phone if one exists.
+/// Gets you higher frames and a better experience.
+/// </summary>
 public class GPUInstancer : MonoBehaviour{
     public static GPUInstancer Instance { get { return GetInstance(); } }
 

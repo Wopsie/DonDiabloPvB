@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using System;
 
+/// <summary>
+/// Holds all data of the current game/level.
+/// </summary>
 [CreateAssetMenu]
 public class LevelData : ScriptableObject{
     public GameObject levelTrackObj;

@@ -7,7 +7,7 @@ using UnityEngine.Events;
 public class UnityStringEvent : UnityEvent<string> { }
 
 /// <summary>
-/// The window that opens when the player creates a new level
+/// Editor tool for level editing.
 /// </summary>
 public class StartUpWindow : EditorWindow
 {

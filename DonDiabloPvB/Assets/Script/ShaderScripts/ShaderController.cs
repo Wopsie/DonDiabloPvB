@@ -48,7 +48,7 @@ public class ShaderController : MonoBehaviour
     /// <summary>
     /// This function is being called upon in other scripts to start the value changing with the parameter making sure in what way.
     /// </summary>
-    /// <param name="ShaderValue"></param>
+    /// <param name="ShaderValue">Sets shader value for perform closing or opening.</param>
     public void TriggerEffect(float ShaderValue)
     {
         _SetShader = ShaderValue;
@@ -57,7 +57,7 @@ public class ShaderController : MonoBehaviour
     /// <summary>
     /// This function changes the values in the shader, the parameter is set to choose in what way this function changes the value in the shader.
     /// </summary>
-    /// <param name="Set"></param>
+    /// <param name="Set">Give float to set which action you want to perform.</param>
     void CallTransition(float Set)
     {
         //this value will open the shader.

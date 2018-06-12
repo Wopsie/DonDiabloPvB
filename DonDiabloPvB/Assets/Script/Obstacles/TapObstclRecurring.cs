@@ -1,7 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/// <summary>
+/// Class inherid from Obstacle class.
+/// </summary>
 public class TapObstclRecurring : Obstacle {
 
     [SerializeField][Tooltip("The type of obstacle, this determines the state the player must be in to successfully pass")]
@@ -17,6 +19,10 @@ public class TapObstclRecurring : Obstacle {
         base.CheckPlayerDistances();
     }
 
+    /// <summary>
+    /// Checks collsion.
+    /// </summary>
+    /// <param name="coll"></param>
     private void OnTriggerEnter(Collider coll){
         if(waypointPositionIndex == 0)
             base.SnapToClosestTrackPoint(coll);

@@ -5,6 +5,9 @@ using UnityEngine;
 using SplineEditor;
 using UnityEditor;
 
+/// <summary>
+/// Class which has the functions to Generate road data, places buildings and the tunnel.
+/// </summary>
 public class PathPlacer : MonoBehaviour{
     [Tooltip("Frequency of building spawning. More is less")]
     [Range(2, 20)]
@@ -221,7 +224,7 @@ public class PathPlacer : MonoBehaviour{
     }
 
     /// <summary>
-    /// destroy the tracked playerpoints & tunnel pieces in the scene
+    /// Destroys the tracked playerpoints & tunnel pieces in the scene
     /// </summary>
     void DestroyTrackedObjects(){
         if (trackedObjs != null){
