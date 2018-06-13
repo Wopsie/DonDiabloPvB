@@ -43,7 +43,7 @@ public class NewPlayerMovement : MonoBehaviour {
     [HideInInspector]
     private Rigidbody rb;
     private Vector3 velocity = new Vector3();
-    private bool update = true;
+    public bool update = true;
     private PlayerInput pInput;
     private float tapFrames = 1f;
     [SerializeField][Tooltip("The amount of time each frame that is taken from the remaining frames. Higher number means shorter tap window")]
