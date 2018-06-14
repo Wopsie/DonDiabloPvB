@@ -20,7 +20,8 @@ public class Tunnel : Obstacle {
         print(ObstacleHelper.Instance + " helper");
         if ((waypointPositionIndex - 10) <= ObstacleHelper.Instance.playerPassIndex)
         {
-            Debug.Log("Play Tunnel animation");
+            //Debug.Log("Play Tunnel animation");
+            animator.SetBool("TunnelOpen", true);
 
         }
     }

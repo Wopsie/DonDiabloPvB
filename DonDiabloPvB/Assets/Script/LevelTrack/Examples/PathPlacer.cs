@@ -100,13 +100,13 @@ public class PathPlacer : MonoBehaviour{
 
         //spawn the start tunnel
         for (int i = 0; i <= TunnelLength - 1; i++){
-            PlaceTunnel(points, i, dstToMeshEdgePerPoint, meshWidth, false);
             if (i == TunnelLength - 1){
                 // use this function to spawn the door
-                /*
-                PlaceTunnel(points, i, dstToMeshEdgePerPoint, meshWidth, false);
+                PlaceTunnel(points, i, dstToMeshEdgePerPoint, meshWidth, true);
                 print("spawn the door");
-                */
+
+            }else{
+                PlaceTunnel(points, i, dstToMeshEdgePerPoint, meshWidth, false);
             }
         }
     }
@@ -217,10 +217,10 @@ public class PathPlacer : MonoBehaviour{
         Vector3 v = neoVec - completeTunnel[i].transform.position;
 
         completeTunnel[i].transform.localRotation = Quaternion.LookRotation(v);
-        if (!doorPiece){
+        //if (!doorPiece){
             completeTunnel[i].transform.Rotate(new Vector3(0, 90, 0));
             completeTunnel[i].transform.localScale = new Vector3(13.2f, 24f, 24f);
-        }
+        //}
     }
 
     /// <summary>

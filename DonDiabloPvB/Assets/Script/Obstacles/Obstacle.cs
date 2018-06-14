@@ -24,6 +24,13 @@ public class Obstacle : MonoBehaviour{
     protected ShieldState reqShieldState = ShieldState.NoShield;
     [SerializeField]
     protected GameObject particleParent;
+    [SerializeField]
+    protected AudioSource source;
+    [SerializeField]
+    protected AudioClip correctClip;
+    [SerializeField]
+    protected AudioClip failClip;
+
 
     private void Awake(){
         SetInduvidualData();
@@ -43,18 +50,26 @@ public class Obstacle : MonoBehaviour{
     /// <summary>
     /// Behaviour for when player collides with obstacle
     /// </summary>
-    protected virtual void OnPlayerCollision(){
+    protected virtual void OnPlayerCollision() {
         //if (helper.player.currShieldState == reqShieldState){
-        if(ObstacleHelper.Instance.player.currShieldState == reqShieldState) { 
+        if (ObstacleHelper.Instance.player.currShieldState == reqShieldState) {
             //success
             ObstacleHelper.Instance.AddScore(scoreToAward);
             Debug.Log("<color=green>VERRY G00D</color>");
             particleParent.SetActive(true);
-        }else{
+            if (source != null || correctClip != null){
+                source.clip = correctClip;
+                source.Play();
+            }
+        } else {
             //failure
             //helper.player.Reset();
             Debug.Log("<color=red>SUKKEL</color>");
             particleParent.SetActive(true);
+            if (source != null || correctClip != null){
+                source.clip = failClip;
+                source.Play();
+            }
 
             //check for remaining health
 
@@ -128,9 +143,5 @@ public class Obstacle : MonoBehaviour{
     /// </summary>
     protected virtual void PlayerInRange(){
         obstacleModel.SetActive(true);
-    }
-    
-    public void ReceiveHelper(){
-        //ObstacleHelper.Instance = ObstacleHelper.Instance;
     }
 }
