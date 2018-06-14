@@ -155,9 +155,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spacing: 2
   roadWidth: 2
-  autoUpdate: 1
-  placePoints: 1
-  placeProps: 1
+  autoUpdate: 0
+  placePoints: 0
+  placeProps: 0
   tiling: 1
   points:
   - {x: -22.4375, y: 21.875}
@@ -194,8 +194,8 @@ MonoBehaviour:
   - {fileID: 1739296333189858, guid: 9233c698360bff04aabd4328ff2d31af, type: 2}
   - {fileID: 1850582145820774, guid: f3f241792a419334d9905dc82cc19d79, type: 2}
   - {fileID: 1751332277745716, guid: bc8b2b83b6f740a43a6115251e18d657, type: 2}
-  tunnelGo: {fileID: 100010, guid: a9b0e5ea2e457e74ea2af5d2c55a8c46, type: 3}
-  TunnelDoor: {fileID: 100010, guid: a9b0e5ea2e457e74ea2af5d2c55a8c46, type: 3}
+  tunnelGo: {fileID: 1241371437061460, guid: 489fdf3ceb5d926459aec56229004093, type: 2}
+  TunnelDoor: {fileID: 1753935628829638, guid: 489fdf3ceb5d926459aec56229004093, type: 2}
   completeTunnel: []
   playerTrackPoint: {fileID: 1171681852992168, guid: dfe63bb262c8bae4baabd300bde42666,
     type: 2}

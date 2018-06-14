@@ -17,10 +17,11 @@ public class Tunnel : Obstacle {
     protected override void CheckPlayerDistances()
     {
         print(waypointPositionIndex + " waypointpostionindex");
-        print(helper + " helper");
-        if ((waypointPositionIndex - 10) <= helper.playerPassIndex)
+        print(ObstacleHelper.Instance + " helper");
+        if ((waypointPositionIndex - 10) <= ObstacleHelper.Instance.playerPassIndex)
         {
-            Debug.Log("Play Tunnel animation");
+            //Debug.Log("Play Tunnel animation");
+            animator.SetBool("TunnelOpen", true);
 
         }
     }

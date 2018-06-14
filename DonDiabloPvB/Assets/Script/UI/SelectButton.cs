@@ -5,9 +5,9 @@
 /// It sets Audioclip and level number and makes the Menu go to the next step.
 /// </summary>
 public class SelectButton : MonoBehaviour
-{ 
+{
     [SerializeField] private AudioClip AudioClip;
-    [SerializeField] private int LevelNumber;
+    [SerializeField] public int LevelNumber;
 
     /// <summary>
     /// Takes care when MainMenu button is clicked, sets song, opens partly the windscreen and activate ready button.
@@ -19,6 +19,5 @@ public class SelectButton : MonoBehaviour
         ShaderController.Instance.TriggerEffect(3);
         MainMenuHandler.Instance.SetLevelNumber(LevelNumber);
         MainMenuHandler.Instance.UIStartButton.SetActive(true);
-        LevelManager.Instance.PlaceLevel("Level" + LevelNumber); 
     }
 }

@@ -51,7 +51,7 @@ public class ObstacleHelper : MonoBehaviour {
         obstacleColl = FindObjectsOfType<Obstacle>();
         //loop to pass helper reference to obstacles
         for (int i = 0; i < obstacleColl.Length; i++){
-            obstacleColl[i].ReceiveHelper();
+            //obstacleColl[i].ReceiveHelper();
             maxScore += obstacleColl[i].scoreToAward;
         }
     }

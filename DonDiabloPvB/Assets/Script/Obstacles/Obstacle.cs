@@ -6,13 +6,6 @@ using UnityEngine;
 /// obstacle base class
 /// </summary>
 public class Obstacle : MonoBehaviour{
-    //obstacles share certain properties, this class allows us to set defaults for every obstacle if we are not sure about certain unique details
-    //every obstacle has a type
-    //every obstacle has access to ObstacleHelper (still thinking about optimal way to do this)
-    //every obstacle has particle when they get destroyed
-    //every obstacle has sound effect for destroy
-    //every obstacle has particle/animation for "initiation"
-    //every obstacle has colour shift as player get closer (?)
 
     protected enum ObstacleType{
         Tap,
@@ -21,7 +14,7 @@ public class Obstacle : MonoBehaviour{
 
     public int scoreToAward = 10;
     protected int waypointPositionIndex = 0;
-    protected ObstacleHelper helper;
+    //protected ObstacleHelper ObstacleHelper.Instance;
     protected new SphereCollider collider;
     protected GameObject obstacleModel;
     protected int obstacleDrawDistance = 40;
@@ -31,6 +24,13 @@ public class Obstacle : MonoBehaviour{
     protected ShieldState reqShieldState = ShieldState.NoShield;
     [SerializeField]
     protected GameObject particleParent;
+    [SerializeField]
+    protected AudioSource source;
+    [SerializeField]
+    protected AudioClip correctClip;
+    [SerializeField]
+    protected AudioClip failClip;
+
 
     private void Awake(){
         SetInduvidualData();
@@ -38,15 +38,6 @@ public class Obstacle : MonoBehaviour{
 
     private void Update(){
         CheckPlayerDistances();
-
-        //add gameplay functionality
-
-        //upon passing check what state player is in ith input
-
-        //if player matches the state required to pass
-        //add score & destroy obstacle
-        //else
-        //Reset player "die"
     }
 
     private void OnTriggerEnter(Collider coll){
@@ -59,18 +50,26 @@ public class Obstacle : MonoBehaviour{
     /// <summary>
     /// Behaviour for when player collides with obstacle
     /// </summary>
-    protected virtual void OnPlayerCollision(){
+    protected virtual void OnPlayerCollision() {
         //if (helper.player.currShieldState == reqShieldState){
-        if(helper.player.currShieldState == reqShieldState) { 
+        if (ObstacleHelper.Instance.player.currShieldState == reqShieldState) {
             //success
-            helper.AddScore(scoreToAward);
+            ObstacleHelper.Instance.AddScore(scoreToAward);
             Debug.Log("<color=green>VERRY G00D</color>");
             particleParent.SetActive(true);
-        }else{
+            if (source != null || correctClip != null){
+                source.clip = correctClip;
+                source.Play();
+            }
+        } else {
             //failure
             //helper.player.Reset();
             Debug.Log("<color=red>SUKKEL</color>");
             particleParent.SetActive(true);
+            if (source != null || correctClip != null){
+                source.clip = failClip;
+                source.Play();
+            }
 
             //check for remaining health
 
@@ -114,7 +113,7 @@ public class Obstacle : MonoBehaviour{
             transform.position = new Vector3(coll.gameObject.transform.position.x, transform.position.y, coll.gameObject.transform.position.z);
             waypointPositionIndex = coll.gameObject.GetComponent<PlayerTrackingPoint>().PointIndex;
             //rotate
-            transform.LookAt(helper.player.waypoints[waypointPositionIndex + 1].transform.position);
+            transform.LookAt(ObstacleHelper.Instance.player.waypoints[waypointPositionIndex + 1].transform.position);
         }
     }
 
@@ -122,11 +121,11 @@ public class Obstacle : MonoBehaviour{
     /// Draw and/or animate obstacle depending on player distance
     /// </summary>
     protected virtual void CheckPlayerDistances(){
-        if ((waypointPositionIndex - obstacleDrawDistance) <= helper.playerPassIndex){
+        if ((waypointPositionIndex - obstacleDrawDistance) <= ObstacleHelper.Instance.playerPassIndex){
             //Debug.Log("REVEAL OBSTACLE");
             PlayerInRange();
         }
-        if ((waypointPositionIndex - obstacleAnimationTriggerDist) == helper.playerPassIndex){
+        if ((waypointPositionIndex - obstacleAnimationTriggerDist) == ObstacleHelper.Instance.playerPassIndex){
             //Debug.Log("START ANIMATION");
             anim.SetBool("PlayerInRange", true);
         }
@@ -139,12 +138,10 @@ public class Obstacle : MonoBehaviour{
         */
     }
 
+    /// <summary>
+    /// behaviour for when player gets within range certain range of obstacle
+    /// </summary>
     protected virtual void PlayerInRange(){
-        //Debug.Log("PLAYER IN RANGE");
         obstacleModel.SetActive(true);
-    }
-
-    public void ReceiveHelper(){
-        helper = ObstacleHelper.Instance;
     }
 }

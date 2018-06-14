@@ -75,6 +75,7 @@ public class SettingsHandler : MonoBehaviour
         MainMenuHandler.Instance.SelectButtons.SetActive(true);
         NewPlayerMovement.Instance.Reset();
         LevelManager.Instance.RemoveLevel();
+        NewPlayerMovement.Instance.update = true;
         ObstacleHelper.Instance.CurrentScore = 0;
     }
 

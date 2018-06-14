@@ -36,7 +36,7 @@ public class GvrEditorEmulator : MonoBehaviour {
   private const string AXIS_MOUSE_Y = "Mouse Y";
 
   // Simulated neck model.  Vector from the neck pivot point to the point between the eyes.
-  private static readonly Vector3 NECK_OFFSET = new Vector3(0, 0.075f, 0f);
+  private static readonly Vector3 NECK_OFFSET = new Vector3(0, 0.075f, 0.08f);
 
   // Use mouse to emulate head in the editor.
   // These variables must be static so that head pose is maintained between scene changes,
