@@ -7,6 +7,9 @@ public enum ShieldState{
     HoldShield,     //enter when played holds button, always preceded by TapShieldState
 };
 
+/// <summary>
+/// PlayerMovement makes player goes over track.
+/// </summary>
 [RequireComponent(typeof(Rigidbody))]
 public class NewPlayerMovement : MonoBehaviour {
 
@@ -40,7 +43,7 @@ public class NewPlayerMovement : MonoBehaviour {
     [HideInInspector]
     private Rigidbody rb;
     private Vector3 velocity = new Vector3();
-    private bool update = true;
+    public bool update = true;
     private PlayerInput pInput;
     private float tapFrames = 1f;
     [SerializeField][Tooltip("The amount of time each frame that is taken from the remaining frames. Higher number means shorter tap window")]
@@ -131,7 +134,10 @@ public class NewPlayerMovement : MonoBehaviour {
             tapFrames = 1f;
         }
     }
-
+    /// <summary>
+    /// Makes it possible to set playermovement On/Off and saves old speed to be able to pause game.
+    /// </summary>
+    /// <param name="On_Off">Give string as "On" or "Off" to set movement according to given string.</param>
     public void Velocity(string On_Off)
     {
         if (On_Off == "On")
@@ -150,12 +156,17 @@ public class NewPlayerMovement : MonoBehaviour {
             Debug.LogError("Can Only be 'On' or 'Off'");
         }
     }
-
+    /// <summary>
+    /// Sets player position to given Vector3 parameter.
+    /// </summary>
+    /// <param name="vec">Vector3 position to set player to.</param>
     public void SetPlayerPosition(Vector3 vec){
         startingPos = vec;
         transform.position = startingPos;
     }
-
+    /// <summary>
+    /// Resets player sets position to startpoint and set velocity to 0, next waypoint is the first 1 in array.
+    /// </summary>
     public void Reset(){
         transform.position = startingPos;
         rb.velocity = Vector3.zero;

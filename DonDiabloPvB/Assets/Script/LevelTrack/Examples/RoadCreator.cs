@@ -4,6 +4,9 @@ using UnityEngine;
 using System;
 using System.Collections.Generic;
 
+/// <summary>
+/// Class that handles the road/path, places building around track.
+/// </summary>
 [RequireComponent(typeof(PathCreator))]
 [RequireComponent(typeof(PathPlacer))]
 public class RoadCreator : MonoBehaviour{
@@ -30,6 +33,9 @@ public class RoadCreator : MonoBehaviour{
     [HideInInspector]
     public GameObject backgroundElementsGo;
 
+    /// <summary>
+    /// Get and set all data need to place the road in parts.
+    /// </summary>
     public void UpdateRoad(){
         //clean this up
         if (!renderer || !filter){
@@ -54,7 +60,9 @@ public class RoadCreator : MonoBehaviour{
         PathPlacer placer = GetComponent<PathPlacer>();
         placer.GenerateRoadProperties(points, vertexOffsetVectors, roadWidth, placeProps, placePoints, false, false);
     }
-
+    /// <summary>
+    /// Checks space around road is free to place building around the track.
+    /// </summary>
     public void PlaceBuildings(){
         autoUpdate = false;
         Path path = GetComponent<PathCreator>().path;
@@ -63,6 +71,9 @@ public class RoadCreator : MonoBehaviour{
         GetComponent<PathPlacer>().GenerateRoadProperties(points, vertexOffsetVectors, roadWidth, placeProps, placePoints, true, false);
     }
 
+    /// <summary>
+    /// FinalizePath after checks.
+    /// </summary>
     public void FinalizePath(){
         if (!renderer || !filter){
             Debug.LogError("No target mesh components selected; Automatic detection");

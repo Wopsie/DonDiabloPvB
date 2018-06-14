@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Inherid from Obstacle contains collsion detection for obstacle.
+/// </summary>
 public class HoldObstacle : Obstacle {
 
     [SerializeField]

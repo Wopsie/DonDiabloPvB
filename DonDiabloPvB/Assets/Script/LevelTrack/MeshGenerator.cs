@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Contains function for mesh generation of the track.
+/// </summary>
 [RequireComponent(typeof(MeshFilter))]
 [RequireComponent(typeof(MeshRenderer))]
 public class MeshGenerator : MonoBehaviour{
@@ -33,6 +36,13 @@ public class MeshGenerator : MonoBehaviour{
         //Debug.Log("RENDER MESH FROM START");
     }
 
+    /// <summary>
+    /// Creates road mesh with given parameters.
+    /// </summary>
+    /// <param name="points">Array of waypoints.</param>
+    /// <param name="isClosed"></param>
+    /// <param name="roadWidth">Width of road.</param>
+    /// <returns></returns>
     public Mesh CreateRoadMesh(Vector2[] points, bool isClosed, float roadWidth){
         Vector3[] verts = new Vector3[points.Length * 2];
         Vector2[] uvs = new Vector2[verts.Length];

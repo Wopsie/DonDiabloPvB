@@ -4,7 +4,9 @@ using UnityEngine;
 
 namespace SplineEditor
 {
-
+    /// <summary>
+    /// Initate and handles everything of the Path/Track.
+    /// </summary>
     [System.Serializable]
     public class Path {
 
@@ -71,7 +73,10 @@ namespace SplineEditor
         public int NumSegments {
             get { return points.Count / 3; }
         }
-
+        /// <summary>
+        /// Instatiate a Path segment.
+        /// </summary>
+        /// <param name="anchorPos">The position you want to have the segment.</param>
         public void AddSegment(Vector2 anchorPos){
             points.Add(points[points.Count - 1] * 2 - points[points.Count - 2]);
             points.Add((points[points.Count - 1] + anchorPos) * .5f);
@@ -81,7 +86,11 @@ namespace SplineEditor
                 AutoSetAllAffected(points.Count - 1);
             }
         }
-
+        /// <summary>
+        /// Splits the segment
+        /// </summary>
+        /// <param name="anchorPos">Position of segment</param>
+        /// <param name="segmentIndex">Index of segment in array.</param>
         public void SplitSegment(Vector2 anchorPos, int segmentIndex){
             points.InsertRange(segmentIndex * 3 + 2, new Vector2[] { Vector2.zero, anchorPos, Vector2.zero });
             if (autoSetControlPoints){
@@ -90,7 +99,10 @@ namespace SplineEditor
                 AutoSetAnchorControlPoints(segmentIndex * 3 + 3);
             }
         }
-
+        /// <summary>
+        /// Deletes whole segment from array
+        /// </summary>
+        /// <param name="anchorIndex">Index of segment in array to delete.</param>
         public void DeleteSegment(int anchorIndex){
             if(NumSegments > 2 || !isClosed && NumSegments > 1){
                 //first point in spline
@@ -107,11 +119,19 @@ namespace SplineEditor
                 }
             }
         }
-
+        /// <summary>
+        /// Get point from array of segment.
+        /// </summary>
+        /// <param name="i">index</param>
+        /// <returns></returns>
         public Vector2[] GetPointsInSegment(int i){
             return new Vector2[] { points[i * 3], points[i * 3 + 1], points[i * 3 + 2], points[LoopIndex(i * 3 + 3)] };
         }
-
+        /// <summary>
+        /// Moves segment.
+        /// </summary>
+        /// <param name="i">index of array.</param>
+        /// <param name="pos">postion to move to.</param>
         public void MovePoint(int i, Vector2 pos){
             Vector2 deltaMove = pos - points[i];
 
@@ -148,6 +168,12 @@ namespace SplineEditor
             }
         }
         
+        /// <summary>
+        /// Calculate if all segment have even spave between them.
+        /// </summary>
+        /// <param name="spacing">amount of spacing</param>
+        /// <param name="resolution">resolution.</param>
+        /// <returns></returns>
         public Vector2[] CalculateEvenSpacePoints(float spacing, float resolution = 1){
             List<Vector2> evenlySpacedPoints = new List<Vector2>();
             evenlySpacedPoints.Add(points[0]);

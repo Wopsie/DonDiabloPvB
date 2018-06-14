@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Class which only spins the spinner of the DJ Booth.
+/// </summary>
 public class Spinners : MonoBehaviour
 {
     private bool turn = true;

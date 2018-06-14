@@ -3,6 +3,10 @@ using UnityEditor;
 using UnityEngine.SceneManagement;
 using UnityEditor.SceneManagement;
 
+
+/// <summary>
+/// Checks if scene is specific test scene.
+/// </summary>
 [InitializeOnLoad]
 public class SceneChecker
 {

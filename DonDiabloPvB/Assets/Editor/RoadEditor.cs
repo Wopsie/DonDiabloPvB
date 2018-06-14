@@ -5,6 +5,10 @@ using UnityEditor;
 using SplineEditor;
 using UnityEditor.SceneManagement;
 
+/// <summary>
+/// RoadEditor which finalize all data set of point,road width,texture tilling,point spacing.
+/// </summary>
+
 [CustomEditor(typeof(RoadCreator))]
 public class RoadEditor : Editor{
     RoadCreator creator;
@@ -15,6 +19,9 @@ public class RoadEditor : Editor{
         }
     }
 
+    /// <summary>
+    /// Instantiate all data of the road of point,road width,texture tilling,point spacing.
+    /// </summary>
     public override void OnInspectorGUI(){
         base.OnInspectorGUI();
 

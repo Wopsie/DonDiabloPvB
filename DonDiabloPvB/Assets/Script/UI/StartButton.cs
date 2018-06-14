@@ -15,6 +15,7 @@ public class StartButton : MonoBehaviour
         ShaderController.Instance.TriggerEffect(1);
         SettingsHandler.Instance.SetButtonActive(true);
         MainMenuHandler.Instance.SelectButtons.SetActive(false);
-        MainMenuHandler.Instance.UIStartButton.SetActive(false);        
+        MainMenuHandler.Instance.UIStartButton.SetActive(false);
+        LevelManager.Instance.PlaceLevel("Level" + MainMenuHandler.Instance.LevelNumber);
     }
 }

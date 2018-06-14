@@ -6,7 +6,6 @@ using UnityEngine;
     /// <summary>
     /// SettingsHandler handles all functions the settings/pause menu uses. 
     /// </summary>
-
 public class SettingsHandler : MonoBehaviour
 {
     #region Singleton
@@ -49,7 +48,7 @@ public class SettingsHandler : MonoBehaviour
     public void Settings()
     {
         SetButtonActive(false);
-        //NewPlayerMovement.Instance.Velocity("Off");}
+        NewPlayerMovement.Instance.Velocity("Off");
         audioSource.Pause();
         SettingUI(true);
         ShaderController.Instance.TriggerEffect(2); 
@@ -76,6 +75,7 @@ public class SettingsHandler : MonoBehaviour
         MainMenuHandler.Instance.SelectButtons.SetActive(true);
         NewPlayerMovement.Instance.Reset();
         LevelManager.Instance.RemoveLevel();
+        NewPlayerMovement.Instance.update = true;
         ObstacleHelper.Instance.CurrentScore = 0;
     }
 
@@ -83,7 +83,7 @@ public class SettingsHandler : MonoBehaviour
     /// With given bool turns on/off SettingButton.
     /// button is to activate the setting UI.
     /// </summary>
-    /// <param name="a"></param>
+    /// <param name="a">Set "True" to setactive, "False" for inactive.</param>
     public void SetButtonActive(bool a)
     {
         for (int i = 0; i < SettingObjects.Count; i++)
@@ -99,7 +99,7 @@ public class SettingsHandler : MonoBehaviour
     /// With given bool turns on/off SettingUI
     /// SettingUI is to choose to resume or back to menu.
     /// </summary>
-    /// <param name="a"></param>
+    /// <param name="a">Set "True" to setactive, "False" for inactive.</param>
     public void SettingUI(bool a)
     {
         for (int i = 0; i < SettingObjects.Count; i++)

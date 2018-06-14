@@ -4,7 +4,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace SplineEditor { 
-
+    /// <summary>
+    /// Instantiates Path class.
+    /// </summary>
     public class PathCreator : MonoBehaviour {
 
         [HideInInspector]

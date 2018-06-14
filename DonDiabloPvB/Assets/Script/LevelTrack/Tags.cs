@@ -1,5 +1,7 @@
 ﻿using System.Collections;
-
+/// <summary>
+/// Data class which holds multiple tags.
+/// </summary>
 public class Tags{
     public static string SpawnerTag = "TrackSpawner";
     public static string WaypointTag = "WayPoint";

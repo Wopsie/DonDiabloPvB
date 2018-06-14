@@ -3,6 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Contains all Input data used on Obstacles Tap and Hold.
+/// </summary>
 public class PlayerInput : MonoBehaviour {
 
     private bool buttonPressed;
